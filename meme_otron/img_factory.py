@@ -3,11 +3,13 @@ import os
 import os.path as path
 import logging
 
+from . import utils
+
 DEFAULT_FONT = "arial"
 DEFAULT_FONT_SIZE = 0.05
 
-FONT_DIR = "../fonts"
-TEMPLATES_DIR = "../templates"
+FONT_DIR = utils.relative_path(__file__, "..", "fonts")
+TEMPLATES_DIR = utils.relative_path(__file__, "..", "templates")
 
 FONTS = {}
 

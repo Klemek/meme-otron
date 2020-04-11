@@ -1,10 +1,11 @@
 import json
 import logging
+import os.path as path
 
 from .types import Pos, Text, Meme
 from . import utils
 
-DATA_FILE = "../memes.json"
+DATA_FILE = utils.relative_path(__file__, "..", "memes.json")
 
 DATA = {}
 ALIASES = {}
@@ -117,7 +118,7 @@ def load_text(j, raw_text):
     """
     if not (isinstance(raw_text, dict)):
         raise TypeError(f"root is not a dict")
-    text = Text(f"text {j+1}")
+    text = Text(f"text {j + 1}")
     if "font" in raw_text:
         if not (isinstance(raw_text["font"], str)):
             raise TypeError(f"'font' is not a str")

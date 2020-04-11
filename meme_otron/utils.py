@@ -1,4 +1,9 @@
 import re
+import os.path as path
+
+
+def relative_path(file, *args):
+    return path.realpath(path.join(path.dirname(path.realpath(file)), *args))
 
 
 def read_key_safe(d, k, default=None):
