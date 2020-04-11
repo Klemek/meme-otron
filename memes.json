@@ -1,0 +1,183 @@
+[{
+    "id": "2_panel_right",
+    "abstract": true,
+    "font": "arial",
+    "texts": [{
+      "x_range": [0.52, 0.98],
+      "y_range": [0.00, 0.50]
+    }, {
+      "x_range": [0.52, 0.98],
+      "y_range": [0.50, 1.00]
+    }]
+},{
+    "id": "3_panel_right",
+    "abstract": true,
+    "font": "arial",
+    "texts": [{
+      "x_range": [0.52, 0.98],
+      "y_range": [0.00, 0.33]
+    },{
+      "x_range": [0.52, 0.98],
+      "y_range": [0.33, 0.67]
+    }, {
+      "x_range": [0.52, 0.98],
+      "y_range": [0.67, 1.00]
+    }]
+},{
+    "id": "4_panel_right",
+    "abstract": true,
+    "font": "arial",
+    "texts": [{
+      "x_range": [0.52, 0.98],
+      "y_range": [0.00, 0.25]
+    },{
+      "x_range": [0.52, 0.98],
+      "y_range": [0.25, 0.50]
+    },{
+      "x_range": [0.52, 0.98],
+      "y_range": [0.50, 0.75]
+    },{
+      "x_range": [0.52, 0.98],
+      "y_range": [0.75, 1.00]
+    }]
+},{
+    "id": "5_panel_right",
+    "abstract": true,
+    "font": "arial",
+    "texts": [{
+      "x_range": [0.52, 0.98],
+      "y_range": [0.00, 0.20]
+    },{
+      "x_range": [0.52, 0.98],
+      "y_range": [0.20, 0.40]
+    },{
+      "x_range": [0.52, 0.98],
+      "y_range": [0.40, 0.60]
+    },{
+      "x_range": [0.52, 0.98],
+      "y_range": [0.60, 0.80]
+    },{
+      "x_range": [0.52, 0.98],
+      "y_range": [0.80, 1.00]
+    }]
+},{
+    "id": "2_panel_left",
+    "abstract": true,
+    "font": "arial",
+    "texts": [{
+      "x_range": [0.02, 0.48],
+      "y_range": [0.00, 0.50]
+    }, {
+      "x_range": [0.02, 0.48],
+      "y_range": [0.50, 1.00]
+    }]
+},{
+    "id": "3_panel_left",
+    "abstract": true,
+    "font": "arial",
+    "texts": [{
+      "x_range": [0.02, 0.48],
+      "y_range": [0.00, 0.33]
+    },{
+      "x_range": [0.02, 0.48],
+      "y_range": [0.33, 0.67]
+    }, {
+      "x_range": [0.02, 0.48],
+      "y_range": [0.67, 1.00]
+    }]
+},{
+    "id": "4_panel_left",
+    "abstract": true,
+    "font": "arial",
+    "texts": [{
+      "x_range": [0.02, 0.48],
+      "y_range": [0.00, 0.25]
+    },{
+      "x_range": [0.02, 0.48],
+      "y_range": [0.25, 0.50]
+    },{
+      "x_range": [0.02, 0.48],
+      "y_range": [0.50, 0.75]
+    },{
+      "x_range": [0.02, 0.48],
+      "y_range": [0.75, 1.00]
+    }]
+},{
+    "id": "5_panel_left",
+    "abstract": true,
+    "font": "arial",
+    "texts": [{
+      "x_range": [0.02, 0.48],
+      "y_range": [0.00, 0.20]
+    },{
+      "x_range": [0.02, 0.48],
+      "y_range": [0.20, 0.40]
+    },{
+      "x_range": [0.02, 0.48],
+      "y_range": [0.40, 0.60]
+    },{
+      "x_range": [0.02, 0.48],
+      "y_range": [0.60, 0.80]
+    },{
+      "x_range": [0.02, 0.48],
+      "y_range": [0.80, 1.00]
+    }]
+},{
+    "id": "drake",
+    "template": "drake.jpg",
+    "based_on": "2_panel_right"
+},{
+    "id": "brain3",
+    "template": "brain3.jpg",
+    "based_on": "3_panel_left"
+},{
+    "id": "brain4",
+    "aliases": ["brains"],
+    "template": "brain4.jpg",
+    "based_on": "4_panel_left"
+},{
+    "id": "brain5",
+    "template": "brain5.jpg",
+    "based_on": "5_panel_left"
+},{
+    "id": "disappointed",
+    "template": "disappointed.jpg",
+    "based_on": "2_panel_left"
+},{
+    "id": "nope",
+    "template": "nope.jpg",
+    "based_on": "2_panel_right"
+},{
+    "id": "pleasure3",
+    "aliases": ["satisfied3"],
+    "template": "pleasure3.jpg",
+    "based_on": "3_panel_left"
+},{
+    "id": "pleasure4",
+    "aliases": ["pleasure","satisfied","satisfied4"],
+    "template": "pleasure4.jpg",
+    "based_on": "4_panel_left"
+},{
+    "id": "tough2",
+    "aliases": ["tough", "fight"],
+    "template": "tough2.jpg",
+    "based_on": "2_panel_right"
+},{
+    "id": "tough2bis",
+    "aliases": ["soft"],
+    "template": "tough2bis.jpg",
+    "based_on": "2_panel_right"
+},{
+    "id": "tough3",
+    "template": "tough3.jpg",
+    "based_on": "3_panel_right"
+},{
+    "id": "winnie2",
+    "aliases": ["winnie"],
+    "template": "winnie2.jpg",
+    "based_on": "2_panel_right"
+},{
+    "id": "winnie3",
+    "template": "winnie3.jpg",
+    "based_on": "3_panel_right"
+}]
