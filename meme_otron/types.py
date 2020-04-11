@@ -58,6 +58,7 @@ class Text:
 
         self.x_range = (0, 1)
         self.y_range = (0, 1)
+        self.angle = None
 
         self.font = None
         self.font_size = None
@@ -83,6 +84,12 @@ class Text:
         """
         TODO
         """
+        if self.x_range is None:
+            self.x_range = (0, 1)
+        if self.y_range is None:
+            self.y_range = (0, 1)
+        if self.angle is None:
+            self.angle = 0
         if self.font is None:
             self.font = DEFAULT_FONT
         if self.font_size is None:

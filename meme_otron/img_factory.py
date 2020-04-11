@@ -38,24 +38,24 @@ def make(template, texts, debug=False):
     :return:
     """
     try:
-        img = Image.open(path.join(TEMPLATES_DIR, template))
+        img = Image.open(path.join(TEMPLATES_DIR, template)).convert(mode='RGBA')
     except OSError as e:
         logger.error(f"Could not read template file '{template}': {e}")
         return None
     draw = ImageDraw.Draw(img)
 
     for text in texts:
-        draw_text(draw, img.size, text, debug=debug)
+        draw_text(draw, img, text, debug=debug)
 
-    return img
+    return img.convert(mode='RGB')
 
 
-def draw_text(draw, size, text, debug=False):
+def draw_text(draw, img, text, debug=False):
     """
     TODO
 
     :param (PIL.ImageDraw.ImageDraw) draw: source image canvas
-    :param (int,int) size: source image size
+    :param (PIL.Image.Image) img: source image
     :param (Text) text:
     :param (bool) debug:
     """
@@ -64,14 +64,31 @@ def draw_text(draw, size, text, debug=False):
     if text.text is not None and len(text.text.strip()) > 0:
         text.init()  # load default values
         if text.font in FONTS:
-            text.text, font = fit_text(size, text)
-            draw.text(get_pos(size, text, font), text.text, fill=text.fill, align=text.align, font=font,
-                      stroke_width=round(text.stroke_width * font.size), stroke_fill=text.stroke_fill)
-            if debug:
-                draw.rectangle([(text.x_range[0] * size[0], text.y_range[0] * size[1]),
-                                (text.x_range[1] * size[0], text.y_range[1] * size[1])],
-                               None,
-                               (128, 128, 128))
+            text.text, font = fit_text(img.size, text)
+            if text.angle == 0:
+                draw.text(get_pos(img.size, text, font), text.text, fill=text.fill, align=text.align, font=font,
+                          stroke_width=round(text.stroke_width * font.size), stroke_fill=text.stroke_fill)
+                if debug:
+                    draw.rectangle([(text.x_range[0] * img.size[0], text.y_range[0] * img.size[1]),
+                                    (text.x_range[1] * img.size[0], text.y_range[1] * img.size[1])],
+                                   None, (128, 128, 128))
+            else:
+                width = round((text.x_range[1] - text.x_range[0]) * img.size[0])
+                height = round((text.y_range[1] - text.y_range[0]) * img.size[1])
+                center_x = (text.x_range[0] + text.x_range[1]) * img.size[0] / 2
+                center_y = (text.y_range[0] + text.y_range[1]) * img.size[1] / 2
+                txt_img = Image.new('RGBA', (width, height))
+                txt_draw = ImageDraw.Draw(txt_img)
+                txt_draw.text(get_pos(img.size, text, font, relative=True), text.text, fill=text.fill,
+                              align=text.align, font=font, stroke_width=round(text.stroke_width * font.size),
+                              stroke_fill=text.stroke_fill)
+                if debug:
+                    txt_draw.rectangle([(0, 0), (width - 1, height - 1)],
+                                       None, (128, 128, 128))
+                txt_img = txt_img.rotate(text.angle, expand=1, resample=Image.BILINEAR)
+                img.paste(txt_img,
+                          (round(center_x - txt_img.size[0] / 2), round(center_y - txt_img.size[1] / 2)),
+                          txt_img)
         else:
             logger.warning(f"Invalid font '{text.font}'")
 
@@ -107,7 +124,7 @@ def fit_text(size, text):
     return t, font
 
 
-def get_pos(size, text, font):
+def get_pos(size, text, font, relative=False):
     """
     TODO
 
@@ -136,5 +153,7 @@ def get_pos(size, text, font):
         pos_x = round((min_x + max_x) / 2 - text_size[0] / 2)
     else:
         pos_x = max_x - text_size[0]
-
-    return pos_x, pos_y
+    if relative:
+        return pos_x - min_x, pos_y - min_y
+    else:
+        return pos_x, pos_y

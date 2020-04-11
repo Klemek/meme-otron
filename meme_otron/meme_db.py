@@ -105,9 +105,10 @@ def load_text(j, raw_text, text=None):
     text.font = utils.read_key_safe(raw_text, "font", types=[str])
     text.x_range = utils.read_key_safe(raw_text, "x_range", types=[float, int], is_list=True, is_list_size=2)
     text.y_range = utils.read_key_safe(raw_text, "y_range", types=[float, int], is_list=True, is_list_size=2)
-    text.font_size = utils.read_key_safe(raw_text, "font_size", types=[float])
+    text.angle = utils.read_key_safe(raw_text, "angle", types=[float, int])
+    text.font_size = utils.read_key_safe(raw_text, "font_size", types=[float, int])
     text.fill = utils.read_key_safe(raw_text, "fill", types=[int], is_list=True, is_list_size=3)
-    text.stroke_width = utils.read_key_safe(raw_text, "stroke_width", types=[float])
+    text.stroke_width = utils.read_key_safe(raw_text, "stroke_width", types=[float, int])
     text.stroke_fill = utils.read_key_safe(raw_text, "stroke_fill", types=[int], is_list=True, is_list_size=3)
     if "position" in raw_text:
         if raw_text["position"] not in [p.name for p in Pos]:
