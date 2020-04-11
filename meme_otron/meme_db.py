@@ -1,6 +1,5 @@
 import json
 import logging
-import os.path as path
 
 from .types import Pos, Text, Meme
 from . import utils
@@ -44,63 +43,44 @@ def load_item(i, item):
     try:
         if not (isinstance(item, dict)):
             raise TypeError(f"root is not a dict")
-        item_id = utils.read_key(item, "id")
+        item_id = utils.read_key(item, "id", types=[str])
         if item_id in DATA:
             raise NameError(f"id '{item_id}' already existing")
-        based_on = utils.read_key_safe(item, "based_on")
-        abstract = utils.read_key_safe(item, "abstract", False)
-        aliases = utils.read_key_safe(item, "aliases", [])
-        if not utils.is_list_of(aliases, [str]):
-            raise TypeError(f"'aliases' is not a list of str")
-        template = None
-        font = None
-        font_size = None
-        texts = None
+        based_on = utils.read_key_safe(item, "based_on", types=[str])
         if based_on is not None:
             if based_on in DATA:
-                template = DATA[based_on].template
-                font = DATA[based_on].font
-                font_size = DATA[based_on].font_size
-                texts = DATA[based_on].clone_texts()
+                meme = DATA[based_on].clone()
+                meme.id = item_id
             else:
                 raise NameError(f"Reference '{based_on}' not found in data, make sur it's placed before this one")
-        if not abstract:
-            template = utils.read_key(item, "template", template)
-        font = utils.read_key_safe(item, "font", font)
-        font_size = utils.read_key_safe(item, "font_size", font_size)
-        raw_texts = utils.read_key(item, "texts", texts)
-        if texts is None:
-            if not (isinstance(raw_texts, list)):
-                raise TypeError(f"'texts' is not a list")
-            texts = []
+        else:
+            meme = Meme(item_id)
+        meme.abstract = utils.read_key_safe(item, "abstract", False, types=[bool])
+        meme.aliases = utils.read_key_safe(item, "aliases", [], types=[str], is_list=True)
+        meme.text_base = load_text(0, item, meme.text_base)
+        if not meme.abstract:
+            meme.template = utils.read_key(item, "template", meme.template, types=[str])
+        raw_texts = utils.read_key(item, "texts", meme.texts, types=[dict], is_list=True)
+        if meme.texts is None:
+            meme.texts = []
             for j in range(len(raw_texts)):
                 raw_text = raw_texts[j]
                 try:
-                    texts += [load_text(j, raw_text)]
+                    meme.texts += [load_text(j, raw_text)]
                 except TypeError as e:
                     logger.warning(f"Item '{item_id}'({i}) / Text {j}: {e}")
-        if font is not None:
-            if not (isinstance(font, str)):
-                raise TypeError(f"'font' is not a str")
-            for text in texts:
-                if text.font is None:
-                    text.font = font
-        if font_size is not None:
-            if not (isinstance(font_size, float)):
-                raise TypeError(f"'font_size' is not a float")
-            for text in texts:
-                if text.font_size is None:
-                    text.font_size = font_size
-        if len(texts) == 0:
+        for text in meme.texts:
+            text.update(meme.text_base)
+        if len(meme.texts) == 0:
             logger.warning(f"Item '{item_id}'({i}): no texts loaded")
         else:
-            DATA[item_id] = Meme(item_id, aliases, abstract, template, font, font_size, texts)
-            for alias in aliases:
+            DATA[item_id] = meme
+            for alias in meme.aliases:
                 if alias in ALIASES:
                     logger.warning(f"Item '{item_id}'({i}): alias '{alias}' already registered by '{ALIASES[alias]}'")
                 else:
                     ALIASES[alias] = item_id
-            logger.info(f"Loaded meme '{item_id}' with {len(texts)} texts")
+            logger.info(f"Loaded meme '{item_id}' with {len(meme.texts)} texts")
     except KeyError as e:
         logger.warning(f"Item '{item_id}'({i}): key {e} not found")
     except TypeError as e:
@@ -109,51 +89,30 @@ def load_item(i, item):
         logger.warning(f"Item '{item_id}'({i}): {e}")
 
 
-def load_text(j, raw_text):
+def load_text(j, raw_text, text=None):
     """
     TODO
 
     :param (int) j:
     :param (dict) raw_text:
+    :param (Text|None) text:
     :raises TypeError:
     :rtype: Text
     :return:
     """
-    if not (isinstance(raw_text, dict)):
-        raise TypeError(f"root is not a dict")
-    text = Text(f"text {j + 1}")
-    if "font" in raw_text:
-        if not (isinstance(raw_text["font"], str)):
-            raise TypeError(f"'font' is not a str")
-        text.font = raw_text["font"]
-    if "x_range" in raw_text:
-        if not (utils.is_list_of(raw_text["x_range"], [int, float], 2)):
-            raise TypeError(f"'x_range' is not a list of 2 float")
-        text.x_range = raw_text["x_range"]
-    if "y_range" in raw_text:
-        if not (utils.is_list_of(raw_text["y_range"], [int, float], 2)):
-            raise TypeError(f"'y_range' is not a list of 2 float")
-        text.y_range = raw_text["y_range"]
+    if text is None:
+        text = Text(f"text {j + 1}")
+    text.font = utils.read_key_safe(raw_text, "font", types=[str])
+    text.x_range = utils.read_key_safe(raw_text, "x_range", types=[float, int], is_list=True, is_list_size=2)
+    text.y_range = utils.read_key_safe(raw_text, "y_range", types=[float, int], is_list=True, is_list_size=2)
+    text.font_size = utils.read_key_safe(raw_text, "font_size", types=[float])
+    text.fill = utils.read_key_safe(raw_text, "fill", types=[int], is_list=True, is_list_size=3)
+    text.stroke_width = utils.read_key_safe(raw_text, "stroke_width", types=[float])
+    text.stroke_fill = utils.read_key_safe(raw_text, "stroke_fill", types=[int], is_list=True, is_list_size=3)
     if "position" in raw_text:
         if raw_text["position"] not in [p.name for p in Pos]:
             raise TypeError(f"'position' is not a valid position (ex: NW, E, SE, ...)")
         text.position = [p for p in Pos if p.name == raw_text["position"]][0]
-    if "font_size" in raw_text:
-        if not (isinstance(raw_text["font_size"], float)):
-            raise TypeError(f"'font_size' is not a float")
-        text.font_size = raw_text["font_size"]
-    if "fill" in raw_text:
-        if not (utils.is_list_of(raw_text["fill"], [int], 3)):
-            raise TypeError(f"'fill' is not a list of 3 int")
-        text.fill = tuple(raw_text["fill"])
-    if "stroke_width" in raw_text:
-        if not (isinstance(raw_text["stroke_width"], float)):
-            raise TypeError(f"'stroke_width' is not a float")
-        text.stroke_width = raw_text["stroke_width"]
-    if "stroke_fill" in raw_text:
-        if not (utils.is_list_of(raw_text["stroke_fill"], [int], 3)):
-            raise TypeError(f"'stroke_fill' is not a list of 3 int")
-        text.stroke_fill = tuple(raw_text["stroke_fill"])
     if "align" in raw_text:
         if raw_text["align"] not in ["left", "center", "right"]:
             raise TypeError(f"'align' is not 'left', 'center' or 'right'")

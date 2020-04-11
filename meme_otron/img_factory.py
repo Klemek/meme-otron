@@ -5,9 +5,6 @@ import logging
 
 from . import utils
 
-DEFAULT_FONT = "arial"
-DEFAULT_FONT_SIZE = 0.05
-
 FONT_DIR = utils.relative_path(__file__, "..", "fonts")
 TEMPLATES_DIR = utils.relative_path(__file__, "..", "templates")
 
@@ -65,8 +62,7 @@ def draw_text(draw, size, text, debug=False):
     # TODO rotation
     # https://stackoverflow.com/questions/245447/how-do-i-draw-text-at-an-angle-using-pythons-pil
     if text.text is not None and len(text.text.strip()) > 0:
-        if text.font is None:
-            text.font = DEFAULT_FONT
+        text.init()  # load default values
         if text.font in FONTS:
             text.text, font = fit_text(size, text)
             draw.text(get_pos(size, text, font), text.text, fill=text.fill, align=text.align, font=font,
@@ -90,8 +86,6 @@ def fit_text(size, text):
     max_width = round(size[0] * (text.x_range[1] - text.x_range[0]))
     max_height = round(size[1] * (text.y_range[1] - text.y_range[0]))
     text_size = None
-    if text.font_size is None:
-        text.font_size = DEFAULT_FONT_SIZE
     font_size = round(text.font_size * min(size)) + 1
     font = FONTS[text.font]
     t = ""
@@ -127,8 +121,6 @@ def get_pos(size, text, font):
     max_x = round(text.x_range[1] * size[0])
     min_y = round(text.y_range[0] * size[1])
     max_y = round(text.y_range[1] * size[1])
-    pos_x = 0
-    pos_y = 0
     text_size = font.getsize_multiline(text.text, stroke_width=text.stroke_width * font.size)
 
     if int(text.position.value) // 3 == 0:

@@ -14,9 +14,12 @@ dst_dir = utils.relative_path(__file__, "templates")
 
 templates_dir = utils.relative_path(__file__, "..", "templates")
 
-for f in os.listdir(dst_dir):
-    if path.isfile(path.join(dst_dir, f)):
-        os.unlink(path.join(dst_dir, f))
+if path.exists(dst_dir):
+    for f in os.listdir(dst_dir):
+        if path.isfile(path.join(dst_dir, f)):
+            os.unlink(path.join(dst_dir, f))
+else:
+    os.mkdir(dst_dir)
 
 count = 0
 

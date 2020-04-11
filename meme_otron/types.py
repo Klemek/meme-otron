@@ -1,6 +1,9 @@
 from enum import IntEnum
 import copy
 
+DEFAULT_FONT = "arial"
+DEFAULT_FONT_SIZE = 0.05
+
 
 class Pos(IntEnum):
     """
@@ -22,51 +25,79 @@ class Meme:
     TODO
     """
 
-    def __init__(self, meme_id, aliases, abstract, template, font, font_size, texts):
+    def __init__(self, meme_id, aliases=None, abstract=False, template=None, text_base=None, texts=None):
         self.id = meme_id
-        self.aliases = aliases
+        if aliases is None:
+            self.aliases = []
+        else:
+            self.aliases = aliases
         self.abstract = abstract
         self.template = template
-        self.font = font
-        self.font_size = font_size
-        self.texts = texts
-
-    def clone_texts(self):
-        return copy.deepcopy(self.texts)
+        if text_base is None:
+            self.text_base = Text()
+        else:
+            self.text_base = text_base
+        if texts is None:
+            self.texts = None
+        else:
+            self.texts = copy.deepcopy(texts)
 
     def clone(self):
-        return Meme(self.id,
-                    self.aliases,
-                    self.abstract,
-                    self.template,
-                    self.font,
-                    self.font_size,
-                    self.clone_texts())
+        return copy.deepcopy(self)
 
 
 class Text:
     """
     TODO
     """
+    base_properties = ["font", "font_size", "fill", "stroke_width",
+                       "stroke_fill", "align", "position"]
 
     def __init__(self, text=None):
         self.text = text
-        
+
         self.x_range = (0, 1)
         self.y_range = (0, 1)
-        
+
         self.font = None
         self.font_size = None
-        
-        self.fill = (0, 0, 0)
-        self.stroke_width = 0
-        self.stroke_fill = (0, 0, 0)
-        
-        self.align = "center"
-        self.position = Pos.CENTER
+
+        self.fill = None
+        self.stroke_width = None
+        self.stroke_fill = None
+
+        self.align = None
+        self.position = None
 
     def update(self, base):
-        for prop in ["font", "font_size", "fill", "stroke_width",
-                     "stroke_fill", "align", "position"]:
+        """
+        TODO
+
+        :param (Text) base:
+        """
+        for prop in Text.base_properties:
             if getattr(self, prop) is None:
-                setattr(self,prop, getattr(base, prop))
+                setattr(self, prop, getattr(base, prop))
+
+    def init(self):
+        """
+        TODO
+        """
+        if self.font is None:
+            self.font = DEFAULT_FONT
+        if self.font_size is None:
+            self.font_size = DEFAULT_FONT_SIZE
+        if self.align is None:
+            self.align = "center"
+        if self.fill is None:
+            self.fill = (0, 0, 0)
+        else:
+            self.fill = tuple(self.fill)
+        if self.stroke_fill is None:
+            self.stroke_fill = (0, 0, 0)
+        else:
+            self.stroke_fill = tuple(self.stroke_fill)
+        if self.stroke_width is None:
+            self.stroke_width = 0
+        if self.position is None:
+            self.position = Pos.CENTER
