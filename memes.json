@@ -276,46 +276,58 @@
     },{
       "x_range": [0.02, 0.98],
       "y_range": [0.70, 0.79]
-    },{
-      "x_range": [0.02, 0.98],
-      "y_range": [0.90, 0.99]
-    }]
-},{
+    },
+      {
+        "x_range": [
+          0.02,
+          0.98
+        ],
+        "y_range": [
+          0.90,
+          0.99
+        ]
+      }
+    ]
+},
+  {
     "id": "buff",
     "template": "buff.jpg",
-	"aliases": ["tom", "jerry"],
+    "aliases": [
+      "tom",
+      "jerry"
+    ],
     "font": "impact",
-	"font_size": 0.07,
-  "stroke_fill": [
-    255,
-    255,
-    255
-  ],
-  "stroke_width": 0.1,
-  "texts": [
-    {
-      "x_range": [
-        0.07,
-        0.36
-      ],
-      "y_range": [
-        0.69,
-        0.98
-      ],
-      "font_size": 0.05
-    },
-    {
-      "x_range": [
-        0.44,
-        0.84
-      ],
-      "y_range": [
-        0.27,
-        0.59
-      ]
-    }
-  ]
-},
+    "font_size": 0.07,
+    "stroke_fill": [
+      255,
+      255,
+      255
+    ],
+    "stroke_width": 0.1,
+    "texts": [
+      {
+        "x_range": [
+          0.07,
+          0.36
+        ],
+        "y_range": [
+          0.69,
+          0.98
+        ],
+        "font_size": 0.05
+      },
+      {
+        "x_range": [
+          0.44,
+          0.84
+        ],
+        "y_range": [
+          0.27,
+          0.59
+        ]
+      }
+    ]
+  },
   {
     "id": "button",
     "template": "button.jpg",
