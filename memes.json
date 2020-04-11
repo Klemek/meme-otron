@@ -123,6 +123,24 @@
       "y_range": [0.80, 1.00]
     }]
 },{
+    "id": "2_texts",
+	"abstract": true,
+    "font": "impact",
+	"font_size": 0.12,
+    "texts": [{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.02, 0.50],
+	  "stroke_fill": [255, 255, 255],
+	  "stroke_width": 0.1,
+	  "position": "N"
+    },{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.50, 0.98],
+	  "stroke_fill": [255, 255, 255],
+	  "stroke_width": 0.1,
+	  "position": "S"
+    }]
+},{
     "id": "drake",
     "template": "drake.jpg",
     "based_on": "2_panel_right"
@@ -180,4 +198,110 @@
     "id": "winnie3",
     "template": "winnie3.jpg",
     "based_on": "3_panel_right"
+},{
+    "id": "burn",
+    "template": "burn.jpg",
+    "font": "arial",
+    "texts": [{
+      "x_range": [0.08, 0.37],
+      "y_range": [0.09, 0.43]
+    },{
+      "x_range": [0.65, 0.95],
+      "y_range": [0.21, 0.40],
+	  "stroke_fill": [255, 255, 255],
+	  "stroke_width": 0.1
+    },{
+      "x_range": [0.16, 0.45],
+      "y_range": [0.73, 0.91],
+	  "stroke_fill": [255, 255, 255],
+	  "stroke_width": 0.1
+    },{
+      "x_range": [0.69, 0.98],
+      "y_range": [0.72, 0.90],
+	  "stroke_fill": [255, 255, 255],
+	  "stroke_width": 0.1
+    }]
+},{
+    "id": "aliens",
+    "template": "aliens.jpg",
+    "font": "impact",
+	"font_size": 0.15,
+    "texts": [{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.8, 0.98],
+	  "stroke_fill": [255, 255, 255],
+	  "stroke_width": 0.1,
+	  "position": "S"
+    }]
+},{
+    "id": "grandma",
+    "template": "grandma.jpg",
+    "based_on": "2_texts"
+},{
+    "id": "everywhere",
+    "template": "everywhere.jpg",
+	"aliases": ["buzz", "woody"],
+    "based_on": "2_texts"
+},{
+    "id": "bender",
+    "template": "bender.jpg",
+	"aliases": ["hookers", "blackjack"],
+    "based_on": "2_texts"
+},{
+    "id": "alive",
+    "template": "alive.jpg",
+	"aliases": ["no_brain"],
+    "font": "grafo",
+	"font_size": 0.07,
+    "texts": [{
+      "x_range": [0.05, 0.45],
+      "y_range": [0.53, 0.70],
+	  "fill": [0, 14, 109],
+	  "stroke_fill": [0, 14, 109],
+	  "stroke_width": 0.02
+    }]
+},{
+    "id": "argument",
+    "template": "argument.jpg",
+	"aliases": ["wrestlers"],
+    "font": "impact",
+	"font_size": 0.07,
+    "texts": [{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.10, 0.19],
+	  "stroke_fill": [255, 255, 255],
+	  "stroke_width": 0.1,
+	  "position": "S"
+    },{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.30, 0.39],
+	  "stroke_fill": [255, 255, 255],
+	  "stroke_width": 0.1,
+	  "position": "S"
+    },{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.50, 0.59],
+	  "stroke_fill": [255, 255, 255],
+	  "stroke_width": 0.1,
+	  "position": "S"
+    },{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.70, 0.79],
+	  "stroke_fill": [255, 255, 255],
+	  "stroke_width": 0.1,
+	  "position": "S"
+    },{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.90, 0.99],
+	  "stroke_fill": [255, 255, 255],
+	  "stroke_width": 0.1,
+	  "position": "S"
+    }]
+},{
+    "id": "buff",
+    "template": "buff.jpg",
+	"aliases": ["tom", "jerry"],
+    "font": "impact",
+	"font_size": 0.07,
+    "texts": []
 }]

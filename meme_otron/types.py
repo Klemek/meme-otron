@@ -1,20 +1,20 @@
-from enum import Enum
+from enum import IntEnum
 import copy
 
 
-class Pos(Enum):
+class Pos(IntEnum):
     """
     TODO
     """
-    NW = "NW"
-    N = "NC"
-    NE = "NE"
-    W = "CW"
-    CENTER = "CC"
-    E = "CE"
-    SW = "NW"
-    S = "NC"
-    SE = "NE"
+    NW = 0
+    N = 1
+    NE = 2
+    W = 3
+    CENTER = 4
+    E = 5
+    SW = 6
+    S = 7
+    SE = 8
 
 
 class Meme:
@@ -51,12 +51,22 @@ class Text:
 
     def __init__(self, text=None):
         self.text = text
+        
         self.x_range = (0, 1)
         self.y_range = (0, 1)
-        self.position = Pos.CENTER
+        
+        self.font = None
         self.font_size = None
+        
         self.fill = (0, 0, 0)
         self.stroke_width = 0
         self.stroke_fill = (0, 0, 0)
-        self.font = None
+        
         self.align = "center"
+        self.position = Pos.CENTER
+
+    def update(self, base):
+        for prop in ["font", "font_size", "fill", "stroke_width",
+                     "stroke_fill", "align", "position"]:
+            if getattr(self, prop) is None:
+                setattr(self,prop, getattr(base, prop))

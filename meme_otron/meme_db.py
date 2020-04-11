@@ -96,7 +96,10 @@ def load_item(i, item):
         else:
             DATA[item_id] = Meme(item_id, aliases, abstract, template, font, font_size, texts)
             for alias in aliases:
-                ALIASES[alias] = item_id
+                if alias in ALIASES:
+                    logger.warning(f"Item '{item_id}'({i}): alias '{alias}' already registered by '{ALIASES[alias]}'")
+                else:
+                    ALIASES[alias] = item_id
             logger.info(f"Loaded meme '{item_id}' with {len(texts)} texts")
     except KeyError as e:
         logger.warning(f"Item '{item_id}'({i}): key {e} not found")
@@ -142,7 +145,7 @@ def load_text(j, raw_text):
     if "fill" in raw_text:
         if not (utils.is_list_of(raw_text["fill"], [int], 3)):
             raise TypeError(f"'fill' is not a list of 3 int")
-        text.fill = raw_text["fill"]
+        text.fill = tuple(raw_text["fill"])
     if "stroke_width" in raw_text:
         if not (isinstance(raw_text["stroke_width"], float)):
             raise TypeError(f"'stroke_width' is not a float")
@@ -150,7 +153,7 @@ def load_text(j, raw_text):
     if "stroke_fill" in raw_text:
         if not (utils.is_list_of(raw_text["stroke_fill"], [int], 3)):
             raise TypeError(f"'stroke_fill' is not a list of 3 int")
-        text.stroke_fill = raw_text["stroke_fill"]
+        text.stroke_fill = tuple(raw_text["stroke_fill"])
     if "align" in raw_text:
         if raw_text["align"] not in ["left", "center", "right"]:
             raise TypeError(f"'align' is not 'left', 'center' or 'right'")

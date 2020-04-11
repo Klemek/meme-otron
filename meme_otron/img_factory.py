@@ -131,18 +131,18 @@ def get_pos(size, text, font):
     pos_y = 0
     text_size = font.getsize_multiline(text.text, stroke_width=text.stroke_width * font.size)
 
-    if text.position.value[0] == "S":
+    if int(text.position.value) // 3 == 0:
         pos_y = min_y
-    elif text.position.value[0] == "C":
+    elif int(text.position.value) // 3 == 1:
         pos_y = round((min_y + max_y) / 2 - text_size[1] / 2)
-    elif text.position.value[0] == "N":
+    else:
         pos_y = max_y - text_size[1]
 
-    if text.position.value[1] == "W":
+    if int(text.position.value) % 3 == 0:
         pos_x = min_x
-    elif text.position.value[1] == "C":
+    elif int(text.position.value) % 3 == 1:
         pos_x = round((min_x + max_x) / 2 - text_size[0] / 2)
-    elif text.position.value[1] == "E":
+    else:
         pos_x = max_x - text_size[0]
 
     return pos_x, pos_y
