@@ -4,24 +4,29 @@ import logging
 import discord
 import re
 import tempfile
+import sys
 from datetime import datetime
 from dotenv import load_dotenv
 
 from meme_otron import img_factory as imgf
 from meme_otron import meme_db as db
 from meme_otron import utils
-from meme_otron import main
+from meme_otron import meme_otron
 
 VERSION = "1.0-dev"
 t0 = datetime.now()
 logging.basicConfig(format="[%(asctime)s][%(levelname)s][%(module)s] %(message)s", level=logging.INFO)
 
-imgf.load_fonts()
-db.load_memes()
-
 # Loading token
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
+
+if token is None:
+    logging.error("No token was loaded, please verify your .env file")
+    sys.exit(1)
+
+imgf.load_fonts()
+db.load_memes()
 
 client = discord.Client()
 
@@ -80,13 +85,13 @@ async def on_message(message):
             left_wmark_text = None
             if not direct and len(args) > 1:
                 f"By {message.author.display_name}"
-            img = main.compute(*args, left_wmark_text=left_wmark_text)
+            img = meme_otron.compute(*args, left_wmark_text=left_wmark_text)
             if img is None:
                 await message.channel.send(f"Template `{args[0]}` not found\n"
                                            f"You can find a more detailed help and a list of templates at:\n"
                                            f"<https://github.com/klemek/meme-otron/tree/master/discord>")
                 return
-            with tempfile.NamedTemporaryFile() as output:
+            with tempfile.NamedTemporaryFile(delete=False) as output:
                 img.save(output, format="JPEG")
                 response = None
                 if len(args) == 1:
@@ -95,6 +100,10 @@ async def on_message(message):
                     response = f"A meme by {message.author.mention}:"
                 await message.channel.send(response,
                                            file=discord.File(filename="meme.jpg", fp=output.name))
+                try:
+                    os.remove(output.name)
+                except PermissionError:
+                    pass
             if not direct:
                 try:
                     await message.delete()

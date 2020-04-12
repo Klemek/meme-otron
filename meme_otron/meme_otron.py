@@ -1,6 +1,4 @@
 import logging
-import sys
-import os
 
 from .types import Text, Pos
 from . import img_factory as imgf
@@ -34,7 +32,6 @@ def compute(*args, left_wmark_text=None, debug=False):
     :return:
     """
     if len(args) < 1:
-        logger.warning("python3 meme_otron.py (meme_id) \"[text 1]\" \"[text 2]\" ... > file.jpg")
         return None
     meme_id = args[0]
     meme = db.get_meme(meme_id)
@@ -52,12 +49,3 @@ def compute(*args, left_wmark_text=None, debug=False):
         left_wmark.text = left_wmark_text
         meme.texts += [left_wmark]
     return imgf.make(meme.template, meme.texts, debug=debug)
-
-
-if __name__ == "__main__":
-    logging.basicConfig(format="[%(asctime)s][%(levelname)s][%(module)s] %(message)s", level=logging.DEBUG)
-    db.load_memes()
-    imgf.load_fonts()
-    img = compute(*sys.argv[1:])
-    with os.fdopen(os.dup(sys.stdout.fileno())) as output:
-        img.save(output, format="jpeg")
