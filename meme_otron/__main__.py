@@ -25,6 +25,8 @@ if __name__ == "__main__":
                 del sys.argv[i+1]
             del sys.argv[i]
         img = meme_otron.compute(*sys.argv[1:])
+        if img is None:
+            sys.exit(1)
         if output_f is None:
             with os.fdopen(os.dup(sys.stdout.fileno())) as output:
                 img.save(output, format="jpeg")
