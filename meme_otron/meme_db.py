@@ -61,7 +61,7 @@ def load_item(i, item):
         if not meme.abstract:
             meme.template = utils.read_key(item, "template", meme.template, types=[str])
         raw_texts = utils.read_key(item, "texts", meme.texts, types=[dict], is_list=True)
-        if meme.texts is None:
+        if "texts" in item:
             meme.texts = []
             for j in range(len(raw_texts)):
                 raw_text = raw_texts[j]
@@ -71,7 +71,7 @@ def load_item(i, item):
                     logger.warning(f"Item '{item_id}'({i}) / Text {j}: {e}")
         for text in meme.texts:
             text.update(meme.text_base)
-        if len(meme.texts) == 0:
+        if not meme.abstract and len(meme.texts) == 0:
             logger.warning(f"Item '{item_id}'({i}): no texts loaded")
         else:
             DATA[item_id] = meme
@@ -102,14 +102,14 @@ def load_text(j, raw_text, text=None):
     """
     if text is None:
         text = Text(f"text {j + 1}")
-    text.font = utils.read_key_safe(raw_text, "font", types=[str])
+    text.font = utils.read_key_safe(raw_text, "font", text.font, types=[str])
     text.x_range = utils.read_key_safe(raw_text, "x_range", types=[float, int], is_list=True, is_list_size=2)
     text.y_range = utils.read_key_safe(raw_text, "y_range", types=[float, int], is_list=True, is_list_size=2)
     text.angle = utils.read_key_safe(raw_text, "angle", types=[float, int])
-    text.font_size = utils.read_key_safe(raw_text, "font_size", types=[float, int])
-    text.fill = utils.read_key_safe(raw_text, "fill", types=[int], is_list=True, is_list_size=3)
-    text.stroke_width = utils.read_key_safe(raw_text, "stroke_width", types=[float, int])
-    text.stroke_fill = utils.read_key_safe(raw_text, "stroke_fill", types=[int], is_list=True, is_list_size=3)
+    text.font_size = utils.read_key_safe(raw_text, "font_size", text.font_size, types=[float, int])
+    text.fill = utils.read_key_safe(raw_text, "fill", text.fill, types=[int], is_list=True, is_list_size=3)
+    text.stroke_width = utils.read_key_safe(raw_text, "stroke_width", text.stroke_width, types=[float, int])
+    text.stroke_fill = utils.read_key_safe(raw_text, "stroke_fill", text.stroke_fill, types=[int], is_list=True, is_list_size=3)
     if "position" in raw_text:
         if raw_text["position"] not in [p.name for p in Pos]:
             raise TypeError(f"'position' is not a valid position (ex: NW, E, SE, ...)")
