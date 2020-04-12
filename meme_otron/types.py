@@ -55,6 +55,7 @@ class Text:
 
     def __init__(self, text=None):
         self.text = text
+        self.text_ref = None
 
         self.x_range = (0, 1)
         self.y_range = (0, 1)

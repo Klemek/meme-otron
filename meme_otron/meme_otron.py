@@ -39,11 +39,16 @@ def compute(*args, left_wmark_text=None, debug=False):
         logger.warning(f"Meme template '{meme_id}' not found")
         return None
     if len(args) > 1:
+        c = 0
         for i in range(len(meme.texts)):
-            if i < len(args) - 1:
-                meme.texts[i].text = args[i + 1]
+            if meme.texts[i].text_ref is None:
+                if i < len(args) - 1:
+                    meme.texts[i].text = args[c + 1]
+                else:
+                    meme.texts[i].text = ""
+                c += 1
             else:
-                meme.texts[i].text = ""
+                meme.texts[i].text = meme.texts[meme.texts[i].text_ref].text
     meme.texts += [right_wmark]
     if left_wmark_text is not None:
         left_wmark.text = left_wmark_text

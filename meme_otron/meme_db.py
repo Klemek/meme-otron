@@ -63,10 +63,19 @@ def load_item(i, item):
         raw_texts = utils.read_key(item, "texts", meme.texts, types=[dict], is_list=True)
         if "texts" in item:
             meme.texts = []
+            c = 1
             for j in range(len(raw_texts)):
                 raw_text = raw_texts[j]
                 try:
-                    meme.texts += [load_text(j, raw_text)]
+                    text = load_text(c, raw_text)
+                    if text.text_ref is None:
+                        c += 1
+                    elif text.text_ref < 0 or text.text_ref >= len(meme.texts):
+                        logger.warning(f"Item '{item_id}'({i}) / Text {j}: invalid text reference {text.text_ref}")
+                        continue
+                    else:
+                        text.text = meme.texts[text.text_ref].text
+                    meme.texts += [text]
                 except TypeError as e:
                     logger.warning(f"Item '{item_id}'({i}) / Text {j}: {e}")
         for text in meme.texts:
@@ -89,11 +98,11 @@ def load_item(i, item):
         logger.warning(f"Item '{item_id}'({i}): {e}")
 
 
-def load_text(j, raw_text, text=None):
+def load_text(c, raw_text, text=None):
     """
     TODO
 
-    :param (int) j:
+    :param (int) c:
     :param (dict) raw_text:
     :param (Text|None) text:
     :raises TypeError:
@@ -101,10 +110,11 @@ def load_text(j, raw_text, text=None):
     :return:
     """
     if text is None:
-        text = Text(f"text {j + 1}")
+        text = Text(f"text {c}")
     text.font = utils.read_key_safe(raw_text, "font", text.font, types=[str])
     text.x_range = utils.read_key_safe(raw_text, "x_range", types=[float, int], is_list=True, is_list_size=2)
     text.y_range = utils.read_key_safe(raw_text, "y_range", types=[float, int], is_list=True, is_list_size=2)
+    text.text_ref = utils.read_key_safe(raw_text, "text_ref", types=[int])
     text.angle = utils.read_key_safe(raw_text, "angle", types=[float, int])
     text.font_size = utils.read_key_safe(raw_text, "font_size", text.font_size, types=[float, int])
     text.fill = utils.read_key_safe(raw_text, "fill", text.fill, types=[int], is_list=True, is_list_size=3)
