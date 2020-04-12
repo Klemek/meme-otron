@@ -1,4 +1,12 @@
 [{
+    "id": "white_text",
+	"abstract": true,
+	"font": "impact",
+    "stroke_fill": [0, 0, 0],
+    "stroke_width": 0.1,
+	"fill": [255, 255, 255],
+    "texts": []
+},{
     "id": "2_panel_right",
     "abstract": true,
     "font": "arial",
@@ -124,19 +132,17 @@
     }]
 },{
     "id": "2_texts",
-	"abstract": true,
-    "font": "impact",
-	"font_size": 0.12,
-	"stroke_fill": [255, 255, 255],
-	"stroke_width": 0.1,
+    "abstract": true,
+	"based_on": "white_text",
+    "font_size": 0.12,
     "texts": [{
       "x_range": [0.02, 0.98],
       "y_range": [0.02, 0.50],
-	  "position": "N"
+      "position": "N"
     },{
       "x_range": [0.02, 0.98],
       "y_range": [0.50, 0.98],
-	  "position": "S"
+      "position": "S"
     }]
 },{
     "id": "drake",
@@ -199,34 +205,34 @@
 },{
     "id": "burn",
     "template": "burn.jpg",
-    "font": "arial",
-	"stroke_fill": [255, 255, 255],
-	"stroke_width": 0.1,
+	"based_on": "white_text",
     "texts": [{
       "x_range": [0.08, 0.37],
       "y_range": [0.09, 0.43],
-	  "stroke_width": 0
+      "stroke_width": 0,
+	  "font": "arial",
+	  "fill": [0, 0, 0]
     },{
       "x_range": [0.65, 0.95],
       "y_range": [0.21, 0.40]
     },{
       "x_range": [0.16, 0.45],
-      "y_range": [0.73, 0.91]
+      "y_range": [0.73, 0.91],
+	  "text_ref": 1
     },{
       "x_range": [0.69, 0.98],
-      "y_range": [0.72, 0.90]
+      "y_range": [0.72, 0.90],
+	  "text_ref": 1
     }]
 },{
     "id": "aliens",
     "template": "aliens.jpg",
-    "font": "impact",
-	"font_size": 0.15,
-	"stroke_fill": [255, 255, 255],
-	"stroke_width": 0.1,
+	"based_on": "white_text",
+    "font_size": 0.15,
     "texts": [{
       "x_range": [0.02, 0.98],
       "y_range": [0.8, 0.98],
-	  "position": "S"
+      "position": "S"
     }]
 },{
     "id": "grandma",
@@ -235,22 +241,22 @@
 },{
     "id": "everywhere",
     "template": "everywhere.jpg",
-	"aliases": ["buzz", "woody"],
+    "aliases": ["buzz", "woody"],
     "based_on": "2_texts"
 },{
     "id": "bender",
     "template": "bender.jpg",
-	"aliases": ["hookers", "blackjack"],
+    "aliases": ["hookers", "blackjack"],
     "based_on": "2_texts"
 },{
     "id": "alive",
     "template": "alive.jpg",
-	"aliases": ["no_brain"],
+    "aliases": ["no_brain"],
     "font": "grafo",
-	"font_size": 0.07,
-	"fill": [0, 14, 109],
-	"stroke_fill": [0, 14, 109],
-	"stroke_width": 0.02,
+    "font_size": 0.07,
+    "fill": [0, 14, 109],
+    "stroke_fill": [0, 14, 109],
+    "stroke_width": 0.02,
     "texts": [{
       "x_range": [0.05, 0.45],
       "y_range": [0.53, 0.70]
@@ -258,12 +264,10 @@
 },{
     "id": "argument",
     "template": "argument.jpg",
-	"aliases": ["wrestlers"],
-    "font": "impact",
-	"font_size": 0.07,
-	"stroke_fill": [255, 255, 255],
-	"stroke_width": 0.1,
-	"position": "S",
+    "aliases": ["wrestlers"],
+	"based_on": "white_text",
+    "font_size": 0.07,
+    "position": "S",
     "texts": [{
       "x_range": [0.02, 0.98],
       "y_range": [0.10, 0.19]
@@ -276,91 +280,170 @@
     },{
       "x_range": [0.02, 0.98],
       "y_range": [0.70, 0.79]
-    },
-      {
-        "x_range": [
-          0.02,
-          0.98
-        ],
-        "y_range": [
-          0.90,
-          0.99
-        ]
-      }
-    ]
-},
-  {
+    },{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.90, 0.99]
+    }]
+},{
     "id": "buff",
     "template": "buff.jpg",
-    "aliases": [
-      "tom",
-      "jerry"
-    ],
-    "font": "impact",
+    "aliases": ["tom", "jerry"],
+    "based_on": "white_text",
     "font_size": 0.07,
-    "stroke_fill": [
-      255,
-      255,
-      255
-    ],
-    "stroke_width": 0.1,
-    "texts": [
-      {
-        "x_range": [
-          0.07,
-          0.36
-        ],
-        "y_range": [
-          0.69,
-          0.98
-        ],
-        "font_size": 0.05
-      },
-      {
-        "x_range": [
-          0.44,
-          0.84
-        ],
-        "y_range": [
-          0.27,
-          0.59
-        ]
-      }
-    ]
-  },
-  {
+    "texts": [{
+      "x_range": [0.07, 0.36],
+      "y_range": [0.69, 0.98],
+      "font_size": 0.05
+    },{
+      "x_range": [0.44, 0.84],
+      "y_range": [0.27, 0.59]
+    }]
+},{
     "id": "button",
     "template": "button.jpg",
-    "stroke_fill": [
-      255,
-      255,
-      255
-    ],
-    "stroke_width": 0.1,
+	"based_on": "white_text",
     "font_size": 0.08,
-    "texts": [
-      {
-        "x_range": [
-          0.10,
-          0.46
-        ],
-        "y_range": [
-          0.46,
-          0.80
-        ],
-        "angle": 2
-      },
-      {
-        "x_range": [
-          0.48,
-          0.88
-        ],
-        "y_range": [
-          0.28,
-          0.68
-        ],
-        "angle": -45
-      }
-    ]
-  }
-]
+    "texts": [{
+      "x_range": [0.10, 0.46],
+      "y_range": [0.46, 0.80],
+      "angle": 2
+    },{
+      "x_range": [0.48, 0.88],
+      "y_range": [0.28, 0.68],
+      "angle": -45
+    }]
+},{
+    "id": "bye_mom",
+    "template": "bye_mom.jpg",
+	"aliases": ["google"],
+    "font_size": 0.04,
+    "texts": [{
+      "x_range": [0.56, 0.97],
+      "y_range": [0.76, 0.83],
+	  "position": "W"
+    }]
+},{
+    "id": "clock",
+    "template": "clock.jpg",
+	"based_on": "white_text",
+    "texts": [{
+      "x_range": [0.36, 0.59],
+      "y_range": [0.25, 0.40]
+    },{
+      "x_range": [0.59, 0.78],
+      "y_range": [0.34, 0.39],
+	  "angle": -24,
+	  "font_size": 0.04
+    },{
+      "x_range": [0.01, 0.30],
+      "y_range": [0.75, 0.92]
+    },{
+      "x_range": [0.40, 0.86],
+      "y_range": [0.61, 0.77]
+    }]
+},{
+    "id": "culture",
+    "template": "culture.jpg",
+	"aliases": ["anime"],
+	"stroke_fill": [0, 0, 0],
+    "stroke_width": 0.05,
+    "texts": [{
+      "x_range": [0.57, 0.68],
+      "y_range": [0.87, 0.945]
+    }]
+},{
+    "id": "distracted",
+    "template": "distracted.jpg",
+	"aliases": ["boyfried", "cheating", "girlfriend"],
+	"based_on": "white_text",
+	"font_size": 0.06,
+    "texts": [{
+      "x_range": [0.49, 0.75],
+      "y_range": [0.40, 0.62]
+    },{
+      "x_range": [0.10, 0.47],
+      "y_range": [0.56, 0.95]
+    },{
+      "x_range": [0.72, 0.97],
+      "y_range": [0.58, 0.80]
+    }]
+},{
+    "id": "dont_look",
+    "template": "dont_look.jpg",
+	"aliases": ["ricky", "mom", "influenced"],
+	"font": "grafo",
+	"font_size": 0.06,
+    "texts": [{
+      "x_range": [0.69, 0.94],
+      "y_range": [0.73, 0.82]
+    },{
+      "x_range": [0.70, 0.94],
+      "y_range": [0.82, 0.91]
+    }]
+},{
+    "id": "drift",
+    "template": "drift.jpg",
+	"font": "impact",
+	"fill": [255, 255, 255],
+	"font_size": 0.06,
+	"position": "N",
+    "texts": [{
+      "x_range": [0.21, 0.37],
+      "y_range": [0.11, 0.36]
+    },{
+      "x_range": [0.50, 0.73],
+      "y_range": [0.11, 0.36]
+    }]
+},{
+    "id": "everywhere2",
+    "template": "everywhere2.jpg",
+	"aliases": ["angry"],
+	"based_on": "white_text",
+    "texts": [{
+      "x_range": [0.12, 0.42],
+      "y_range": [0.14, 0.25]
+    },{
+      "x_range": [0.60, 0.76],
+      "y_range": [0.11, 0.16],
+	  "font_size": 0.04
+    },{
+      "x_range": [0.74, 0.90],
+      "y_range": [0.10, 0.17],
+	  "font_size": 0.03
+    },{
+      "x_range": [0.33, 0.48],
+      "y_range": [0.37, 0.43],
+	  "font_size": 0.04,
+	  "text_ref": 1
+    },{
+      "x_range": [0.03, 0.29],
+      "y_range": [0.33, 0.45]
+    },{
+      "x_range": [0.56, 0.74],
+      "y_range": [0.37, 0.43],
+	  "font_size": 0.04,
+	  "text_ref": 1
+    },{
+      "x_range": [0.72, 0.96],
+      "y_range": [0.36, 0.47]
+    },{
+      "x_range": [0.27, 0.40],
+      "y_range": [0.65, 0.70],
+	  "font_size": 0.04,
+	  "text_ref": 1
+    },{
+      "x_range": [0.12, 0.37],
+      "y_range": [0.53, 0.68]
+    },{
+      "x_range": [0.53, 0.64],
+      "y_range": [0.61, 0.67],
+	  "font_size": 0.03,
+	  "text_ref": 1
+    },{
+      "x_range": [0.65, 0.95],
+      "y_range": [0.58, 0.70]
+    },{
+      "x_range": [0.50, 0.85],
+      "y_range": [0.75, 0.95]
+    }]
+}]
