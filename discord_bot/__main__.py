@@ -83,8 +83,8 @@ async def on_message(message):
             return
         async with message.channel.typing():
             left_wmark_text = None
-            if not direct and len(args) > 1:
-                f"By {message.author.display_name}"
+            if len(args) > 1 and message.author.display_name is not None:
+                left_wmark_text = f"By {message.author.display_name}"
             img = meme_otron.compute(*args, left_wmark_text=left_wmark_text)
             if img is None:
                 await message.channel.send(f"Template `{args[0]}` not found\n"
@@ -95,7 +95,12 @@ async def on_message(message):
                 img.save(output, format="JPEG")
                 response = None
                 if len(args) == 1:
-                    response = f"Template `{args[0]}`:"
+                    meme = db.get_meme(args[0])
+                    response = f"Template `{meme.id}`:"
+                    if len(meme.aliases) > 0:
+                        response += f"\n- Aliases: `{'`, `'.join(meme.aliases)}`"
+                    if meme.info is not None:
+                        response += f"\n- More info: <{meme.info}>"
                 elif not direct:
                     response = f"A meme by {message.author.mention}:"
                 await message.channel.send(response,
