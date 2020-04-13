@@ -30,6 +30,8 @@ db.load_memes()
 
 client = discord.Client()
 
+SENT = {}
+
 
 def debug(message, txt):
     """
@@ -57,6 +59,23 @@ async def on_ready():
         logging.info(f'- {guild.name}(id: {guild.id})')
 
 
+async def delete(message):
+    """
+    TODO
+
+    :param (discord.Message) message:
+    :rtype: bool
+    """
+    try:
+        await message.delete()
+        return True
+    except discord.Forbidden:
+        pass
+    except discord.NotFound:
+        pass
+    return False
+
+
 @client.event
 async def on_message(message):
     """
@@ -67,7 +86,14 @@ async def on_message(message):
     # Ignore self messages
     if message.author == client.user:
         return
+
     direct = message.channel.type == discord.ChannelType.private
+
+    if not direct:
+        mid = f'{message.guild.id}/{message.channel.id}/{message.author.id}'
+    else:
+        mid = message.author.id
+
     if direct or client.user in message.mentions:
         message.content = re.sub(r'<@[^>]+>', '', message.content).strip()
         args = utils.parse_arguments(message.content)
@@ -81,13 +107,20 @@ async def on_message(message):
                                        f"You can find a more detailed help and a list of templates at:\n"
                                        f"<https://github.com/klemek/meme-otron/tree/master/discord>")
             return
+        if len(args) > 0 and args[0].lower().strip() == "delete":
+            if mid in SENT and len(SENT[mid]) > 0 and await delete(SENT[mid][-1]):
+                if not direct:
+                    await delete(message)
+            else:
+                await message.add_reaction("⚠")
+            return
         async with message.channel.typing():
             left_wmark_text = None
             if len(args) > 1 and message.author.display_name is not None:
                 left_wmark_text = f"By {message.author.display_name}"
             img = meme_otron.compute(*args, left_wmark_text=left_wmark_text)
             if img is None:
-                await message.channel.send(f"Template `{args[0]}` not found\n"
+                await message.channel.send(f":warning: Template `{args[0]}` not found\n"
                                            f"You can find a more detailed help and a list of templates at:\n"
                                            f"<https://github.com/klemek/meme-otron/tree/master/discord>")
                 return
@@ -103,20 +136,17 @@ async def on_message(message):
                         response += f"\n- More info: <{meme.info}>"
                 elif not direct:
                     response = f"A meme by {message.author.mention}:"
-                await message.channel.send(response,
-                                           file=discord.File(filename="meme.jpg", fp=output.name))
+                if mid not in SENT:
+                    SENT[mid] = []
+                response = await message.channel.send(response,
+                                                      file=discord.File(filename="meme.jpg", fp=output.name))
+                SENT[mid] += [response]
                 try:
                     os.remove(output.name)
                 except PermissionError:
                     pass
             if not direct:
-                try:
-                    await message.delete()
-                except discord.Forbidden:
-                    pass
-                except discord.NotFound:
-                    pass
-
+                await delete(message)
 
 # Launch client and rerun on errors
 while True:
