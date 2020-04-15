@@ -216,14 +216,27 @@
       "x_range": [0.65, 0.95],
       "y_range": [0.21, 0.40]
     },{
-      "x_range": [0.16, 0.45],
-      "y_range": [0.73, 0.91],
-	  "text_ref": 1
-    },{
-      "x_range": [0.69, 0.98],
-      "y_range": [0.72, 0.90],
-	  "text_ref": 1
-    }]
+      "x_range": [
+        0.16,
+        0.45
+      ],
+      "y_range": [
+        0.73,
+        0.91
+      ],
+      "text_ref": 2
+    },
+      {
+        "x_range": [
+          0.69,
+          0.98
+        ],
+        "y_range": [
+          0.72,
+          0.90
+        ],
+        "text_ref": 2
+      }]
 },{
     "id": "aliens",
     "template": "aliens.jpg",
@@ -410,36 +423,64 @@
       "x_range": [0.74, 0.90],
       "y_range": [0.10, 0.17],
 	  "font_size": 0.03
-    },{
-      "x_range": [0.33, 0.48],
-      "y_range": [0.37, 0.43],
-	  "font_size": 0.04,
-	  "text_ref": 1
-    },{
+    },
+      {
+        "x_range": [
+          0.33,
+          0.48
+        ],
+        "y_range": [
+          0.37,
+          0.43
+        ],
+        "font_size": 0.04,
+        "text_ref": 2
+      },{
       "x_range": [0.03, 0.29],
       "y_range": [0.33, 0.45]
-    },{
-      "x_range": [0.56, 0.74],
-      "y_range": [0.37, 0.43],
-	  "font_size": 0.04,
-	  "text_ref": 1
-    },{
+    },
+      {
+        "x_range": [
+          0.56,
+          0.74
+        ],
+        "y_range": [
+          0.37,
+          0.43
+        ],
+        "font_size": 0.04,
+        "text_ref": 2
+      },{
       "x_range": [0.72, 0.96],
       "y_range": [0.36, 0.47]
-    },{
-      "x_range": [0.27, 0.40],
-      "y_range": [0.65, 0.70],
-	  "font_size": 0.04,
-	  "text_ref": 1
-    },{
+    },
+      {
+        "x_range": [
+          0.27,
+          0.40
+        ],
+        "y_range": [
+          0.65,
+          0.70
+        ],
+        "font_size": 0.04,
+        "text_ref": 2
+      },{
       "x_range": [0.12, 0.37],
       "y_range": [0.53, 0.68]
-    },{
-      "x_range": [0.53, 0.64],
-      "y_range": [0.61, 0.67],
-	  "font_size": 0.03,
-	  "text_ref": 1
-    },{
+    },
+      {
+        "x_range": [
+          0.53,
+          0.64
+        ],
+        "y_range": [
+          0.61,
+          0.67
+        ],
+        "font_size": 0.03,
+        "text_ref": 2
+      },{
       "x_range": [0.65, 0.95],
       "y_range": [0.58, 0.70]
     },{
@@ -473,11 +514,18 @@
     "texts": [{
       "x_range": [0.14, 0.34],
       "y_range": [0.55, 0.79]
-    },{
-      "x_range": [0.53, 0.80],
-      "y_range": [0.68, 0.97],
-	  "text_ref": 0
-    },{
+    },
+      {
+        "x_range": [
+          0.53,
+          0.80
+        ],
+        "y_range": [
+          0.68,
+          0.97
+        ],
+        "text_ref": 1
+      },{
       "x_range": [0.62, 0.95],
       "y_range": [0.03, 0.26],
 	  "font": "grafo",
@@ -490,14 +538,328 @@
 	  "font_size": 0.04,
 	  "position": "W"
     },{
-      "x_range": [0.33, 0.48],
-      "y_range": [0.78, 0.97],
-	  "font_size": 0.04,
-	  "position": "SE"
-    },{
-      "x_range": [0.34, 0.48],
-      "y_range": [0.35, 0.61],
-	  "font_size": 0.04,
-	  "position": "E"
-    }]
-}]
+        "x_range": [
+          0.33,
+          0.48
+        ],
+        "y_range": [
+          0.78,
+          0.97
+        ],
+        "font_size": 0.04,
+        "position": "SE"
+      },
+      {
+        "x_range": [
+          0.34,
+          0.48
+        ],
+        "y_range": [
+          0.35,
+          0.61
+        ],
+        "font_size": 0.04,
+        "position": "E"
+      }
+    ]
+},
+  {
+    "id": "flex_tape",
+    "template": "flex_tape.jpg",
+    "based_on": "white_text",
+    "texts": [
+      {
+        "x_range": [
+          0.18,
+          0.43
+        ],
+        "y_range": [
+          0.10,
+          0.40
+        ]
+      },
+      {
+        "x_range": [
+          0.60,
+          0.90
+        ],
+        "y_range": [
+          0.10,
+          0.30
+        ]
+      },
+      {
+        "x_range": [
+          0.50,
+          0.84
+        ],
+        "y_range": [
+          0.58,
+          0.82
+        ]
+      }
+    ]
+  },
+  {
+    "id": "girl_cat",
+    "template": "girl_cat.jpg",
+    "based_on": "white_text",
+    "position": "S",
+    "font_size": 0.12,
+    "texts": [
+      {
+        "x_range": [
+          0.01,
+          0.49
+        ],
+        "y_range": [
+          0.50,
+          0.99
+        ]
+      },
+      {
+        "x_range": [
+          0.51,
+          0.99
+        ],
+        "y_range": [
+          0.50,
+          0.99
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gru",
+    "template": "gru.jpg",
+    "texts": [
+      {
+        "x_range": [
+          0.28,
+          0.48
+        ],
+        "y_range": [
+          0.08,
+          0.50
+        ],
+        "angle": -1
+      },
+      {
+        "x_range": [
+          0.78,
+          0.98
+        ],
+        "y_range": [
+          0.10,
+          0.50
+        ],
+        "angle": -1
+      },
+      {
+        "x_range": [
+          0.28,
+          0.48
+        ],
+        "y_range": [
+          0.60,
+          1.00
+        ],
+        "angle": -1
+      },
+      {
+        "x_range": [
+          0.78,
+          0.98
+        ],
+        "y_range": [
+          0.60,
+          1.00
+        ],
+        "angle": -1
+      }
+    ]
+  },
+  {
+    "id": "handshake",
+    "template": "handshake.jpg",
+    "based_on": "white_text",
+    "font_size": 0.12,
+    "texts": [
+      {
+        "x_range": [
+          -0.05,
+          0.45
+        ],
+        "y_range": [
+          0.48,
+          0.78
+        ],
+        "position": "W",
+        "angle": -50
+      },
+      {
+        "x_range": [
+          0.43,
+          0.99
+        ],
+        "y_range": [
+          0.40,
+          0.70
+        ],
+        "position": "E",
+        "angle": 25
+      },
+      {
+        "x_range": [
+          0.25,
+          0.55
+        ],
+        "y_range": [
+          0.01,
+          0.50
+        ],
+        "position": "N",
+        "angle": 5
+      }
+    ]
+  },
+  {
+    "id": "handshake2",
+    "template": "handshake2.jpg",
+    "based_on": "white_text",
+    "font_size": 0.07,
+    "texts": [
+      {
+        "x_range": [
+          0.10,
+          0.45
+        ],
+        "y_range": [
+          0.25,
+          0.70
+        ]
+      },
+      {
+        "x_range": [
+          0.55,
+          0.90
+        ],
+        "y_range": [
+          0.35,
+          0.75
+        ]
+      }
+    ]
+  },
+  {
+    "id": "idea",
+    "template": "idea.jpg",
+    "texts": [
+      {
+        "x_range": [
+          0.01,
+          0.58
+        ],
+        "y_range": [
+          0.01,
+          0.28
+        ]
+      },
+      {
+        "x_range": [
+          0.01,
+          0.40
+        ],
+        "y_range": [
+          0.38,
+          0.63
+        ],
+        "angle": 18,
+        "position": "N"
+      },
+      {
+        "x_range": [
+          0.01,
+          0.40
+        ],
+        "y_range": [
+          0.73,
+          0.98
+        ],
+        "angle": 18,
+        "position": "N"
+      },
+      {
+        "x_range": [
+          0.65,
+          0.98
+        ],
+        "y_range": [
+          0.12,
+          0.28
+        ],
+        "position": "S",
+        "font": "impact",
+        "stroke_fill": [
+          0,
+          0,
+          0
+        ],
+        "stroke_width": 0.1,
+        "fill": [
+          255,
+          255,
+          255
+        ]
+      },
+      {
+        "x_range": [
+          0.55,
+          0.98
+        ],
+        "y_range": [
+          0.45,
+          0.63
+        ],
+        "position": "S",
+        "text_ref": 4,
+        "font": "impact",
+        "stroke_fill": [
+          0,
+          0,
+          0
+        ],
+        "stroke_width": 0.1,
+        "fill": [
+          255,
+          255,
+          255
+        ]
+      },
+      {
+        "x_range": [
+          0.55,
+          0.98
+        ],
+        "y_range": [
+          0.80,
+          0.98
+        ],
+        "position": "S",
+        "text_ref": 4,
+        "font": "impact",
+        "stroke_fill": [
+          0,
+          0,
+          0
+        ],
+        "stroke_width": 0.1,
+        "fill": [
+          255,
+          255,
+          255
+        ]
+      }
+    ]
+  }
+]
