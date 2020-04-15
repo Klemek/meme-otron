@@ -12,10 +12,16 @@ ALIASES = {}
 logger = logging.getLogger("meme_db")
 
 
-def load_memes():
+def load_memes(purge=False):
     """
     TODO
+
+    :param (bool) purge:
     """
+    global DATA, ALIASES
+    if purge:
+        DATA = {}
+        ALIASES = {}
     try:
         with open(DATA_FILE) as f:
             content = "".join(f.readlines())
@@ -85,11 +91,14 @@ def load_item(i, item):
             logger.warning(f"Item '{item_id}'({i}): no texts loaded")
         else:
             DATA[item_id] = meme
-            for alias in meme.aliases:
-                if alias in ALIASES:
-                    logger.warning(f"Item '{item_id}'({i}): alias '{alias}' already registered by '{ALIASES[alias]}'")
-                else:
-                    ALIASES[alias] = item_id
+            if not meme.abstract:
+                ALIASES[item_id] = item_id
+                for alias in meme.aliases:
+                    if alias in ALIASES:
+                        logger.warning(
+                            f"Item '{item_id}'({i}): alias '{alias}' already registered by '{ALIASES[alias]}'")
+                    else:
+                        ALIASES[alias] = item_id
             logger.info(f"Loaded meme '{item_id}' with {len(meme.texts)} texts")
     except KeyError as e:
         logger.warning(f"Item '{item_id}'({i}): key {e} not found")
@@ -140,9 +149,7 @@ def get_meme(name):
     :rtype: Meme|None
     :return:
     """
-    if name in DATA and not DATA[name].abstract:
-        return DATA[name].clone()
-    elif name in ALIASES:
+    if name in ALIASES:
         return DATA[ALIASES[name]].clone()
     else:
         return None
