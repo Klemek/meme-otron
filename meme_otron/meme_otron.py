@@ -21,6 +21,16 @@ left_wmark.x_range = [0.005, 0.995]
 left_wmark.y_range = [0.005, 0.995]
 
 
+def parse_text(s):
+    """
+    TODO
+
+    :param (str) s:
+    :rtype: str
+    """
+    return s.replace("\\n", "\n")
+
+
 def compute(*args, left_wmark_text=None, debug=False):
     """
     TODO
@@ -43,7 +53,7 @@ def compute(*args, left_wmark_text=None, debug=False):
         for i in range(len(meme.texts)):
             if meme.texts[i].text_ref is None:
                 if i < len(args) - 1:
-                    meme.texts[i].text = args[c + 1]
+                    meme.texts[i].text = parse_text(args[c + 1])
                 else:
                     meme.texts[i].text = ""
                 c += 1
