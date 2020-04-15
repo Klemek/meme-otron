@@ -77,18 +77,20 @@ def load_item(i, item):
                     text = load_text(c, raw_text)
                     if text.text_ref is None:
                         c += 1
-                    elif text.text_ref < 0 or text.text_ref >= len(meme.texts):
-                        logger.warning(f"Item '{item_id}'({i}) / Text {j}: invalid text reference {text.text_ref}")
+                    elif text.text_ref < 1 or text.text_ref > len(meme.texts):
+                        logger.warning(
+                            f"Item '{item_id}'({i + 1}) / Text {j + 1}: invalid text reference {text.text_ref}")
                         continue
                     else:
+                        text.text_ref -= 1
                         text.text = meme.texts[text.text_ref].text
                     meme.texts += [text]
                 except TypeError as e:
-                    logger.warning(f"Item '{item_id}'({i}) / Text {j}: {e}")
+                    logger.warning(f"Item '{item_id}'({i + 1}) / Text {j + 1}: {e}")
         for text in meme.texts:
             text.update(meme.text_base)
         if not meme.abstract and len(meme.texts) == 0:
-            logger.warning(f"Item '{item_id}'({i}): no texts loaded")
+            logger.warning(f"Item '{item_id}'({i + 1}): no texts loaded")
         else:
             DATA[item_id] = meme
             if not meme.abstract:
@@ -96,16 +98,16 @@ def load_item(i, item):
                 for alias in meme.aliases:
                     if alias in ALIASES:
                         logger.warning(
-                            f"Item '{item_id}'({i}): alias '{alias}' already registered by '{ALIASES[alias]}'")
+                            f"Item '{item_id}'({i + 1}): alias '{alias}' already registered by '{ALIASES[alias]}'")
                     else:
                         ALIASES[alias] = item_id
             logger.info(f"Loaded meme '{item_id}' with {len(meme.texts)} texts")
     except KeyError as e:
-        logger.warning(f"Item '{item_id}'({i}): key {e} not found")
+        logger.warning(f"Item '{item_id}'({i + 1}): key {e} not found")
     except TypeError as e:
-        logger.warning(f"Item '{item_id}'({i}): {e}")
+        logger.warning(f"Item '{item_id}'({i + 1}): {e}")
     except NameError as e:
-        logger.warning(f"Item '{item_id}'({i}): {e}")
+        logger.warning(f"Item '{item_id}'({i + 1}): {e}")
 
 
 def load_text(c, raw_text, text=None):
