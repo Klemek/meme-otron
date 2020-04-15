@@ -25,22 +25,14 @@ class Meme:
     TODO
     """
 
-    def __init__(self, meme_id, aliases=None, abstract=False, template=None, text_base=None, texts=None):
+    def __init__(self, meme_id):
         self.id = meme_id
-        if aliases is None:
-            self.aliases = []
-        else:
-            self.aliases = aliases
-        self.abstract = abstract
-        self.template = template
-        if text_base is None:
-            self.text_base = Text()
-        else:
-            self.text_base = text_base
-        if texts is None:
-            self.texts = None
-        else:
-            self.texts = copy.deepcopy(texts)
+        self.aliases = []
+        self.abstract = None
+        self.info = None
+        self.template = None
+        self.text_base = Text()
+        self.texts = None
 
     def clone(self):
         return copy.deepcopy(self)

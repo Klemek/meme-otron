@@ -57,6 +57,7 @@ def load_item(i, item):
             meme = Meme(item_id)
         meme.abstract = utils.read_key_safe(item, "abstract", False, types=[bool])
         meme.aliases = utils.read_key_safe(item, "aliases", [], types=[str], is_list=True)
+        meme.info = utils.read_key_safe(item, "info", types=[str])
         meme.text_base = load_text(0, item, meme.text_base)
         if not meme.abstract:
             meme.template = utils.read_key(item, "template", meme.template, types=[str])
