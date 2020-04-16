@@ -131,7 +131,8 @@ def load_text(c, raw_text, text=None):
     text.font_size = utils.read_key_safe(raw_text, "font_size", text.font_size, types=[float, int])
     text.fill = utils.read_key_safe(raw_text, "fill", text.fill, types=[int], is_list=True, is_list_size=3)
     text.stroke_width = utils.read_key_safe(raw_text, "stroke_width", text.stroke_width, types=[float, int])
-    text.stroke_fill = utils.read_key_safe(raw_text, "stroke_fill", text.stroke_fill, types=[int], is_list=True, is_list_size=3)
+    text.stroke_fill = utils.read_key_safe(raw_text, "stroke_fill", text.stroke_fill, types=[int], is_list=True,
+                                           is_list_size=3)
     if "position" in raw_text:
         if raw_text["position"] not in [p.name for p in Pos]:
             raise TypeError(f"'position' is not a valid position (ex: NW, E, SE, ...)")
@@ -151,6 +152,7 @@ def get_meme(name):
     :rtype: Meme|None
     :return:
     """
+    name = name.lower().strip().replace(" ", "_")
     if name in ALIASES:
         return DATA[ALIASES[name]].clone()
     else:
