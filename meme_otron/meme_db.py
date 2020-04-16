@@ -12,10 +12,16 @@ ALIASES = {}
 logger = logging.getLogger("meme_db")
 
 
-def load_memes():
+def load_memes(purge=False):
     """
     TODO
+
+    :param (bool) purge:
     """
+    global DATA, ALIASES
+    if purge:
+        DATA = {}
+        ALIASES = {}
     try:
         with open(DATA_FILE) as f:
             content = "".join(f.readlines())
@@ -71,32 +77,37 @@ def load_item(i, item):
                     text = load_text(c, raw_text)
                     if text.text_ref is None:
                         c += 1
-                    elif text.text_ref < 0 or text.text_ref >= len(meme.texts):
-                        logger.warning(f"Item '{item_id}'({i}) / Text {j}: invalid text reference {text.text_ref}")
+                    elif text.text_ref < 1 or text.text_ref > len(meme.texts):
+                        logger.warning(
+                            f"Item '{item_id}'({i + 1}) / Text {j + 1}: invalid text reference {text.text_ref}")
                         continue
                     else:
+                        text.text_ref -= 1
                         text.text = meme.texts[text.text_ref].text
                     meme.texts += [text]
                 except TypeError as e:
-                    logger.warning(f"Item '{item_id}'({i}) / Text {j}: {e}")
+                    logger.warning(f"Item '{item_id}'({i + 1}) / Text {j + 1}: {e}")
         for text in meme.texts:
             text.update(meme.text_base)
         if not meme.abstract and len(meme.texts) == 0:
-            logger.warning(f"Item '{item_id}'({i}): no texts loaded")
+            logger.warning(f"Item '{item_id}'({i + 1}): no texts loaded")
         else:
             DATA[item_id] = meme
-            for alias in meme.aliases:
-                if alias in ALIASES:
-                    logger.warning(f"Item '{item_id}'({i}): alias '{alias}' already registered by '{ALIASES[alias]}'")
-                else:
-                    ALIASES[alias] = item_id
+            if not meme.abstract:
+                ALIASES[item_id] = item_id
+                for alias in meme.aliases:
+                    if alias in ALIASES:
+                        logger.warning(
+                            f"Item '{item_id}'({i + 1}): alias '{alias}' already registered by '{ALIASES[alias]}'")
+                    else:
+                        ALIASES[alias] = item_id
             logger.info(f"Loaded meme '{item_id}' with {len(meme.texts)} texts")
     except KeyError as e:
-        logger.warning(f"Item '{item_id}'({i}): key {e} not found")
+        logger.warning(f"Item '{item_id}'({i + 1}): key {e} not found")
     except TypeError as e:
-        logger.warning(f"Item '{item_id}'({i}): {e}")
+        logger.warning(f"Item '{item_id}'({i + 1}): {e}")
     except NameError as e:
-        logger.warning(f"Item '{item_id}'({i}): {e}")
+        logger.warning(f"Item '{item_id}'({i + 1}): {e}")
 
 
 def load_text(c, raw_text, text=None):
@@ -120,7 +131,8 @@ def load_text(c, raw_text, text=None):
     text.font_size = utils.read_key_safe(raw_text, "font_size", text.font_size, types=[float, int])
     text.fill = utils.read_key_safe(raw_text, "fill", text.fill, types=[int], is_list=True, is_list_size=3)
     text.stroke_width = utils.read_key_safe(raw_text, "stroke_width", text.stroke_width, types=[float, int])
-    text.stroke_fill = utils.read_key_safe(raw_text, "stroke_fill", text.stroke_fill, types=[int], is_list=True, is_list_size=3)
+    text.stroke_fill = utils.read_key_safe(raw_text, "stroke_fill", text.stroke_fill, types=[int], is_list=True,
+                                           is_list_size=3)
     if "position" in raw_text:
         if raw_text["position"] not in [p.name for p in Pos]:
             raise TypeError(f"'position' is not a valid position (ex: NW, E, SE, ...)")
@@ -140,9 +152,8 @@ def get_meme(name):
     :rtype: Meme|None
     :return:
     """
-    if name in DATA and not DATA[name].abstract:
-        return DATA[name].clone()
-    elif name in ALIASES:
+    name = name.lower().strip().replace(" ", "_")
+    if name in ALIASES:
         return DATA[ALIASES[name]].clone()
     else:
         return None

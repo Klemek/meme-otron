@@ -1,0 +1,37 @@
+import os
+import stat
+import time
+import datetime
+import logging
+from os import path
+from meme_otron import img_factory as imgf
+from meme_otron import meme_db
+from meme_otron import utils
+
+logging.basicConfig(format="%(message)s", level=logging.WARNING)
+
+imgf.load_fonts()
+
+db_file = utils.relative_path(__file__, "..", meme_db.DATA_FILE)
+templates_dir = utils.relative_path(__file__)
+dst_dir = utils.relative_path(__file__, "tmp")
+
+if not path.exists(dst_dir):
+    os.mkdir(dst_dir)
+
+last = None
+
+while True:
+    while os.stat(db_file)[stat.ST_MTIME] == last:
+        time.sleep(0.1)
+    last = os.stat(db_file)[stat.ST_MTIME]
+    meme_db.load_memes(purge=True)
+    count = 0
+    for meme_id in meme_db.DATA:
+        meme = meme_db.get_meme(meme_id)
+        if meme is not None:
+            img = imgf.make(meme.template, meme.texts, debug=True)
+            if img is not None:
+                img.save(path.join(dst_dir, meme.template))
+                count += 1
+    print(f"{datetime.datetime.now():%H:%M:%S} / {count} registered templates / {len(os.listdir(templates_dir))} files")
