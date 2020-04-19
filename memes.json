@@ -1037,6 +1037,58 @@
       "y_range": [0.72, 0.96]
     }]
 },{
+    "id": "seagull2",
+    "template": "seagull2.jpg",
+	"based_on": "white_text",
+	"aliases": ["seagull", "screaming"],
+	"font_size": 0.07,
+	"position": "S",
+    "texts": [{
+      "x_range": [0.01, 0.99],
+      "y_range": [0.30, 0.49]
+    },{
+      "x_range": [0.01, 0.99],
+      "y_range": [0.80, 0.99]
+    },{
+      "x_range": [0.44, 0.88],
+      "y_range": [0.00, 0.13],
+	  "font_size": 0.04
+    }]
+},{
+    "id": "seagull4",
+    "template": "seagull4.jpg",
+	"based_on": "white_text",
+	"font_size": 0.07,
+	"position": "S",
+    "texts": [{
+      "x_range": [0.01, 0.49],
+      "y_range": [0.30, 0.49]
+    },{
+      "x_range": [0.51, 0.99],
+      "y_range": [0.30, 0.49]
+    },{
+      "x_range": [0.01, 0.49],
+      "y_range": [0.80, 0.99]
+    },{
+      "x_range": [0.51, 0.99],
+      "y_range": [0.80, 0.99],
+	  "font_size": 0.09
+    },{
+      "x_range": [0.16, 0.38],
+      "y_range": [0.03, 0.17],
+	  "font_size": 0.04
+    },{
+      "x_range": [0.72, 0.94],
+      "y_range": [0.00, 0.13],
+	  "text_ref": 5,
+	  "style_ref": 5
+    },{
+      "x_range": [0.02, 0.25],
+      "y_range": [0.57, 0.70],
+	  "text_ref": 5,
+	  "style_ref": 5
+    }]
+},{
     "id": "",
     "template": ".jpg",
 	"based_on": "white_text",
