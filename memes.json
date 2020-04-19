@@ -147,10 +147,12 @@
 },{
     "id": "drake",
     "template": "drake.jpg",
+	"aliases": [],
     "based_on": "2_panel_right"
 },{
     "id": "brain3",
     "template": "brain3.jpg",
+	"aliases": [],
     "based_on": "3_panel_left"
 },{
     "id": "brain4",
@@ -160,14 +162,17 @@
 },{
     "id": "brain5",
     "template": "brain5.jpg",
+	"aliases": [],
     "based_on": "5_panel_left"
 },{
     "id": "disappointed",
     "template": "disappointed.jpg",
+	"aliases": [],
     "based_on": "2_panel_left"
 },{
     "id": "nope",
     "template": "nope.jpg",
+	"aliases": [],
     "based_on": "2_panel_right"
 },{
     "id": "pleasure3",
@@ -188,10 +193,12 @@
     "id": "tough2bis",
     "aliases": ["soft"],
     "template": "tough2bis.jpg",
+	"aliases": [],
     "based_on": "2_panel_right"
 },{
     "id": "tough3",
     "template": "tough3.jpg",
+	"aliases": [],
     "based_on": "3_panel_right"
 },{
     "id": "winnie2",
@@ -201,11 +208,13 @@
 },{
     "id": "winnie3",
     "template": "winnie3.jpg",
+	"aliases": [],
     "based_on": "3_panel_right"
 },{
     "id": "burn",
     "template": "burn.jpg",
 	"based_on": "white_text",
+	"aliases": [],
     "texts": [{
       "x_range": [0.08, 0.37],
       "y_range": [0.09, 0.43],
@@ -228,6 +237,7 @@
     "id": "aliens",
     "template": "aliens.jpg",
 	"based_on": "white_text",
+	"aliases": [],
     "font_size": 0.15,
     "texts": [{
       "x_range": [0.02, 0.98],
@@ -237,7 +247,8 @@
 },{
     "id": "grandma",
     "template": "grandma.jpg",
-    "based_on": "2_texts"
+    "based_on": "2_texts",
+	"aliases": []
 },{
     "id": "everywhere",
     "template": "everywhere.jpg",
@@ -270,19 +281,49 @@
     "position": "S",
     "texts": [{
       "x_range": [0.02, 0.98],
-      "y_range": [0.10, 0.19]
+      "y_range": [0.13, 0.19]
     },{
       "x_range": [0.02, 0.98],
-      "y_range": [0.30, 0.39]
+      "y_range": [0.33, 0.39]
     },{
       "x_range": [0.02, 0.98],
-      "y_range": [0.50, 0.59]
+      "y_range": [0.53, 0.59]
     },{
       "x_range": [0.02, 0.98],
-      "y_range": [0.70, 0.79]
+      "y_range": [0.73, 0.79]
     },{
       "x_range": [0.02, 0.98],
-      "y_range": [0.90, 0.99]
+      "y_range": [0.93, 0.99]
+    },{
+      "x_range": [0.31, 0.71],
+      "y_range": [0.04, 0.13],
+	  "position": "CENTER"
+    },{
+      "x_range": [0.35, 0.85],
+      "y_range": [0.26, 0.33],
+	  "position": "CENTER"
+    },{
+      "x_range": [0.18, 0.66],
+      "y_range": [0.45, 0.53],
+	  "position": "CENTER",
+	  "text_ref": 6
+    },{
+      "x_range": [0.01, 0.29],
+      "y_range": [0.65, 0.72],
+	  "position": "CENTER",
+	  "font_size": 0.04,
+	  "text_ref": 6
+    },{
+      "x_range": [0.54, 0.90],
+      "y_range": [0.67, 0.73],
+	  "position": "CENTER",
+	  "font_size": 0.04,
+	  "text_ref": 7
+    },{
+      "x_range": [0.15, 0.58],
+      "y_range": [0.85, 0.93],
+	  "position": "CENTER",
+	  "text_ref": 6
     }]
 },{
     "id": "buff",
@@ -302,6 +343,7 @@
     "id": "button",
     "template": "button.jpg",
 	"based_on": "white_text",
+	"aliases": [],
     "font_size": 0.08,
     "texts": [{
       "x_range": [0.10, 0.46],
@@ -316,6 +358,7 @@
     "id": "bye_mom",
     "template": "bye_mom.jpg",
 	"aliases": ["google"],
+	"aliases": [],
     "font_size": 0.04,
     "texts": [{
       "x_range": [0.56, 0.97],
@@ -326,6 +369,7 @@
     "id": "clock",
     "template": "clock.jpg",
 	"based_on": "white_text",
+	"aliases": [],
     "texts": [{
       "x_range": [0.36, 0.59],
       "y_range": [0.25, 0.40]
@@ -374,6 +418,9 @@
 	"font": "grafo",
 	"font_size": 0.06,
     "texts": [{
+      "x_range": [0.50, 0.86],
+      "y_range": [0.06, 0.21]
+    },{
       "x_range": [0.69, 0.94],
       "y_range": [0.73, 0.82]
     },{
@@ -504,6 +551,7 @@
     "id": "flex_tape",
     "template": "flex_tape.jpg",
 	"based_on": "white_text",
+	"aliases": [],
     "texts": [{
       "x_range": [0.18, 0.43],
       "y_range": [0.10, 0.40]
@@ -518,6 +566,7 @@
     "id": "girl_cat",
     "template": "girl_cat.jpg",
 	"based_on": "white_text",
+	"aliases": [],
     "position": "S",
     "font_size": 0.12,
     "texts": [{
@@ -530,6 +579,7 @@
 },{
     "id": "gru",
     "template": "gru.jpg",
+	"aliases": [],
     "texts": [{
       "x_range": [0.28, 0.48],
       "y_range": [0.08, 0.50],
@@ -551,6 +601,7 @@
     "id": "handshake",
     "template": "handshake.jpg",
 	"based_on": "white_text",
+	"aliases": [],
     "font_size": 0.12,
     "texts": [{
       "x_range": [-0.05, 0.45],
@@ -572,6 +623,7 @@
     "id": "handshake2",
     "template": "handshake2.jpg",
 	"based_on": "white_text",
+	"aliases": [],
     "font_size": 0.07,
     "texts": [{
       "x_range": [0.10, 0.45],
@@ -583,6 +635,7 @@
 },{
     "id": "idea",
     "template": "idea.jpg",
+	"aliases": [],
     "texts": [{
       "x_range": [0.01, 0.58],
       "y_range": [0.01, 0.28]
@@ -647,16 +700,367 @@
     "template": "lion.jpg",
     "aliases": ["shady","king"],
 	"based_on": "white_text",
-    "font_size": 0.07,
-    "position": "S",
     "texts": [{
       "x_range": [0.02, 0.98],
-      "y_range": [0.16, 0.32]
+      "y_range": [0.25, 0.32],
+	  "font_size": 0.07,
+	  "position": "S"
     },{
       "x_range": [0.02, 0.98],
-      "y_range": [0.49, 0.66]
+      "y_range": [0.59, 0.66],
+	  "font_size": 0.07,
+	  "position": "S"
     },{
       "x_range": [0.02, 0.98],
-      "y_range": [0.73, 0.99]
+      "y_range": [0.90, 0.99],
+	  "font_size": 0.07,
+	  "position": "S"
+    },{
+      "x_range": [0.27, 0.51],
+      "y_range": [0.08, 0.18]
+    },{
+      "x_range": [0.45, 0.63],
+      "y_range": [0.18, 0.25]
+    },{
+      "x_range": [0.09, 0.45],
+      "y_range": [0.47, 0.59],
+	  "font_size": 0.07,
+	  "text_ref": 4
+    },{
+      "x_range": [0.20, 0.56],
+      "y_range": [0.78, 0.90],
+	  "font_size": 0.07,
+	  "text_ref": 5
     }]
+},{
+    "id": "born_cool",
+    "template": "born_cool.jpg",
+	"based_on": "white_text",
+	"aliases": [],
+	"font_size": 0.07,
+    "texts": [{
+      "x_range": [0.07, 0.39],
+      "y_range": [0.62, 0.85],
+	  "stroke_width": 0,
+	  "font_size": 0.05,
+	  "angle": -15
+    },{
+      "x_range": [0.18, 0.46],
+      "y_range": [0.21, 0.40]
+    },{
+      "x_range": [0.68, 0.96],
+      "y_range": [0.21, 0.40],
+	  "text_ref": 2
+    },{
+      "x_range": [0.68, 0.96],
+      "y_range": [0.82, 1.00],
+	  "text_ref": 2
+    }]
+},{
+    "id": "mini",
+    "template": "mini.jpg",
+	"based_on": "white_text",
+	"aliases": ["joker"],
+	"font_size": 0.07,
+    "texts": [{
+      "x_range": [0.42, 0.77],
+      "y_range": [0.19, 0.55]
+    },{
+      "x_range": [0.12, 0.42],
+      "y_range": [0.36, 0.66],
+	  "font_size": 0.05
+    }]
+},{
+    "id": "nobody_cares",
+    "template": "nobody_cares.jpg",
+	"based_on": "white_text",
+	"aliases": ["nobody","jurassic","park","jurassic_park"],
+	"font_size": 0.07,
+	"position": "S",
+    "texts": [{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.25, 0.49]
+    },{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.75, 0.99]
+    }]
+},{
+    "id": "overconfident",
+    "template": "overconfident.jpg",
+	"aliases": ["alcohol","depressed"],
+	"based_on": "white_text",
+    "texts": [{
+      "x_range": [0.04, 0.30],
+      "y_range": [0.03, 0.19],
+	  "align": "right",
+	  "position": "SE",
+	  "font": "grafo",
+	  "fill": [0, 0, 0],
+	  "stroke_width": 0
+    },{
+      "x_range": [0.07, 0.29],
+      "y_range": [0.26, 0.47],
+	  "align": "left",
+	  "position": "NW",
+	  "font": "grafo",
+	  "fill": [0, 0, 0],
+	  "stroke_width": 0
+    },{
+      "x_range": [0.29, 0.46],
+      "y_range": [0.19, 0.45]
+    },{
+      "x_range": [0.79, 0.97],
+      "y_range": [0.19, 0.45],
+	  "text_ref": 3
+    },{
+      "x_range": [0.29, 0.46],
+      "y_range": [0.70, 0.96],
+	  "text_ref": 3
+    },{
+      "x_range": [0.76, 0.97],
+      "y_range": [0.72, 0.90],
+	  "text_ref": 3
+    },{
+      "x_range": [0.52, 0.76],
+      "y_range": [0.81, 0.98]
+    }]
+},{
+    "id": "see_that_guy",
+    "template": "see_that_guy.jpg",
+	"aliases": [],
+	"font_size": 0.07,
+	"based_on": "white_text",
+    "texts": [{
+      "x_range": [0.41, 0.98],
+      "y_range": [0.02, 0.08],
+	  "align": "left",
+	  "position": "SW",
+	  "font": "grafo",
+	  "font_size": 0.09,
+	  "fill": [0, 0, 0],
+	  "stroke_width": 0
+    },{
+      "x_range": [0.41, 0.99],
+      "y_range": [0.51, 0.57],
+	  "align": "left",
+	  "position": "SW",
+	  "font_size": 0.09,
+	  "font": "grafo",
+	  "fill": [0, 0, 0],
+	  "stroke_width": 0
+    },{
+      "x_range": [0.05, 0.31],
+      "y_range": [0.09, 0.21]
+    },{
+      "x_range": [0.31, 0.57],
+      "y_range": [0.15, 0.27]
+    },{
+      "x_range": [0.05, 0.31],
+      "y_range": [0.58, 0.70],
+	  "text_ref": 3
+    },{
+      "x_range": [0.31, 0.57],
+      "y_range": [0.64, 0.76],
+	  "text_ref": 4
+    },{
+      "x_range": [0.60, 0.96],
+      "y_range": [0.34, 0.42],
+	  "font_size": 0.05,
+	  "position": "S"
+    }]
+},{
+    "id": "sleeping",
+    "template": "sleeping.jpg",
+	"based_on": "white_text",
+	"aliases": ["brain"],
+    "texts": [{
+      "x_range": [0.03, 0.49],
+      "y_range": [0.51, 0.65],
+	  "font": "grafo",
+	  "fill": [0, 0, 0],
+	  "font_size": 0.07,
+	  "stroke_width": 0
+    },{
+      "x_range": [0.70, 0.95],
+      "y_range": [0.32, 0.47]
+    },{
+      "x_range": [0.70, 0.95],
+      "y_range": [0.80, 0.95]
+    }]
+},{
+    "id": "spiderman",
+    "template": "spiderman.jpg",
+	"based_on": "white_text",
+	"aliases": ["same"],
+	"font_size": 0.07,
+    "texts": [{
+      "x_range": [0.15, 0.39],
+      "y_range": [0.26, 0.52]
+    },{
+      "x_range": [0.64, 0.89],
+      "y_range": [0.32, 0.58]
+    }]
+},{
+    "id": "struggle",
+    "template": "struggle.jpg",
+	"based_on": "white_text",
+	"aliases": ["choice","hero"],
+	"font_size": 0.07,
+    "texts": [{
+      "x_range": [0.11, 0.44],
+      "y_range": [0.11, 0.21],
+	  "fill": [0, 0, 0],
+	  "stroke_width": 0,
+	  "angle": 20
+    },{
+      "x_range": [0.47, 0.72],
+      "y_range": [0.07, 0.16],
+	  "font_size": 0.06,
+	  "fill": [0, 0, 0],
+	  "stroke_width": 0,
+	  "angle": 20
+    },{
+      "x_range": [0.33, 0.75],
+      "y_range": [0.56, 0.83]
+    }]
+},{
+    "id": "trump",
+    "template": "trump.jpg",
+	"aliases": ["law"],
+	"based_on": "white_text",
+    "texts": [{
+      "x_range": [0.68, 0.92],
+      "y_range": [0.37, 0.66],
+	  "angle": 1,
+	  "fill": [0, 0, 0],
+	  "stroke_width": 0,
+	  "font": "arial",
+	  "angle": 1,
+	  "position": "NW",
+	  "align": "left"
+    },{
+      "x_range": [0.05, 0.38],
+      "y_range": [0.42, 0.81],
+	  "font_size": 0.07
+    }]
+},{
+    "id": "trust_nobody",
+    "template": "trust_nobody.jpg",
+	"based_on": "white_text",
+	"aliases": ["yourself","gun"],
+	"font_size": 0.07,
+    "texts": [{
+      "x_range": [0.16, 0.50],
+      "y_range": [0.32, 0.85]
+    },{
+      "x_range": [0.79, 0.99],
+      "y_range": [0.29, 0.89],
+	  "position": "E"
+    },{
+      "x_range": [0.51, 0.79],
+      "y_range": [0.58, 0.93]
+    }]
+},{
+    "id": "t_pose",
+    "template": "t_pose.jpg",
+	"based_on": "white_text",
+	"aliases": ["dominance"],
+	"font_size": 0.07,
+    "texts": [{
+      "x_range": [0.39, 0.72],
+      "y_range": [0.20, 0.58],
+	  "angle": 7
+    },{
+      "x_range": [0.12, 0.55],
+      "y_range": [0.71, 0.98]
+    }]
+},{
+    "id": "salt_bae",
+    "template": "salt_bae.jpg",
+	"based_on": "white_text",
+	"aliases": ["salt"],
+	"font_size": 0.07,
+    "texts": [{
+      "x_range": [0.27, 0.59],
+      "y_range": [0.11, 0.50]
+    },{
+      "x_range": [0.09, 0.42],
+      "y_range": [0.50, 0.86]
+    },{
+      "x_range": [0.01, 0.47],
+      "y_range": [0.86, 0.99],
+	  "position": "S"
+    }]
+},{
+    "id": "tom_cousins",
+    "template": "tom_cousins.jpg",
+	"based_on": "white_text",
+	"aliases": ["cousins","backup"],
+	"font_size": 0.07,
+    "texts": [{
+      "x_range": [0.14, 0.39],
+      "y_range": [0.21, 0.69]
+    },{
+      "x_range": [0.39, 0.67],
+      "y_range": [0.38, 0.77]
+    },{
+      "x_range": [0.68, 0.98],
+      "y_range": [0.38, 0.77]
+    }]
+},{
+    "id": "pills",
+    "template": "pills.jpg",
+	"based_on": "white_text",
+	"aliases": [],
+	"font_size": 0.08,
+    "texts": [{
+      "x_range": [0.14, 0.78],
+      "y_range": [0.61, 0.99]
+    }]
+},{
+    "id": "worthless",
+    "template": "worthless.jpg",
+	"based_on": "white_text",
+	"aliases": ["gravity_falls", "dipper"],
+	"font_size": 0.07,
+    "texts": [{
+      "x_range": [0.12, 0.86],
+      "y_range": [0.14, 0.43],
+	  "fill": [0, 0, 0],
+	  "stroke_width": 0,
+	  "font": "arial",
+	  "angle": -4
+    },{
+      "x_range": [0.61, 0.79],
+      "y_range": [0.88, 0.93],
+	  "fill": [0, 0, 0],
+	  "stroke_width": 0,
+	  "font": "arial",
+	  "angle": 190,
+	  "font_size": 0.01,
+	  "text_ref": 1
+    },{
+      "x_range": [0.27, 0.65],
+      "y_range": [0.60, 0.87]
+    }]
+},{
+    "id": "scary",
+    "template": "scary.jpg",
+	"based_on": "white_text",
+	"aliases": ["spongebob","fearless"],
+	"font_size": 0.07,
+    "texts": [{
+      "x_range": [0.43, 0.94],
+      "y_range": [0.04, 0.32]
+    },{
+      "x_range": [0.23, 0.59],
+      "y_range": [0.72, 0.96]
+    }]
+}{
+    "id": "",
+    "template": ".jpg",
+	"based_on": "white_text",
+	"aliases": [],
+	"font_size": 0.07,
+    "texts": []
 }]
