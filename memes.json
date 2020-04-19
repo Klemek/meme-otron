@@ -301,29 +301,29 @@
     },{
       "x_range": [0.35, 0.85],
       "y_range": [0.26, 0.33],
-	  "position": "CENTER"
+      "style_ref": 6
     },{
       "x_range": [0.18, 0.66],
       "y_range": [0.45, 0.53],
-	  "position": "CENTER",
-	  "text_ref": 6
+	  "text_ref": 6,
+      "style_ref": 6
     },{
       "x_range": [0.01, 0.29],
       "y_range": [0.65, 0.72],
-	  "position": "CENTER",
 	  "font_size": 0.04,
-	  "text_ref": 6
+	  "text_ref": 6,
+      "style_ref": 6
     },{
       "x_range": [0.54, 0.90],
       "y_range": [0.67, 0.73],
-	  "position": "CENTER",
 	  "font_size": 0.04,
-	  "text_ref": 7
+	  "text_ref": 7,
+      "style_ref": 6
     },{
       "x_range": [0.15, 0.58],
       "y_range": [0.85, 0.93],
-	  "position": "CENTER",
-	  "text_ref": 6
+	  "text_ref": 6,
+      "style_ref": 6
     }]
 },{
     "id": "buff",
@@ -358,7 +358,6 @@
     "id": "bye_mom",
     "template": "bye_mom.jpg",
 	"aliases": ["google"],
-	"aliases": [],
     "font_size": 0.04,
     "texts": [{
       "x_range": [0.56, 0.97],
@@ -648,7 +647,7 @@
       "x_range": [0.01, 0.40],
       "y_range": [0.73, 0.98],
       "angle": 18,
-      "position": "N"
+      "style_ref": 2
     },{
       "x_range": [0.65, 0.98],
       "y_range": [0.12, 0.28],
@@ -660,21 +659,13 @@
     },{
       "x_range": [0.55, 0.98],
       "y_range": [0.45, 0.63],
-      "position": "S",
-      "text_ref": 4,
-      "font": "impact",
-      "stroke_fill": [0, 0, 0],
-      "stroke_width": 0.1,
-      "fill": [255, 255, 255]
+      "style_ref": 4,
+      "text_ref": 4
     },{
       "x_range": [0.55, 0.98],
       "y_range": [0.80, 0.98],
-      "position": "S",
-      "text_ref": 4,
-      "font": "impact",
-      "stroke_fill": [0, 0, 0],
-      "stroke_width": 0.1,
-      "fill": [255, 255, 255]
+      "style_ref": 4,
+      "text_ref": 4
     }]
 },{
     "id": "pigeon",
@@ -708,13 +699,11 @@
     },{
       "x_range": [0.02, 0.98],
       "y_range": [0.59, 0.66],
-	  "font_size": 0.07,
-	  "position": "S"
+      "style_ref": 1
     },{
       "x_range": [0.02, 0.98],
       "y_range": [0.90, 0.99],
-	  "font_size": 0.07,
-	  "position": "S"
+      "style_ref": 1
     },{
       "x_range": [0.27, 0.51],
       "y_range": [0.08, 0.18]
@@ -802,9 +791,7 @@
       "y_range": [0.26, 0.47],
 	  "align": "left",
 	  "position": "NW",
-	  "font": "grafo",
-	  "fill": [0, 0, 0],
-	  "stroke_width": 0
+      "style_ref": 1
     },{
       "x_range": [0.29, 0.46],
       "y_range": [0.19, 0.45]
@@ -842,12 +829,7 @@
     },{
       "x_range": [0.41, 0.99],
       "y_range": [0.51, 0.57],
-	  "align": "left",
-	  "position": "SW",
-	  "font_size": 0.09,
-	  "font": "grafo",
-	  "fill": [0, 0, 0],
-	  "stroke_width": 0
+      "style_ref": 1
     },{
       "x_range": [0.05, 0.31],
       "y_range": [0.09, 0.21]
@@ -915,10 +897,9 @@
     },{
       "x_range": [0.47, 0.72],
       "y_range": [0.07, 0.16],
+	  "angle": 20,
 	  "font_size": 0.06,
-	  "fill": [0, 0, 0],
-	  "stroke_width": 0,
-	  "angle": 20
+      "style_ref": 1
     },{
       "x_range": [0.33, 0.75],
       "y_range": [0.56, 0.83]
@@ -935,7 +916,6 @@
 	  "fill": [0, 0, 0],
 	  "stroke_width": 0,
 	  "font": "arial",
-	  "angle": 1,
 	  "position": "NW",
 	  "align": "left"
     },{
@@ -1056,7 +1036,7 @@
       "x_range": [0.23, 0.59],
       "y_range": [0.72, 0.96]
     }]
-}{
+},{
     "id": "",
     "template": ".jpg",
 	"based_on": "white_text",
