@@ -49,6 +49,8 @@ class Text:
         self.text = text
         self.text_ref = None
 
+        self.style_ref = None
+
         self.x_range = (0, 1)
         self.y_range = (0, 1)
         self.angle = None

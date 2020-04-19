@@ -84,6 +84,13 @@ def load_item(i, item):
                     else:
                         text.text_ref -= 1
                         text.text = meme.texts[text.text_ref].text
+                    if text.style_ref is not None:
+                        if text.style_ref < 1 or text.style_ref > len(meme.texts):
+                            logger.warning(
+                                f"Item '{item_id}'({i + 1}) / Text {j + 1}: invalid style reference {text.style_ref}")
+                        else:
+                            text.style_ref -= 1
+                            text.update(meme.texts[text.style_ref])
                     meme.texts += [text]
                 except TypeError as e:
                     logger.warning(f"Item '{item_id}'({i + 1}) / Text {j + 1}: {e}")
@@ -127,6 +134,7 @@ def load_text(c, raw_text, text=None):
     text.x_range = utils.read_key_safe(raw_text, "x_range", types=[float, int], is_list=True, is_list_size=2)
     text.y_range = utils.read_key_safe(raw_text, "y_range", types=[float, int], is_list=True, is_list_size=2)
     text.text_ref = utils.read_key_safe(raw_text, "text_ref", types=[int])
+    text.style_ref = utils.read_key_safe(raw_text, "style_ref", types=[int])
     text.angle = utils.read_key_safe(raw_text, "angle", types=[float, int])
     text.font_size = utils.read_key_safe(raw_text, "font_size", text.font_size, types=[float, int])
     text.fill = utils.read_key_safe(raw_text, "fill", text.fill, types=[int], is_list=True, is_list_size=3)
