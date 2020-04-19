@@ -13,7 +13,7 @@ logging.basicConfig(format="%(message)s", level=logging.WARNING)
 imgf.load_fonts()
 
 db_file = utils.relative_path(__file__, "..", meme_db.DATA_FILE)
-templates_dir = utils.relative_path(__file__)
+templates_dir = utils.relative_path(__file__, "..", "templates")
 dst_dir = utils.relative_path(__file__, "tmp")
 
 if not path.exists(dst_dir):
@@ -25,6 +25,7 @@ while True:
     while os.stat(db_file)[stat.ST_MTIME] == last:
         time.sleep(0.1)
     last = os.stat(db_file)[stat.ST_MTIME]
+    time.sleep(0.1)
     meme_db.load_memes(purge=True)
     count = 0
     for meme_id in meme_db.DATA:
