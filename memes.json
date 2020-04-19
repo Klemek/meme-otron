@@ -1095,4 +1095,29 @@
 	"aliases": [],
 	"font_size": 0.07,
     "texts": []
+},{
+    "id": "truth",
+    "template": "truth.jpg",
+	"based_on": "white_text",
+	"aliases": ["scroll"],
+	"font_size": 0.04,
+    "texts": [{
+      "x_range": [0.19, 0.36],
+      "y_range": [0.58, 0.81],
+	  "angle": 2,
+	  "fill": [0, 0, 0],
+	  "stroke_width": 0
+    },{
+      "x_range": [0.12, 0.24],
+      "y_range": [0.22, 0.37]
+    },{
+      "x_range": [0.55, 0.66],
+      "y_range": [0.32, 0.46],
+	  "text_ref": 2
+    },{
+      "x_range": [0.76, 0.88],
+      "y_range": [0.73, 0.87],
+	  "angle": 25,
+	  "text_ref": 2
+    }]
 }]
