@@ -1089,13 +1089,6 @@
 	  "style_ref": 5
     }]
 },{
-    "id": "",
-    "template": ".jpg",
-	"based_on": "white_text",
-	"aliases": [],
-	"font_size": 0.07,
-    "texts": []
-},{
     "id": "truth",
     "template": "truth.jpg",
 	"based_on": "white_text",
@@ -1120,4 +1113,35 @@
 	  "angle": 25,
 	  "text_ref": 2
     }]
+},{
+    "id": "gate",
+    "template": "gate.jpg",
+	"aliases": [],
+	"font_size": 0.03,
+    "texts": [{
+      "x_range": [0.06, 0.28],
+      "y_range": [0.05, 0.15]
+    },{
+      "x_range": [0.39, 0.56],
+      "y_range": [0.04, 0.14]
+    },{
+      "x_range": [0.67, 0.96],
+      "y_range": [0.04, 0.16]
+    },{
+      "x_range": [0.05, 0.21],
+      "y_range": [0.53, 0.61]
+    },{
+      "x_range": [0.37, 0.59],
+      "y_range": [0.53, 0.60]
+    },{
+      "x_range": [0.70, 0.92],
+      "y_range": [0.53, 0.62]
+    }]
+},{
+    "id": "",
+    "template": ".jpg",
+	"based_on": "white_text",
+	"aliases": [],
+	"font_size": 0.07,
+    "texts": []
 }]
