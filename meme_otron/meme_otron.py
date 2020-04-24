@@ -52,7 +52,7 @@ def compute(*args, left_wmark_text=None, debug=False):
         c = 0
         for i in range(len(meme.texts)):
             if meme.texts[i].text_ref is None:
-                if i < len(args) + 1:
+                if c < len(args) - 1:
                     meme.texts[i].text = parse_text(args[c + 1])
                 else:
                     meme.texts[i].text = ""
