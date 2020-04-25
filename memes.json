@@ -148,6 +148,7 @@
     "id": "drake",
     "template": "drake.jpg",
     "aliases": [],
+    "info": "https://knowyourmeme.com/memes/drakeposting",
     "based_on": "2_panel_right"
 },{
     "id": "brain3",
@@ -158,6 +159,7 @@
     "id": "brain4",
     "aliases": ["brains"],
     "template": "brain4.jpg",
+    "info": "https://knowyourmeme.com/memes/galaxy-brain",
     "based_on": "4_panel_left"
 },{
     "id": "brain5",
@@ -168,11 +170,13 @@
     "id": "disappointed",
     "template": "disappointed.jpg",
     "aliases": [],
+    "info": "https://knowyourmeme.com/memes/disappointed-black-guy",
     "based_on": "2_panel_left"
 },{
     "id": "nope",
     "template": "nope.jpg",
     "aliases": [],
+    "info": "https://knowyourmeme.com/memes/disappointed-black-guy",
     "based_on": "2_panel_right"
 },{
     "id": "pleasure3",
@@ -183,11 +187,13 @@
     "id": "pleasure4",
     "aliases": ["pleasure","satisfied","satisfied4"],
     "template": "pleasure4.jpg",
+    "info": "https://knowyourmeme.com/memes/vince-mcmahon-reaction",
     "based_on": "4_panel_left"
 },{
     "id": "tough2",
     "aliases": ["tough", "fight"],
     "template": "tough2.jpg",
+    "info": "https://knowyourmeme.com/memes/increasingly-buff-spongebob",
     "based_on": "2_panel_right"
 },{
     "id": "tough2bis",
@@ -204,6 +210,7 @@
     "id": "winnie2",
     "aliases": ["winnie"],
     "template": "winnie2.jpg",
+    "info": "https://knowyourmeme.com/memes/tuxedo-winnie-the-pooh",
     "based_on": "2_panel_right"
 },{
     "id": "winnie3",
@@ -214,7 +221,8 @@
     "id": "burn",
     "template": "burn.jpg",
     "based_on": "white_text",
-    "aliases": [],
+    "aliases": ["paper"],
+    "info": "https://knowyourmeme.com/photos/1379947-spongebob-squarepants",
     "texts": [{
       "x_range": [0.08, 0.37],
       "y_range": [0.09, 0.43],
@@ -238,6 +246,7 @@
     "template": "aliens.jpg",
     "based_on": "white_text",
     "aliases": [],
+    "info": "https://knowyourmeme.com/memes/ancient-aliens",
     "font_size": 0.15,
     "texts": [{
       "x_range": [0.02, 0.98],
@@ -248,21 +257,25 @@
     "id": "grandma",
     "template": "grandma.jpg",
     "based_on": "2_texts",
-    "aliases": []
+    "aliases": [],
+    "info": "https://knowyourmeme.com/memes/grandma-finds-the-internet"
 },{
     "id": "everywhere",
     "template": "everywhere.jpg",
     "aliases": ["buzz", "woody"],
+    "info": "https://knowyourmeme.com/memes/x-x-everywhere",
     "based_on": "2_texts"
 },{
     "id": "bender",
     "template": "bender.jpg",
     "aliases": ["hookers", "blackjack"],
+    "info": "https://knowyourmeme.com/memes/im-going-to-build-my-own-theme-park-with-blackjack-and-hookers",
     "based_on": "2_texts"
 },{
     "id": "alive",
     "template": "alive.jpg",
     "aliases": ["no_brain"],
+    "info": "https://knowyourmeme.com/memes/oh-fuck-i-forgot-to-give-you-a-brain",
     "font": "grafo",
     "font_size": 0.07,
     "fill": [0, 14, 109],
@@ -276,6 +289,7 @@
     "id": "argument",
     "template": "argument.jpg",
     "aliases": ["wrestlers"],
+    "info": "https://knowyourmeme.com/memes/american-chopper-argument",
     "based_on": "white_text",
     "font_size": 0.07,
     "position": "S",
@@ -329,6 +343,7 @@
     "id": "buff",
     "template": "buff.jpg",
     "aliases": ["tom", "jerry"],
+    "info": "https://knowyourmeme.com/memes/buff-tom",
     "based_on": "white_text",
     "font_size": 0.07,
     "texts": [{
@@ -343,7 +358,8 @@
     "id": "button",
     "template": "button.jpg",
     "based_on": "white_text",
-    "aliases": [],
+    "aliases": ["nut"],
+    "info": "https://knowyourmeme.com/memes/nut-button",
     "font_size": 0.08,
     "texts": [{
       "x_range": [0.10, 0.46],
@@ -358,6 +374,7 @@
     "id": "bye_mom",
     "template": "bye_mom.jpg",
     "aliases": ["google"],
+    "info": "https://knowyourmeme.com/memes/ok-bye-mom",
     "font_size": 0.04,
     "texts": [{
       "x_range": [0.56, 0.97],
@@ -369,6 +386,7 @@
     "template": "clock.jpg",
     "based_on": "white_text",
     "aliases": [],
+    "info": "https://knowyourmeme.com/memes/squidwards-clock-closet",
     "texts": [{
       "x_range": [0.36, 0.59],
       "y_range": [0.25, 0.40]
@@ -388,6 +406,7 @@
     "id": "culture",
     "template": "culture.jpg",
     "aliases": ["anime"],
+    "info": "https://knowyourmeme.com/memes/ah-i-see-youre-a-man-of-culture-as-well",
     "stroke_fill": [0, 0, 0],
     "stroke_width": 0.05,
     "texts": [{
@@ -398,6 +417,7 @@
     "id": "distracted",
     "template": "distracted.jpg",
     "aliases": ["boyfried", "cheating", "girlfriend"],
+    "info": "https://knowyourmeme.com/memes/distracted-boyfriend",
     "based_on": "white_text",
     "font_size": 0.06,
     "texts": [{
@@ -414,6 +434,7 @@
     "id": "dont_look",
     "template": "dont_look.jpg",
     "aliases": ["ricky", "mom", "influenced"],
+    "info": "https://knowyourmeme.com/memes/dont-look-at-them-ricky",
     "font": "grafo",
     "font_size": 0.06,
     "texts": [{
@@ -429,6 +450,8 @@
 },{
     "id": "drift",
     "template": "drift.jpg",
+    "aliases": ["exit"],
+    "info": "https://knowyourmeme.com/memes/left-exit-12-off-ramp",
     "font": "impact",
     "fill": [255, 255, 255],
     "font_size": 0.06,
@@ -443,7 +466,8 @@
 },{
     "id": "everywhere2",
     "template": "everywhere2.jpg",
-    "aliases": ["angry"],
+    "aliases": ["angry", "diapers"],
+    "info": "https://knowyourmeme.com/memes/how-many-diapers-could-he-possibly-use",
     "based_on": "white_text",
     "texts": [{
       "x_range": [0.12, 0.42],
@@ -496,6 +520,7 @@
     "id": "fight",
     "template": "fight.jpg",
     "aliases": ["vaping"],
+    "info": "https://knowyourmeme.com/memes/dabbing-dude",
     "based_on": "white_text",
     "texts": [{
       "x_range": [0.23, 0.48],
@@ -513,7 +538,8 @@
 },{
     "id": "fine",
     "template": "fine.jpg",
-    "aliases": ["fire"],
+    "aliases": ["fire", "dog"],
+    "info": "https://knowyourmeme.com/memes/this-is-fine",
     "based_on": "white_text",
     "font_size": 0.08,
     "texts": [{
@@ -550,7 +576,8 @@
     "id": "flex_tape",
     "template": "flex_tape.jpg",
     "based_on": "white_text",
-    "aliases": [],
+    "aliases": ["flex", "tape"],
+    "info": "https://knowyourmeme.com/memes/flex-tape",
     "texts": [{
       "x_range": [0.18, 0.43],
       "y_range": [0.10, 0.40]
@@ -566,6 +593,7 @@
     "template": "girl_cat.jpg",
     "based_on": "white_text",
     "aliases": [],
+    "info": "https://knowyourmeme.com/memes/woman-yelling-at-a-cat",
     "position": "S",
     "font_size": 0.12,
     "texts": [{
@@ -578,7 +606,8 @@
 },{
     "id": "gru",
     "template": "gru.jpg",
-    "aliases": [],
+    "aliases": ["plan"],
+    "info": "https://knowyourmeme.com/memes/grus-plan",
     "texts": [{
       "x_range": [0.28, 0.48],
       "y_range": [0.08, 0.50],
@@ -601,6 +630,7 @@
     "template": "handshake.jpg",
     "based_on": "white_text",
     "aliases": [],
+    "info": "https://knowyourmeme.com/memes/epic-handshake",
     "font_size": 0.12,
     "texts": [{
       "x_range": [-0.05, 0.45],
@@ -622,7 +652,8 @@
     "id": "handshake2",
     "template": "handshake2.jpg",
     "based_on": "white_text",
-    "aliases": [],
+    "aliases": ["scott"],
+    "info": "https://knowyourmeme.com/memes/young-michael-scott-shaking-ed-trucks-hand",
     "font_size": 0.07,
     "texts": [{
       "x_range": [0.10, 0.45],
@@ -634,7 +665,8 @@
 },{
     "id": "idea",
     "template": "idea.jpg",
-    "aliases": [],
+    "aliases": ["gentlemen"],
+    "info": "https://knowyourmeme.com/memes/all-right-gentlemen",
     "texts": [{
       "x_range": [0.01, 0.58],
       "y_range": [0.01, 0.28]
@@ -672,6 +704,7 @@
     "template": "pigeon.jpg",
     "based_on": "white_text",
     "aliases": ["butterfly"],
+    "info": "https://knowyourmeme.com/memes/is-this-a-pigeon",
     "font_size": 0.08,
     "texts": [{
       "x_range": [0.02, 0.98],
@@ -689,7 +722,8 @@
 },{
     "id": "lion",
     "template": "lion.jpg",
-    "aliases": ["shady","king"],
+    "aliases": ["shadowy","king","light"],
+    "info": "https://knowyourmeme.com/memes/simba-everything-the-light-touches-is",
     "based_on": "white_text",
     "texts": [{
       "x_range": [0.02, 0.98],
@@ -724,6 +758,7 @@
 },{
     "id": "born_cool",
     "template": "born_cool.jpg",
+    "info": "https://knowyourmeme.com/memes/nobody-is-born-cool",
     "based_on": "white_text",
     "aliases": [],
     "font_size": 0.07,
@@ -750,6 +785,7 @@
     "template": "mini.jpg",
     "based_on": "white_text",
     "aliases": ["joker"],
+    "info": "https://knowyourmeme.com/memes/mini-joker",
     "font_size": 0.07,
     "texts": [{
       "x_range": [0.42, 0.77],
@@ -764,6 +800,7 @@
     "template": "nobody_cares.jpg",
     "based_on": "white_text",
     "aliases": ["nobody","jurassic","park","jurassic_park"],
+    "info": "https://knowyourmeme.com/memes/see-nobody-cares",
     "font_size": 0.07,
     "position": "S",
     "texts": [{
@@ -777,6 +814,7 @@
     "id": "overconfident",
     "template": "overconfident.jpg",
     "aliases": ["alcohol","depressed"],
+    "info": "https://knowyourmeme.com/memes/overconfident-alcoholic",
     "based_on": "white_text",
     "texts": [{
       "x_range": [0.04, 0.30],
@@ -815,6 +853,7 @@
     "id": "see_that_guy",
     "template": "see_that_guy.jpg",
     "aliases": [],
+    "info": "https://knowyourmeme.com/memes/hey-man-you-see-that-guy-over-there",
     "font_size": 0.07,
     "based_on": "white_text",
     "texts": [{
@@ -855,6 +894,7 @@
     "template": "sleeping.jpg",
     "based_on": "white_text",
     "aliases": ["brain"],
+    "info": "https://knowyourmeme.com/memes/are-you-going-to-sleep",
     "texts": [{
       "x_range": [0.03, 0.49],
       "y_range": [0.51, 0.65],
@@ -874,6 +914,7 @@
     "template": "spiderman.jpg",
     "based_on": "white_text",
     "aliases": ["same"],
+    "info": "https://knowyourmeme.com/memes/spider-man-pointing-at-spider-man",
     "font_size": 0.07,
     "texts": [{
       "x_range": [0.15, 0.39],
@@ -887,6 +928,7 @@
     "template": "struggle.jpg",
     "based_on": "white_text",
     "aliases": ["choice","hero"],
+    "info": "https://knowyourmeme.com/memes/daily-struggle",
     "font_size": 0.07,
     "texts": [{
       "x_range": [0.11, 0.44],
@@ -908,6 +950,7 @@
     "id": "trump",
     "template": "trump.jpg",
     "aliases": ["law"],
+    "info": "https://knowyourmeme.com/memes/trumps-first-order-of-business",
     "based_on": "white_text",
     "texts": [{
       "x_range": [0.68, 0.92],
@@ -928,6 +971,7 @@
     "template": "trust_nobody.jpg",
     "based_on": "white_text",
     "aliases": ["yourself","gun"],
+    "info": "https://knowyourmeme.com/memes/trust-nobody-not-even-yourself",
     "font_size": 0.07,
     "texts": [{
       "x_range": [0.16, 0.50],
@@ -944,7 +988,8 @@
     "id": "t_pose",
     "template": "t_pose.jpg",
     "based_on": "white_text",
-    "aliases": ["dominance"],
+    "aliases": ["dominance", "monika"],
+    "info": "https://knowyourmeme.com/memes/monika-t-posing-over-sans",
     "font_size": 0.07,
     "texts": [{
       "x_range": [0.39, 0.72],
@@ -959,6 +1004,7 @@
     "template": "salt_bae.jpg",
     "based_on": "white_text",
     "aliases": ["salt"],
+    "info": "https://knowyourmeme.com/memes/salt-bae",
     "font_size": 0.07,
     "texts": [{
       "x_range": [0.27, 0.59],
@@ -975,7 +1021,8 @@
     "id": "tom_cousins",
     "template": "tom_cousins.jpg",
     "based_on": "white_text",
-    "aliases": ["cousins","backup"],
+    "aliases": ["cousins","backup", "goons"],
+    "info": "https://knowyourmeme.com/memes/tom-and-jerry-hired-goons",
     "font_size": 0.07,
     "texts": [{
       "x_range": [0.14, 0.39],
@@ -991,7 +1038,8 @@
     "id": "pills",
     "template": "pills.jpg",
     "based_on": "white_text",
-    "aliases": [],
+    "aliases": ["swallow"],
+    "info": "https://knowyourmeme.com/memes/hard-to-swallow-pills",
     "font_size": 0.08,
     "texts": [{
       "x_range": [0.14, 0.78],
@@ -1002,6 +1050,7 @@
     "template": "worthless.jpg",
     "based_on": "white_text",
     "aliases": ["gravity_falls", "dipper"],
+    "info": "https://knowyourmeme.com/memes/whoa-this-is-worthless",
     "font_size": 0.07,
     "texts": [{
       "x_range": [0.12, 0.86],
@@ -1028,6 +1077,7 @@
     "template": "scary.jpg",
     "based_on": "white_text",
     "aliases": ["spongebob","fearless"],
+    "info": "https://knowyourmeme.com/memes/spongebob-sees-flying-dutchman",
     "font_size": 0.07,
     "texts": [{
       "x_range": [0.43, 0.94],
@@ -1041,6 +1091,7 @@
     "template": "seagull2.jpg",
     "based_on": "white_text",
     "aliases": ["seagull", "screaming"],
+    "info": "https://knowyourmeme.com/memes/inhaling-seagull",
     "font_size": 0.07,
     "position": "S",
     "texts": [{
@@ -1093,6 +1144,7 @@
     "template": "truth.jpg",
     "based_on": "white_text",
     "aliases": ["scroll"],
+    "info": "https://knowyourmeme.com/memes/the-scroll-of-truth",
     "font_size": 0.04,
     "texts": [{
       "x_range": [0.19, 0.36],
@@ -1117,6 +1169,7 @@
     "id": "gate",
     "template": "gate.jpg",
     "aliases": [],
+    "info": "https://knowyourmeme.com/memes/open-the-gate",
     "font_size": 0.03,
     "texts": [{
       "x_range": [0.06, 0.28],
@@ -1141,7 +1194,8 @@
     "id": "guys",
     "template": "guys.jpg",
     "based_on": "white_text",
-    "aliases": [],
+    "aliases": ["explain", "paid"],
+    "info": "https://knowyourmeme.com/memes/you-guys-are-getting-paid",
     "font_size": 0.06,
     "texts": [{
       "x_range": [0.01, 0.49],
@@ -1181,6 +1235,7 @@
     "template": "meeting.jpg",
     "based_on": "white_text",
     "aliases": ["boardroom", "suggestion"],
+    "info": "https://knowyourmeme.com/memes/boardroom-suggestion",
     "font_size": 0.05,
     "texts": [{
       "x_range": [0.31, 0.90],
@@ -1235,6 +1290,7 @@
     "template": "patrick.jpg",
     "based_on": "white_text",
     "aliases": ["wallet", "id"],
+    "info": "https://knowyourmeme.com/memes/patrick-stars-wallet",
     "font_size": 0.05,
     "texts": [{
       "x_range": [0.01, 0.49],
