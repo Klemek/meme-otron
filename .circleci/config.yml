@@ -8,7 +8,8 @@ jobs:
       - checkout
       - run:
           command: |
-            python docs.build
+            sudo pip install -r requirements.txt
+            python -m docs.build
             git config user.email "workflow@circleci.com"
             git config user.name "CircleCI"
             git add docs/README.md
