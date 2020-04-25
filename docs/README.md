@@ -26,43 +26,43 @@ Click on an image to enlarge it.
 ||||
 |:---:|:---:|:---:|
 |**aliens**|**alive**<br>alt: no_brain|**argument**<br>alt: wrestlers|
-|[![enlarge](./templates/aliens.jpg){:height='25vh'}](./templates/aliens.jpg){:target='_blank'}|[![enlarge](./templates/alive.jpg){:height='25vh'}](./templates/alive.jpg){:target='_blank'}|[![enlarge](./templates/argument.jpg){:height='25vh'}](./templates/argument.jpg){:target='_blank'}|
+|<a href='./templates/aliens.jpg' target='_blank'>![enlarge](./preview/aliens.jpg)</a>|<a href='./templates/alive.jpg' target='_blank'>![enlarge](./preview/alive.jpg)</a>|<a href='./templates/argument.jpg' target='_blank'>![enlarge](./preview/argument.jpg)</a>|
 |**bender**<br>alt: hookers, blackjack|**born_cool**|**brain3**|
-|[![enlarge](./templates/bender.jpg){:height='25vh'}](./templates/bender.jpg){:target='_blank'}|[![enlarge](./templates/born_cool.jpg){:height='25vh'}](./templates/born_cool.jpg){:target='_blank'}|[![enlarge](./templates/brain3.jpg){:height='25vh'}](./templates/brain3.jpg){:target='_blank'}|
+|<a href='./templates/bender.jpg' target='_blank'>![enlarge](./preview/bender.jpg)</a>|<a href='./templates/born_cool.jpg' target='_blank'>![enlarge](./preview/born_cool.jpg)</a>|<a href='./templates/brain3.jpg' target='_blank'>![enlarge](./preview/brain3.jpg)</a>|
 |**brain4**<br>alt: brains|**brain5**|**buff**<br>alt: tom, jerry|
-|[![enlarge](./templates/brain4.jpg){:height='25vh'}](./templates/brain4.jpg){:target='_blank'}|[![enlarge](./templates/brain5.jpg){:height='25vh'}](./templates/brain5.jpg){:target='_blank'}|[![enlarge](./templates/buff.jpg){:height='25vh'}](./templates/buff.jpg){:target='_blank'}|
+|<a href='./templates/brain4.jpg' target='_blank'>![enlarge](./preview/brain4.jpg)</a>|<a href='./templates/brain5.jpg' target='_blank'>![enlarge](./preview/brain5.jpg)</a>|<a href='./templates/buff.jpg' target='_blank'>![enlarge](./preview/buff.jpg)</a>|
 |**burn**|**button**|**bye_mom**<br>alt: google|
-|[![enlarge](./templates/burn.jpg){:height='25vh'}](./templates/burn.jpg){:target='_blank'}|[![enlarge](./templates/button.jpg){:height='25vh'}](./templates/button.jpg){:target='_blank'}|[![enlarge](./templates/bye_mom.jpg){:height='25vh'}](./templates/bye_mom.jpg){:target='_blank'}|
+|<a href='./templates/burn.jpg' target='_blank'>![enlarge](./preview/burn.jpg)</a>|<a href='./templates/button.jpg' target='_blank'>![enlarge](./preview/button.jpg)</a>|<a href='./templates/bye_mom.jpg' target='_blank'>![enlarge](./preview/bye_mom.jpg)</a>|
 |**clock**|**culture**<br>alt: anime|**disappointed**|
-|[![enlarge](./templates/clock.jpg){:height='25vh'}](./templates/clock.jpg){:target='_blank'}|[![enlarge](./templates/culture.jpg){:height='25vh'}](./templates/culture.jpg){:target='_blank'}|[![enlarge](./templates/disappointed.jpg){:height='25vh'}](./templates/disappointed.jpg){:target='_blank'}|
+|<a href='./templates/clock.jpg' target='_blank'>![enlarge](./preview/clock.jpg)</a>|<a href='./templates/culture.jpg' target='_blank'>![enlarge](./preview/culture.jpg)</a>|<a href='./templates/disappointed.jpg' target='_blank'>![enlarge](./preview/disappointed.jpg)</a>|
 |**distracted**<br>alt: boyfried, cheating, girlfriend|**dont_look**<br>alt: ricky, mom, influenced|**drake**|
-|[![enlarge](./templates/distracted.jpg){:height='25vh'}](./templates/distracted.jpg){:target='_blank'}|[![enlarge](./templates/dont_look.jpg){:height='25vh'}](./templates/dont_look.jpg){:target='_blank'}|[![enlarge](./templates/drake.jpg){:height='25vh'}](./templates/drake.jpg){:target='_blank'}|
+|<a href='./templates/distracted.jpg' target='_blank'>![enlarge](./preview/distracted.jpg)</a>|<a href='./templates/dont_look.jpg' target='_blank'>![enlarge](./preview/dont_look.jpg)</a>|<a href='./templates/drake.jpg' target='_blank'>![enlarge](./preview/drake.jpg)</a>|
 |**drift**|**everywhere**<br>alt: buzz, woody|**everywhere2**<br>alt: angry|
-|[![enlarge](./templates/drift.jpg){:height='25vh'}](./templates/drift.jpg){:target='_blank'}|[![enlarge](./templates/everywhere.jpg){:height='25vh'}](./templates/everywhere.jpg){:target='_blank'}|[![enlarge](./templates/everywhere2.jpg){:height='25vh'}](./templates/everywhere2.jpg){:target='_blank'}|
+|<a href='./templates/drift.jpg' target='_blank'>![enlarge](./preview/drift.jpg)</a>|<a href='./templates/everywhere.jpg' target='_blank'>![enlarge](./preview/everywhere.jpg)</a>|<a href='./templates/everywhere2.jpg' target='_blank'>![enlarge](./preview/everywhere2.jpg)</a>|
 |**fight**<br>alt: vaping|**fine**<br>alt: fire|**flex_tape**|
-|[![enlarge](./templates/fight.jpg){:height='25vh'}](./templates/fight.jpg){:target='_blank'}|[![enlarge](./templates/fine.jpg){:height='25vh'}](./templates/fine.jpg){:target='_blank'}|[![enlarge](./templates/flex_tape.jpg){:height='25vh'}](./templates/flex_tape.jpg){:target='_blank'}|
+|<a href='./templates/fight.jpg' target='_blank'>![enlarge](./preview/fight.jpg)</a>|<a href='./templates/fine.jpg' target='_blank'>![enlarge](./preview/fine.jpg)</a>|<a href='./templates/flex_tape.jpg' target='_blank'>![enlarge](./preview/flex_tape.jpg)</a>|
 |**gate**|**girl_cat**|**grandma**|
-|[![enlarge](./templates/gate.jpg){:height='25vh'}](./templates/gate.jpg){:target='_blank'}|[![enlarge](./templates/girl_cat.jpg){:height='25vh'}](./templates/girl_cat.jpg){:target='_blank'}|[![enlarge](./templates/grandma.jpg){:height='25vh'}](./templates/grandma.jpg){:target='_blank'}|
+|<a href='./templates/gate.jpg' target='_blank'>![enlarge](./preview/gate.jpg)</a>|<a href='./templates/girl_cat.jpg' target='_blank'>![enlarge](./preview/girl_cat.jpg)</a>|<a href='./templates/grandma.jpg' target='_blank'>![enlarge](./preview/grandma.jpg)</a>|
 |**gru**|**guys**|**handshake**|
-|[![enlarge](./templates/gru.jpg){:height='25vh'}](./templates/gru.jpg){:target='_blank'}|[![enlarge](./templates/guys.jpg){:height='25vh'}](./templates/guys.jpg){:target='_blank'}|[![enlarge](./templates/handshake.jpg){:height='25vh'}](./templates/handshake.jpg){:target='_blank'}|
+|<a href='./templates/gru.jpg' target='_blank'>![enlarge](./preview/gru.jpg)</a>|<a href='./templates/guys.jpg' target='_blank'>![enlarge](./preview/guys.jpg)</a>|<a href='./templates/handshake.jpg' target='_blank'>![enlarge](./preview/handshake.jpg)</a>|
 |**handshake2**|**idea**|**lion**<br>alt: shady, king|
-|[![enlarge](./templates/handshake2.jpg){:height='25vh'}](./templates/handshake2.jpg){:target='_blank'}|[![enlarge](./templates/idea.jpg){:height='25vh'}](./templates/idea.jpg){:target='_blank'}|[![enlarge](./templates/lion.jpg){:height='25vh'}](./templates/lion.jpg){:target='_blank'}|
+|<a href='./templates/handshake2.jpg' target='_blank'>![enlarge](./preview/handshake2.jpg)</a>|<a href='./templates/idea.jpg' target='_blank'>![enlarge](./preview/idea.jpg)</a>|<a href='./templates/lion.jpg' target='_blank'>![enlarge](./preview/lion.jpg)</a>|
 |**meeting**<br>alt: boardroom, suggestion|**mini**<br>alt: joker|**nobody_cares**<br>alt: nobody, jurassic, park, jurassic_park|
-|[![enlarge](./templates/meeting.jpg){:height='25vh'}](./templates/meeting.jpg){:target='_blank'}|[![enlarge](./templates/mini.jpg){:height='25vh'}](./templates/mini.jpg){:target='_blank'}|[![enlarge](./templates/nobody_cares.jpg){:height='25vh'}](./templates/nobody_cares.jpg){:target='_blank'}|
+|<a href='./templates/meeting.jpg' target='_blank'>![enlarge](./preview/meeting.jpg)</a>|<a href='./templates/mini.jpg' target='_blank'>![enlarge](./preview/mini.jpg)</a>|<a href='./templates/nobody_cares.jpg' target='_blank'>![enlarge](./preview/nobody_cares.jpg)</a>|
 |**nope**|**overconfident**<br>alt: alcohol, depressed|**patrick**<br>alt: wallet, id|
-|[![enlarge](./templates/nope.jpg){:height='25vh'}](./templates/nope.jpg){:target='_blank'}|[![enlarge](./templates/overconfident.jpg){:height='25vh'}](./templates/overconfident.jpg){:target='_blank'}|[![enlarge](./templates/patrick.jpg){:height='25vh'}](./templates/patrick.jpg){:target='_blank'}|
+|<a href='./templates/nope.jpg' target='_blank'>![enlarge](./preview/nope.jpg)</a>|<a href='./templates/overconfident.jpg' target='_blank'>![enlarge](./preview/overconfident.jpg)</a>|<a href='./templates/patrick.jpg' target='_blank'>![enlarge](./preview/patrick.jpg)</a>|
 |**pigeon**<br>alt: butterfly|**pills**|**pleasure3**<br>alt: satisfied3|
-|[![enlarge](./templates/pigeon.jpg){:height='25vh'}](./templates/pigeon.jpg){:target='_blank'}|[![enlarge](./templates/pills.jpg){:height='25vh'}](./templates/pills.jpg){:target='_blank'}|[![enlarge](./templates/pleasure3.jpg){:height='25vh'}](./templates/pleasure3.jpg){:target='_blank'}|
+|<a href='./templates/pigeon.jpg' target='_blank'>![enlarge](./preview/pigeon.jpg)</a>|<a href='./templates/pills.jpg' target='_blank'>![enlarge](./preview/pills.jpg)</a>|<a href='./templates/pleasure3.jpg' target='_blank'>![enlarge](./preview/pleasure3.jpg)</a>|
 |**pleasure4**<br>alt: pleasure, satisfied, satisfied4|**salt_bae**<br>alt: salt|**scary**<br>alt: spongebob, fearless|
-|[![enlarge](./templates/pleasure4.jpg){:height='25vh'}](./templates/pleasure4.jpg){:target='_blank'}|[![enlarge](./templates/salt_bae.jpg){:height='25vh'}](./templates/salt_bae.jpg){:target='_blank'}|[![enlarge](./templates/scary.jpg){:height='25vh'}](./templates/scary.jpg){:target='_blank'}|
+|<a href='./templates/pleasure4.jpg' target='_blank'>![enlarge](./preview/pleasure4.jpg)</a>|<a href='./templates/salt_bae.jpg' target='_blank'>![enlarge](./preview/salt_bae.jpg)</a>|<a href='./templates/scary.jpg' target='_blank'>![enlarge](./preview/scary.jpg)</a>|
 |**seagull2**<br>alt: seagull, screaming|**seagull4**|**see_that_guy**|
-|[![enlarge](./templates/seagull2.jpg){:height='25vh'}](./templates/seagull2.jpg){:target='_blank'}|[![enlarge](./templates/seagull4.jpg){:height='25vh'}](./templates/seagull4.jpg){:target='_blank'}|[![enlarge](./templates/see_that_guy.jpg){:height='25vh'}](./templates/see_that_guy.jpg){:target='_blank'}|
+|<a href='./templates/seagull2.jpg' target='_blank'>![enlarge](./preview/seagull2.jpg)</a>|<a href='./templates/seagull4.jpg' target='_blank'>![enlarge](./preview/seagull4.jpg)</a>|<a href='./templates/see_that_guy.jpg' target='_blank'>![enlarge](./preview/see_that_guy.jpg)</a>|
 |**sleeping**<br>alt: brain|**spiderman**<br>alt: same|**struggle**<br>alt: choice, hero|
-|[![enlarge](./templates/sleeping.jpg){:height='25vh'}](./templates/sleeping.jpg){:target='_blank'}|[![enlarge](./templates/spiderman.jpg){:height='25vh'}](./templates/spiderman.jpg){:target='_blank'}|[![enlarge](./templates/struggle.jpg){:height='25vh'}](./templates/struggle.jpg){:target='_blank'}|
+|<a href='./templates/sleeping.jpg' target='_blank'>![enlarge](./preview/sleeping.jpg)</a>|<a href='./templates/spiderman.jpg' target='_blank'>![enlarge](./preview/spiderman.jpg)</a>|<a href='./templates/struggle.jpg' target='_blank'>![enlarge](./preview/struggle.jpg)</a>|
 |**t_pose**<br>alt: dominance|**tom_cousins**<br>alt: cousins, backup|**tough2**<br>alt: tough, fight|
-|[![enlarge](./templates/t_pose.jpg){:height='25vh'}](./templates/t_pose.jpg){:target='_blank'}|[![enlarge](./templates/tom_cousins.jpg){:height='25vh'}](./templates/tom_cousins.jpg){:target='_blank'}|[![enlarge](./templates/tough2.jpg){:height='25vh'}](./templates/tough2.jpg){:target='_blank'}|
+|<a href='./templates/t_pose.jpg' target='_blank'>![enlarge](./preview/t_pose.jpg)</a>|<a href='./templates/tom_cousins.jpg' target='_blank'>![enlarge](./preview/tom_cousins.jpg)</a>|<a href='./templates/tough2.jpg' target='_blank'>![enlarge](./preview/tough2.jpg)</a>|
 |**tough2bis**|**tough3**|**trump**<br>alt: law|
-|[![enlarge](./templates/tough2bis.jpg){:height='25vh'}](./templates/tough2bis.jpg){:target='_blank'}|[![enlarge](./templates/tough3.jpg){:height='25vh'}](./templates/tough3.jpg){:target='_blank'}|[![enlarge](./templates/trump.jpg){:height='25vh'}](./templates/trump.jpg){:target='_blank'}|
+|<a href='./templates/tough2bis.jpg' target='_blank'>![enlarge](./preview/tough2bis.jpg)</a>|<a href='./templates/tough3.jpg' target='_blank'>![enlarge](./preview/tough3.jpg)</a>|<a href='./templates/trump.jpg' target='_blank'>![enlarge](./preview/trump.jpg)</a>|
 |**trust_nobody**<br>alt: yourself, gun|**truth**<br>alt: scroll|
-|[![enlarge](./templates/trust_nobody.jpg){:height='25vh'}](./templates/trust_nobody.jpg){:target='_blank'}|[![enlarge](./templates/truth.jpg){:height='25vh'}](./templates/truth.jpg){:target='_blank'}||
+|<a href='./templates/trust_nobody.jpg' target='_blank'>![enlarge](./preview/trust_nobody.jpg)</a>|<a href='./templates/truth.jpg' target='_blank'>![enlarge](./preview/truth.jpg)</a>||
 <!--END-->
