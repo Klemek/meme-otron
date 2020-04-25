@@ -1,4 +1,4 @@
-#Commands
+## Commands
 
 You can generate memes by using the following arguments:
 
@@ -15,7 +15,7 @@ Depending of the number of `"text"` arguments, several behavior occurs:
 > * You don't have to use all texts shown on templates
 > * You can use an empty text argument ( `""` ) to skip a text and keep it blank
 
-#List of templates
+## List of templates
 
 You can find here the full list of templates.
 Each one has extra info and an image showing how texts are placed.
