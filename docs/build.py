@@ -61,7 +61,7 @@ for i, meme_id in enumerate(ids):
             info_line += "|"
             img_line += f"" \
                         f"<a href='./templates/{meme.template}' target='_blank'>" \
-                        f"<img alt='enlarge' href='./preview/{meme.template}' height='{IMG_HEIGHT}'/>" \
+                        f"<img alt='enlarge' src='./preview/{meme.template}' height='{IMG_HEIGHT}'/>" \
                         f"</a>|"
             print(i, meme_id)
 
