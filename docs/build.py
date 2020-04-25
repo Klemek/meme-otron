@@ -1,5 +1,6 @@
 import os
 import logging
+import PIL
 from os import path
 from meme_otron import img_factory as imgf
 from meme_otron import meme_db
@@ -11,17 +12,23 @@ imgf.load_fonts()
 meme_db.load_memes()
 
 dst_dir = utils.relative_path(__file__, "templates")
-templates_dir = utils.relative_path(__file__, "..", "templates")
+prev_dir = utils.relative_path(__file__, "preview")
 doc_file = utils.relative_path(__file__, "README.md")
 
 COLUMNS = 3
 
-if path.exists(dst_dir):
-    for f in os.listdir(dst_dir):
-        if path.isfile(path.join(dst_dir, f)):
-            os.unlink(path.join(dst_dir, f))
-else:
-    os.mkdir(dst_dir)
+
+def make_empty(target_dir):
+    if path.exists(target_dir):
+        for f in os.listdir(target_dir):
+            if path.isfile(path.join(target_dir, f)):
+                os.unlink(path.join(target_dir, f))
+    else:
+        os.mkdir(target_dir)
+
+
+make_empty(dst_dir)
+make_empty(prev_dir)
 
 ids = sorted(meme_db.DATA.keys())
 
@@ -38,6 +45,8 @@ for i, meme_id in enumerate(ids):
         img = imgf.make(meme.template, meme.texts, debug=True)
         if img is not None:
             img.save(path.join(dst_dir, meme.template))
+            img.resize((round(img.size[0] * 512 / img.size[1]), 512), resample=PIL.Image.LANCZOS)
+            img.save(path.join(prev_dir, meme.template))
             if i % COLUMNS == 0:
                 if info_line is not None and img_line is not None:
                     doc_content += info_line + img_line
@@ -47,12 +56,13 @@ for i, meme_id in enumerate(ids):
             if len(meme.aliases) > 0:
                 info_line += f"<br>alt: {', '.join(meme.aliases)}"
             if meme.info is not None:
-                info_line += f"<br>[more info]({meme.info}{{:target='_blank'}}"
+                info_line += f"<br><a href='{meme.info}' target='_blank'>more info</a>"
             info_line += "|"
-            img_line += f"[" \
-                        f"![enlarge](./templates/{meme.template}){{:height='25vh'}}" \
-                        f"](./templates/{meme.template}){{:target='_blank'}}" \
-                        f"|"
+            img_line += f"" \
+                        f"<a href='./templates/{meme.template}' target='_blank'>" \
+                        f"![enlarge](./preview/{meme.template})" \
+                        f"</a>|"
+            print(i, meme_id)
 
 doc_content += "|" * (COLUMNS - (i % COLUMNS))
 
