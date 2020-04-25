@@ -46,7 +46,8 @@ for i, meme_id in enumerate(ids):
         img = imgf.make(meme.template, meme.texts, debug=True)
         if img is not None:
             img.save(path.join(dst_dir, meme.template))
-            img2 = img.resize((round(img.size[0] * IMG_HEIGHT / img.size[1]), IMG_HEIGHT), resample=PIL.Image.LANCZOS)
+            size = (round(img.size[0] * IMG_HEIGHT / img.size[1]), IMG_HEIGHT)
+            img2 = img.resize(size, resample=PIL.Image.LANCZOS)
             img2.save(path.join(prev_dir, meme.template))
             if i % COLUMNS == 0:
                 if info_line is not None and img_line is not None:
@@ -61,7 +62,7 @@ for i, meme_id in enumerate(ids):
             info_line += "|"
             img_line += f"" \
                         f"<a href='./templates/{meme.template}' target='_blank'>" \
-                        f"<img alt='enlarge' src='./preview/{meme.template}' height='{IMG_HEIGHT}'/>" \
+                        f"<img alt='enlarge' src='./preview/{meme.template}' width='{size[0]}' height='{size[1]}'/>" \
                         f"</a>|"
             print(i, meme_id)
 
