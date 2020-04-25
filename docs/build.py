@@ -47,11 +47,12 @@ for i, meme_id in enumerate(ids):
             if len(meme.aliases) > 0:
                 info_line += f"<br>alt: {', '.join(meme.aliases)}"
             if meme.info is not None:
-                info_line += f"<br><a href='{meme.info}' target='_blank'>more info</a>"
+                info_line += f"<br>[more info]({meme.info}{{:target='_blank'}}"
             info_line += "|"
-            img_line += f"<a href='./templates/{meme.template}' target='_blank'>" \
-                        f"<img src='./templates/{meme.template}' style='max-height:25vh'/>" \
-                        f"</a>|"
+            img_line += f"[" \
+                        f"![enlarge](./templates/{meme.template}){{:height='25vh'}}" \
+                        f"](./templates/{meme.template}){{:target='_blank'}}" \
+                        f"|"
 
 doc_content += "|" * (COLUMNS - (i % COLUMNS))
 
