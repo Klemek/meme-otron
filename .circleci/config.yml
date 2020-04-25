@@ -15,7 +15,7 @@ jobs:
             python -m docs.build
             git config user.email "workflow@circleci.com"
             git config user.name "CircleCI"
-            git add docs/README.md
+            git add docs
             git diff-index --quiet HEAD || git commit -m 'Automated README [ci skip]'
             git push origin master
           name: Building docs
