@@ -1,0 +1,22 @@
+version: 2.1
+
+jobs:
+  build-docs:
+    docker:
+      - image: circleci/python:latest
+    steps:
+      - checkout
+      - run:
+          command: |
+            python docs.build
+            git config user.email "workflow@circleci.com"
+            git config user.name "CircleCI"
+            git add docs/README.md
+            git diff-index --quiet HEAD || git commit -m 'Automated README [ci skip]'
+            git push origin master
+          name: Building docs
+
+workflows:
+  main:
+    jobs:
+      - build-docs
