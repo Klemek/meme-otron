@@ -122,7 +122,7 @@ async def on_message(message):
             if img is None:
                 await message.channel.send(f":warning: Template `{args[0]}` not found\n"
                                            f"You can find a more detailed help and a list of templates at:\n"
-                                           f"<https://github.com/klemek/meme-otron/tree/master/discord>")
+                                           f"<https://github.com/klemek/meme-otron/tree/master/docs/README.md>")
                 return
             with tempfile.NamedTemporaryFile(delete=False) as output:
                 img.save(output, format="JPEG")
