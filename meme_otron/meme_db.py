@@ -165,3 +165,8 @@ def get_meme(name):
         return DATA[ALIASES[name]].clone()
     else:
         return None
+
+
+def find_nearest(word):
+    word = word.lower().strip().replace(" ", "_")
+    return utils.find_nearest(word, ALIASES.keys())

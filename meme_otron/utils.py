@@ -1,5 +1,6 @@
 import re
 import os.path as path
+from Levenshtein import distance
 
 
 def relative_path(file, *args):
@@ -120,3 +121,19 @@ def parse_arguments(s):
     :return:
     """
     return [[g for g in m if len(g) > 0][0] for m in args_regex.findall(s)]
+
+
+def find_nearest(word, wlist, threshold=5):
+    """
+    TODO
+
+    :param (str) word:
+    :param (list of str) wlist:
+    :param (int) threshold:
+    :rtype: str | None
+    :return:
+    """
+    found = min([(distance(word, w) - abs(len(w) - len(word)), w) for w in wlist], key=lambda v: v[0])
+    if found[0] > threshold:
+        return None
+    return found[1]

@@ -120,31 +120,35 @@ async def on_message(message):
                 left_wmark_text = f"By {message.author.display_name}"
             img = meme_otron.compute(*args, left_wmark_text=left_wmark_text)
             if img is None:
-                await message.channel.send(f":warning: Template `{args[0]}` not found\n"
-                                           f"You can find a more detailed help and a list of templates at:\n"
-                                           f"<https://github.com/klemek/meme-otron/tree/master/docs/README.md>")
-                return
-            with tempfile.NamedTemporaryFile(delete=False) as output:
-                img.save(output, format="JPEG")
-                response = None
-                if len(args) == 1:
-                    meme = db.get_meme(args[0])
-                    response = f"Template `{meme.id}`:"
-                    if len(meme.aliases) > 0:
-                        response += f"\n- Aliases: `{'`, `'.join(meme.aliases)}`"
-                    if meme.info is not None:
-                        response += f"\n- More info: <{meme.info}>"
-                elif not direct:
-                    response = f"A meme by {message.author.mention}:"
-                if mid not in SENT:
-                    SENT[mid] = []
-                response = await message.channel.send(response,
-                                                      file=discord.File(filename="meme.jpg", fp=output.name))
-                SENT[mid] += [response]
-                try:
-                    os.remove(output.name)
-                except PermissionError:
-                    pass
+                hint = db.find_nearest(args[0])
+                response = f":warning: Template `{args[0]}` not found\n"
+                if hint is not None:
+                    response += f"Did you mean `{hint}`?\n"
+                response += f"You can find a more detailed help and a list of templates at:\n" \
+                            f"<https://github.com/klemek/meme-otron/tree/master/docs/README.md>"
+                await message.channel.send(response)
+            else:
+                with tempfile.NamedTemporaryFile(delete=False) as output:
+                    img.save(output, format="JPEG")
+                    response = None
+                    if len(args) == 1:
+                        meme = db.get_meme(args[0])
+                        response = f"Template `{meme.id}`:"
+                        if len(meme.aliases) > 0:
+                            response += f"\n- Aliases: `{'`, `'.join(meme.aliases)}`"
+                        if meme.info is not None:
+                            response += f"\n- More info: <{meme.info}>"
+                    elif not direct:
+                        response = f"A meme by {message.author.mention}:"
+                    if mid not in SENT:
+                        SENT[mid] = []
+                    response = await message.channel.send(response,
+                                                          file=discord.File(filename="meme.jpg", fp=output.name))
+                    SENT[mid] += [response]
+                    try:
+                        os.remove(output.name)
+                    except PermissionError:
+                        pass
             if not direct:
                 await delete(message)
 
