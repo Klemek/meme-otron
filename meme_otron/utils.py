@@ -5,7 +5,7 @@ from Levenshtein import distance
 
 def relative_path(file, *args):
     """
-    TODO
+    Get the full path from a starting file and a relative path
 
     :param (str) file:
     :param (str) args:
@@ -17,7 +17,8 @@ def relative_path(file, *args):
 
 def read_key_safe(d, k, default=None, *, types=None, is_list=False, is_list_size=None):
     """
-    TODO
+    Read a value from a dict or return the default value if not found.
+    Can also check the type of the value.
 
     :param (dict) d: source dict
     :param (str) k: key to read
@@ -36,7 +37,8 @@ def read_key_safe(d, k, default=None, *, types=None, is_list=False, is_list_size
 
 def read_key(d, k, default=None, *, types=None, is_list=False, is_list_size=None):
     """
-    TODO
+    Read a value from a dict or return the default value or throw an error if the default is None.
+    Can also check the type of the value.
 
     :param (dict) d: source dict
     :param (str) k: key to read
@@ -64,7 +66,8 @@ def read_key(d, k, default=None, *, types=None, is_list=False, is_list_size=None
 
 def check_type(obj, types, is_list=False, is_list_size=None):
     """
-    TODO
+    Check the type from a list of possibilities.
+    Can check the types of all elements of a list.
 
     :param obj:
     :param (list of type|None) types: types to check
@@ -75,7 +78,7 @@ def check_type(obj, types, is_list=False, is_list_size=None):
     """
     if is_list:
         if not is_list_of(obj, types, is_list_size):
-            if is_list_size is None:
+            if is_list_size is not None:
                 raise TypeError(f"not a list of {is_list_size} {types[0].__name__}")
             else:
                 raise TypeError(f"not a list of {types[0].__name__}")
@@ -86,7 +89,7 @@ def check_type(obj, types, is_list=False, is_list_size=None):
 
 def is_list_of(obj, types, length=None):
     """
-    TODO
+    Check the types of all elements of a list.
 
     :param obj:
     :param (list of type) types:
@@ -114,25 +117,25 @@ args_regex = re.compile('"([^"]*)"|\'([^\']*)\'|([^ ]+)')
 
 def parse_arguments(s):
     """
-    TODO
+    Split a string into separates arguments
 
     :param (str) s:
     :rtype: list of str
     :return:
     """
+
+    def get_found_match(m):
+        f = [g for g in m if len(g) > 0]
+        if len(f) > 0:
+            return f[0]
+        return ""
+
     return [get_found_match(m) for m in args_regex.findall(s)]
-
-
-def get_found_match(m):
-    f = [g for g in m if len(g) > 0]
-    if len(f) > 0:
-        return f[0]
-    return ""
 
 
 def find_nearest(word, wlist, threshold=5):
     """
-    TODO
+    Find the nearest word in a list
 
     :param (str) word:
     :param (list of str) wlist:

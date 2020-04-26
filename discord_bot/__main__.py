@@ -62,7 +62,7 @@ async def on_ready():
 
 async def delete(message):
     """
-    TODO
+    Delete a discord message
 
     :param (discord.Message) message:
     :rtype: bool
