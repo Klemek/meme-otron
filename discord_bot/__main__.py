@@ -14,6 +14,7 @@ from meme_otron import utils
 from meme_otron import meme_otron
 
 VERSION = "1.0-dev"
+DOC_URL = "https://github.com/klemek/meme-otron/tree/master/docs/README.md"
 t0 = datetime.now()
 logging.basicConfig(format="[%(asctime)s][%(levelname)s][%(module)s] %(message)s", level=logging.INFO)
 
@@ -108,7 +109,7 @@ async def on_message(message):
                                        f"Use `delete` to remove my last message\n"
                                        f"Use `list` to get a simple list\n"
                                        f"You can find a more detailed help and a full list of templates at:\n"
-                                       f"<https://github.com/klemek/meme-otron/tree/master/discord>")
+                                       f"<{DOC_URL}>")
             return
         if len(args) > 0 and args[0].lower().strip() == "list":
             await message.channel.send(f"Here is a list of all known templates:\n"
@@ -132,7 +133,7 @@ async def on_message(message):
                 if hint is not None:
                     response += f"Did you mean `{hint}`?\n"
                 response += f"You can find a more detailed help and a list of templates at:\n" \
-                            f"<https://github.com/klemek/meme-otron/tree/master/docs/README.md>"
+                            f"<{DOC_URL}>"
                 await message.channel.send(response)
             else:
                 with tempfile.NamedTemporaryFile(delete=False) as output:
