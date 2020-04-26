@@ -31,7 +31,7 @@ python -m meme_otron [meme_id] "text 1" "text 2" ... > output.jpg
 
 ## More info
 
-The full documentation can be found [here](./tree/master/docs/README.md).
+The full documentation can be found [here](./docs/README.md).
 
 It includes:
 * Arguments syntax
