@@ -120,7 +120,14 @@ def parse_arguments(s):
     :rtype: list of str
     :return:
     """
-    return [[g for g in m if len(g) > 0][0] for m in args_regex.findall(s)]
+    return [get_found_match(m) for m in args_regex.findall(s)]
+
+
+def get_found_match(m):
+    f = [g for g in m if len(g) > 0]
+    if len(f) > 0:
+        return f[0]
+    return ""
 
 
 def find_nearest(word, wlist, threshold=5):
