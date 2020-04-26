@@ -92,6 +92,7 @@ def load_item(i, item):
                             text.style_ref -= 1
                             text.update(meme.texts[text.style_ref])
                     meme.texts += [text]
+                    meme.texts_len = c - 1
                 except TypeError as e:
                     logger.warning(f"Item '{item_id}'({i + 1}) / Text {j + 1}: {e}")
         for text in meme.texts:

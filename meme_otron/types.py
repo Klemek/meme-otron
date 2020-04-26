@@ -33,6 +33,7 @@ class Meme:
         self.template = None
         self.text_base = Text()
         self.texts = None
+        self.texts_len = 0
 
     def clone(self):
         return copy.deepcopy(self)

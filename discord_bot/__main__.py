@@ -103,7 +103,8 @@ async def on_message(message):
                                        f"You can generate a meme with the syntax\n"
                                        f"```\n"
                                        f"[template] \"text 1\" \"text 2\" ...\n"
-                                       f"```"
+                                       f"```\n"
+                                       f"I also work with DM to keep your server clean of spam.\n"
                                        f"You can find a more detailed help and a list of templates at:\n"
                                        f"<https://github.com/klemek/meme-otron/tree/master/discord>")
             return
@@ -138,6 +139,10 @@ async def on_message(message):
                             response += f"\n- Aliases: `{'`, `'.join(meme.aliases)}`"
                         if meme.info is not None:
                             response += f"\n- More info: <{meme.info}>"
+                        response += f"\n- Use:" \
+                                    f"\n```{meme.id} \"" + \
+                                    "\" \"".join([f"text {i}" for i in range(meme.texts_len)]) + \
+                                    "\"```"
                     elif not direct:
                         response = f"A meme by {message.author.mention}:"
                     if mid not in SENT:
