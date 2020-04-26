@@ -148,7 +148,7 @@ async def on_message(message):
                             response += f"\n- More info: <{meme.info}>"
                         response += f"\n- Use:" \
                                     f"\n```{meme.id} \"" + \
-                                    "\" \"".join([f"text {i}" for i in range(meme.texts_len)]) + \
+                                    "\" \"".join([f"text {i + 1}" for i in range(meme.texts_len)]) + \
                                     "\"```"
                     elif not direct:
                         response = f"A meme by {message.author.mention}:"
