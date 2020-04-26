@@ -7,12 +7,12 @@ You can generate memes by using the following arguments:
 ```
 
 Depending of the number of `"text"` arguments, several behavior occurs:
-* **None**: you get the template that gives you locations of texts. (see below)
+* **None**: you get the template that gives you the locations of texts. (see below)
 * **Less than the template's**: the remaining texts are blank on the output
 * **More than the template's**: the extra arguments are ignored
 
 > Notes
-> * You don't have to use all texts shown on templates
+> * You don't have to use all texts shown on the templates
 > * You can use an empty text argument ( `""` ) to skip a text and keep it blank
 
 ## Discord features
@@ -25,7 +25,18 @@ Tag the bot and use the above syntax to get started. In addition, you can use th
 
 Enjoy the full experience of this bot by using direct messages to keep your server free of spam.
 
+## CLI features
 
+In this project directory, you can simply call:
+```
+python -m meme_otron [meme id] "text1" "text2" ... > output.jpg
+```
+Without pipe redirection with `-c [output]`:
+```
+python -m meme_otron -c output.png [meme id] "text1" "text2" ...
+```
+
+> Note: with `-c`, you are free to choose the output format
 
 ## List of templates
 
