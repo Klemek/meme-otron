@@ -23,6 +23,8 @@ Tag the bot and use the above syntax to get started. In addition, you can use th
 * Use `list` to get a list of all meme ids
 * Use `delete` to delete the last message sent by the bot (directed to you)
 
+To get the template info, just send the meme id without texts.
+
 Enjoy the full experience of this bot by using direct messages to keep your server free of spam.
 
 ## CLI features
