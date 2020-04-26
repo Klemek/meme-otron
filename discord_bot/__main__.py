@@ -13,7 +13,7 @@ from meme_otron import meme_db as db
 from meme_otron import utils
 from meme_otron import meme_otron
 
-VERSION = "1.1"
+VERSION = "1.2-dev"
 DOC_URL = "https://github.com/klemek/meme-otron/tree/master/docs/README.md"
 t0 = datetime.now()
 logging.basicConfig(format="[%(asctime)s][%(levelname)s][%(module)s] %(message)s", level=logging.INFO)
