@@ -15,6 +15,18 @@ Depending of the number of `"text"` arguments, several behavior occurs:
 > * You don't have to use all texts shown on templates
 > * You can use an empty text argument ( `""` ) to skip a text and keep it blank
 
+## Discord features
+
+Tag the bot and use the above syntax to get started. In addition, you can use the following commands:
+
+* Use `help` to get a simple help message
+* Use `list` to get a list of all meme ids
+* Use `delete` to delete the last message sent by the bot (directed to you)
+
+Enjoy the full experience of this bot by using direct messages to keep your server free of spam.
+
+
+
 ## List of templates
 
 You can find here the full list of templates.

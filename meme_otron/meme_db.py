@@ -8,6 +8,7 @@ DATA_FILE = utils.relative_path(__file__, "..", "memes.json")
 
 DATA = {}
 ALIASES = {}
+LIST = []
 
 logger = logging.getLogger("meme_db")
 
@@ -45,6 +46,7 @@ def load_item(i, item):
     :param (int) i:
     :param (dict) item:
     """
+    global LIST
     item_id = ""
     try:
         if not (isinstance(item, dict)):
@@ -102,6 +104,7 @@ def load_item(i, item):
         else:
             DATA[item_id] = meme
             if not meme.abstract:
+                LIST += [item_id]
                 ALIASES[item_id] = item_id
                 for alias in meme.aliases:
                     if alias in ALIASES:

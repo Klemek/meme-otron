@@ -100,13 +100,19 @@ async def on_message(message):
         debug(message, str(args))
         if len(args) == 0 or args[0].lower().strip() == "help":
             await message.channel.send(f"Hey {message.author.mention},\n"
-                                       f"You can generate a meme with the syntax\n"
+                                       f"You can generate a meme with the syntax:\n"
                                        f"```\n"
                                        f"[template] \"text 1\" \"text 2\" ...\n"
-                                       f"```\n"
+                                       f"```"
                                        f"I also work with DM to keep your server clean of spam.\n"
-                                       f"You can find a more detailed help and a list of templates at:\n"
+                                       f"Use `delete` to remove my last message\n"
+                                       f"Use `list` to get a simple list\n"
+                                       f"You can find a more detailed help and a full list of templates at:\n"
                                        f"<https://github.com/klemek/meme-otron/tree/master/discord>")
+            return
+        if len(args) > 0 and args[0].lower().strip() == "list":
+            await message.channel.send(f"Here is a list of all known templates:\n"
+                                       f"```{', '.join(db.LIST)}```")
             return
         if len(args) > 0 and args[0].lower().strip() == "delete":
             if mid in SENT and len(SENT[mid]) > 0 and await delete(SENT[mid][-1]):
@@ -156,6 +162,7 @@ async def on_message(message):
                         pass
             if not direct:
                 await delete(message)
+
 
 # Launch client and rerun on errors
 while True:

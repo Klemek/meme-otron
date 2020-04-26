@@ -28,11 +28,10 @@ while True:
     time.sleep(0.1)
     meme_db.load_memes(purge=True)
     count = 0
-    for meme_id in meme_db.DATA:
+    for meme_id in meme_db.LIST:
         meme = meme_db.get_meme(meme_id)
-        if meme is not None:
-            img = imgf.make(meme.template, meme.texts, debug=True)
-            if img is not None:
-                img.save(path.join(dst_dir, meme.template))
-                count += 1
+        img = imgf.make(meme.template, meme.texts, debug=True)
+        if img is not None:
+            img.save(path.join(dst_dir, meme.template))
+            count += 1
     print(f"{datetime.datetime.now():%H:%M:%S} / {count} registered templates / {len(os.listdir(templates_dir))} files")
