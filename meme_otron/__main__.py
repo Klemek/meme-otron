@@ -11,8 +11,8 @@ if __name__ == "__main__":
     imgf.load_fonts()
 
     if len(sys.argv) <= 1 or sys.argv[1].lower().strip() == "help" or "-h" in sys.argv:
-        print("python -h\r\n",
-              "python -m meme_otron (meme_id) \"[text 1]\" \"[text 2]\" ... > file.jpg\r\n",
+        print("python -m meme_otron -h\n"
+              "python -m meme_otron (meme_id) \"[text 1]\" \"[text 2]\" ... > file.jpg\n"
               "python -m meme_otron -o file.jpg (meme_id) \"[text 1]\" \"[text 2]\" ...",
               file=sys.stderr)
         sys.exit(1)
@@ -28,7 +28,7 @@ if __name__ == "__main__":
         if img is None:
             hint = db.find_nearest(sys.argv[1])
             if hint is not None:
-                print(f"Did you mean '{hint}'?")
+                print(f"Did you mean '{hint}'?", file=sys.stderr)
             sys.exit(1)
         if output_f is None:
             with os.fdopen(os.dup(sys.stdout.fileno())) as output:

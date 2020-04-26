@@ -31,12 +31,12 @@ In this project directory, you can simply call:
 ```
 python -m meme_otron [meme id] "text1" "text2" ... > output.jpg
 ```
-Without pipe redirection with `-c [output]`:
+Without pipe redirection with `-o [output]`:
 ```
-python -m meme_otron -c output.png [meme id] "text1" "text2" ...
+python -m meme_otron -o output.png [meme id] "text1" "text2" ...
 ```
 
-> Note: with `-c`, you are free to choose the output format
+> Note: with `-o`, you are free to choose the output format
 
 ## List of templates
 
