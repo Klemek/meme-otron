@@ -1,4 +1,4 @@
-# meme-otron
+# Meme-Otron
 
 *When making a meme need to be instantaneous*
 
@@ -38,3 +38,7 @@ It includes:
 * Discord help
 * CLI help
 * Full list of templates with images
+
+## Discord bot
+
+You can invite the bot on your server with [this link](https://discordapp.com/api/oauth2/authorize?client_id=704073533776723988&permissions=43072&scope=bot).
