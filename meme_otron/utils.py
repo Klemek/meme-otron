@@ -79,10 +79,16 @@ def parse_arguments(src: str) -> List[str]:
 
 
 def find_nearest(word: str, wlist: List[str], threshold: int = 5) -> Optional[str]:
-    found = min([(distance(word, w) - abs(len(w) - len(word)), w) for w in wlist], key=lambda v: v[0])
-    if found[0] > threshold:
+    distances = [
+        (distance(word, w),  # distance
+         abs(len(w) - len(word)),  # length diff
+         w)
+        for w in wlist]
+    distances.sort(key=lambda v: v[1])  # sort by length diff to get the closest (in length) first
+    found = min(distances, key=lambda v: v[0] - v[1])  # get the closest in lev. distance
+    if found[0] - found[1] > threshold:  # distance is too much
         return None
-    return found[1]
+    return found[2]
 
 
 def justify_text(src: str, n_lines: int) -> Optional[str]:
