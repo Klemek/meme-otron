@@ -69,7 +69,7 @@ args_regex = re.compile('"([^"]*)"|\'([^\']*)\'|([^ ]+)')
 
 
 def parse_arguments(src: str) -> List[str]:
-    def get_found_match(m: list):
+    def get_found_match(m: list) -> str:
         f = [g for g in m if len(g) > 0]
         if len(f) > 0:
             return f[0]
