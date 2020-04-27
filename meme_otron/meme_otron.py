@@ -23,8 +23,6 @@ left_wmark.y_range = [0.005, 0.995]
 
 def parse_text(s):
     """
-    TODO
-
     :param (str) s:
     :rtype: str
     """
@@ -33,8 +31,6 @@ def parse_text(s):
 
 def compute(*args, left_wmark_text=None, debug=False):
     """
-    TODO
-
     :param (str) left_wmark_text:
     :param (bool) debug:
     :param (str) args:

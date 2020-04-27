@@ -6,9 +6,6 @@ DEFAULT_FONT_SIZE = 0.05
 
 
 class Pos(IntEnum):
-    """
-    TODO
-    """
     NW = 0
     N = 1
     NE = 2
@@ -21,10 +18,6 @@ class Pos(IntEnum):
 
 
 class Meme:
-    """
-    TODO
-    """
-
     def __init__(self, meme_id):
         self.id = meme_id
         self.aliases = []
@@ -40,9 +33,6 @@ class Meme:
 
 
 class Text:
-    """
-    TODO
-    """
     base_properties = ["font", "font_size", "fill", "stroke_width",
                        "stroke_fill", "align", "position"]
 
@@ -68,8 +58,6 @@ class Text:
 
     def update(self, base):
         """
-        TODO
-
         :param (Text) base:
         """
         for prop in Text.base_properties:
@@ -77,9 +65,6 @@ class Text:
                 setattr(self, prop, getattr(base, prop))
 
     def init(self):
-        """
-        TODO
-        """
         if self.x_range is None:
             self.x_range = (0, 1)
         if self.y_range is None:

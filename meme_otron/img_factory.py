@@ -14,9 +14,6 @@ logger = logging.getLogger("img_factory")
 
 
 def load_fonts():
-    """
-    TODO
-    """
     for file in [f for f in os.listdir(FONT_DIR) if path.isfile(path.join(FONT_DIR, f))]:
         split = path.splitext(file)
         if split[-1] == ".ttf":
@@ -29,8 +26,6 @@ def load_fonts():
 
 def make(template, texts, debug=False):
     """
-    TODO
-
     :param (str) template:
     :param (list of Text) texts:
     :param (bool) debug:
@@ -52,15 +47,11 @@ def make(template, texts, debug=False):
 
 def draw_text(draw, img, text, debug=False):
     """
-    TODO
-
     :param (PIL.ImageDraw.ImageDraw) draw: source image canvas
     :param (PIL.Image.Image) img: source image
     :param (Text) text:
     :param (bool) debug:
     """
-    # TODO rotation
-    # https://stackoverflow.com/questions/245447/how-do-i-draw-text-at-an-angle-using-pythons-pil
     if text.text is not None and len(text.text.strip()) > 0:
         text.init()  # load default values
         if text.font in FONTS:
@@ -100,6 +91,7 @@ def fit_text(size, text):
     :rtype: (str, PIL.ImageFont.FreeTypeFont)
     :return:
     """
+    # TODO rework this function
     max_width = round(size[0] * (text.x_range[1] - text.x_range[0]))
     max_height = round(size[1] * (text.y_range[1] - text.y_range[0]))
     text_size = None
@@ -126,8 +118,6 @@ def fit_text(size, text):
 
 def get_pos(size, text, font, relative=False):
     """
-    TODO
-
     :param (int,int) size: source image size
     :param (Text) text:
     :param (PIL.ImageFont.FreeTypeFont) font:

@@ -5,13 +5,17 @@ import os
 from . import img_factory as imgf
 from . import meme_db as db
 from . import meme_otron
+from . import VERSION
 
 if __name__ == "__main__":
     db.load_memes()
     imgf.load_fonts()
 
+    # TODO better arguments reading (-h, -o, -v)
+
     if len(sys.argv) <= 1 or sys.argv[1].lower().strip() == "help" or "-h" in sys.argv:
-        print("python -m meme_otron -h\n"
+        print(f"Meme-Otron v{VERSION}"
+              "python -m meme_otron -h\n"
               "python -m meme_otron (meme_id) \"[text 1]\" \"[text 2]\" ... > file.jpg\n"
               "python -m meme_otron -o file.jpg (meme_id) \"[text 1]\" \"[text 2]\" ...",
               file=sys.stderr)

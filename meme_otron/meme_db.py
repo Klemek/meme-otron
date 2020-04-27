@@ -15,8 +15,6 @@ logger = logging.getLogger("meme_db")
 
 def load_memes(purge=False):
     """
-    TODO
-
     :param (bool) purge:
     """
     global DATA, ALIASES
@@ -41,8 +39,6 @@ def load_memes(purge=False):
 
 def load_item(i, item):
     """
-    TODO
-
     :param (int) i:
     :param (dict) item:
     """
@@ -123,8 +119,6 @@ def load_item(i, item):
 
 def load_text(c, raw_text, text=None):
     """
-    TODO
-
     :param (int) c:
     :param (dict) raw_text:
     :param (Text|None) text:
@@ -158,8 +152,6 @@ def load_text(c, raw_text, text=None):
 
 def get_meme(name):
     """
-    TODO
-
     :param (str) name:
     :rtype: Meme|None
     :return:
