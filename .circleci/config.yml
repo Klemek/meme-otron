@@ -2,6 +2,9 @@ version: 2.1
 
 jobs:
   build-docs:
+    branches:
+      only:
+        - master
     docker:
       - image: circleci/python:latest
     steps:
