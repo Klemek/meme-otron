@@ -69,15 +69,7 @@ args_regex = re.compile('"([^"]*)"|\'([^\']*)\'|([^ ]+)')
 
 
 def parse_arguments(src: str) -> List[str]:
-    """
-    Split a string into separates arguments
-
-    :param (str) src:
-    :rtype: list of str
-    :return:
-    """
-
-    def get_found_match(m):
+    def get_found_match(m: list):
         f = [g for g in m if len(g) > 0]
         if len(f) > 0:
             return f[0]
