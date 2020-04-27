@@ -42,3 +42,18 @@ It includes:
 ## Discord bot
 
 You can invite the bot on your server with [this link](https://discordapp.com/api/oauth2/authorize?client_id=704073533776723988&permissions=43072&scope=bot).
+
+## History
+
+* 1.2
+  * Reworked text fitting
+  * Unit testing
+  * More docs
+  * Bug fix
+* 1.1
+  * More docs
+  * Bug fix
+    * Empty string fix
+* 1.0
+  * Initial release
+   
