@@ -1,9 +1,11 @@
+from typing import List, Optional, Tuple
 from PIL import Image, ImageFont, ImageDraw
 import os
 import os.path as path
 import logging
 
 from . import utils
+from .types import Text
 
 FONT_DIR = utils.relative_path(__file__, "..", "fonts")
 TEMPLATES_DIR = utils.relative_path(__file__, "..", "templates")
@@ -24,14 +26,7 @@ def load_fonts():
                 logger.error(f"Could not load font '{split[0]}'")
 
 
-def make(template, texts, debug=False):
-    """
-    :param (str) template:
-    :param (list of Text) texts:
-    :param (bool) debug:
-    :rtype: PIL.Image.Image
-    :return:
-    """
+def build_image(template: str, texts: List[Text], debug: bool = False) -> Optional[Image.Image]:
     try:
         img = Image.open(path.join(TEMPLATES_DIR, template)).convert(mode='RGBA')
     except OSError as e:
@@ -45,19 +40,13 @@ def make(template, texts, debug=False):
     return img.convert(mode='RGB')
 
 
-def draw_text(draw, img, text, debug=False):
-    """
-    :param (PIL.ImageDraw.ImageDraw) draw: source image canvas
-    :param (PIL.Image.Image) img: source image
-    :param (Text) text:
-    :param (bool) debug:
-    """
+def draw_text(draw: ImageDraw.ImageDraw, img: Image.Image, text: Text, debug: bool = False):
     if text.text is not None and len(text.text.strip()) > 0:
         text.init()  # load default values
         if text.font in FONTS:
             text.text, font = fit_text(img.size, text)
             if text.angle == 0:
-                draw.text(get_pos(img.size, text, font), text.text, fill=text.fill, align=text.align, font=font,
+                draw.text(get_text_pos(img.size, text, font), text.text, fill=text.fill, align=text.align, font=font,
                           stroke_width=round(text.stroke_width * font.size), stroke_fill=text.stroke_fill)
                 if debug:
                     draw.rectangle([(text.x_range[0] * img.size[0], text.y_range[0] * img.size[1]),
@@ -70,7 +59,7 @@ def draw_text(draw, img, text, debug=False):
                 center_y = (text.y_range[0] + text.y_range[1]) * img.size[1] / 2
                 txt_img = Image.new('RGBA', (width, height))
                 txt_draw = ImageDraw.Draw(txt_img)
-                txt_draw.text(get_pos(img.size, text, font, relative=True), text.text, fill=text.fill,
+                txt_draw.text(get_text_pos(img.size, text, font, relative=True), text.text, fill=text.fill,
                               align=text.align, font=font, stroke_width=round(text.stroke_width * font.size),
                               stroke_fill=text.stroke_fill)
                 if debug:
@@ -84,43 +73,30 @@ def draw_text(draw, img, text, debug=False):
             logger.warning(f"Invalid font '{text.font}'")
 
 
-def fit_text(size, text):
-    """
-    :param (int,int) size: source image size
-    :param (Text) text:
-    :rtype: (str, PIL.ImageFont.FreeTypeFont)
-    :return:
-    """
-    # TODO rework this function
+def fit_text(size: Tuple[int, int], text: Text) -> Tuple[str, ImageFont.FreeTypeFont]:
     max_width = round(size[0] * (text.x_range[1] - text.x_range[0]))
     max_height = round(size[1] * (text.y_range[1] - text.y_range[0]))
     text_size = None
     font_size = round(text.font_size * min(size)) + 1
     font = FONTS[text.font]
-    t = ""
+    text_content = ""
     while (text_size is None or text_size[0] >= max_width or text_size[1] >= max_height) and font_size > 1:
         font_size -= 1
         font = font.font_variant(size=font_size)
-        k = 0  # number of lines
-        while k == 0 or (t is not None and text_size[0] >= max_width):
-            k += 1
-            t = utils.justify_text(text.text, k)
-            if t is not None:
-                text_size = font.getsize_multiline(t, stroke_width=text.stroke_width * font_size)
-        if t is None:
+        n_lines = 0
+        while n_lines == 0 or (text_content is not None and text_size[0] >= max_width):
+            n_lines += 1
+            text_content = utils.justify_text(text.text, n_lines)
+            if text_content is not None:
+                text_size = font.getsize_multiline(text_content, stroke_width=text.stroke_width * font_size)
+        if text_content is None:
             # max break attained
-            text_size = None  # restart
-    return t, font
+            text_size = None  # retry
+    return text_content, font
 
 
-def get_pos(size, text, font, relative=False):
-    """
-    :param (int,int) size: source image size
-    :param (Text) text:
-    :param (PIL.ImageFont.FreeTypeFont) font:
-    :rtype (int,int)
-    :return:
-    """
+def get_text_pos(size: Tuple[int, int], text: Text,
+                 font: ImageFont.FreeTypeFont, relative: bool = False) -> Tuple[int, int]:
     min_x = round(text.x_range[0] * size[0])
     max_x = round(text.x_range[1] * size[0])
     min_y = round(text.y_range[0] * size[1])

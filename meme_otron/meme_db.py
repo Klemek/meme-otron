@@ -1,3 +1,4 @@
+from typing import Optional
 import json
 import logging
 
@@ -13,17 +14,14 @@ LIST = []
 logger = logging.getLogger("meme_db")
 
 
-def load_memes(purge=False):
-    """
-    :param (bool) purge:
-    """
+def load_memes(purge: bool = False):
     global DATA, ALIASES
     if purge:
         DATA = {}
         ALIASES = {}
     try:
-        with open(DATA_FILE) as f:
-            content = "".join(f.readlines())
+        with open(DATA_FILE) as input_file:
+            content = "".join(input_file.readlines())
         raw_data = json.loads(content)
         if not (isinstance(raw_data, list)):
             raise TypeError(f"Root is not a list")
@@ -37,12 +35,9 @@ def load_memes(purge=False):
         logger.error(f"Invalid data file: {e}")
 
 
-def load_item(i, item):
-    """
-    :param (int) i:
-    :param (dict) item:
-    """
+def load_item(i: int, item: dict):
     global LIST
+    # TODO reduce complexity
     item_id = ""
     try:
         if not (isinstance(item, dict)):
@@ -68,13 +63,13 @@ def load_item(i, item):
         raw_texts = utils.read_key(item, "texts", meme.texts, types=[dict], is_list=True)
         if "texts" in item:
             meme.texts = []
-            c = 1
+            current_text = 1
             for j in range(len(raw_texts)):
                 raw_text = raw_texts[j]
                 try:
-                    text = load_text(c, raw_text)
+                    text = load_text(current_text, raw_text)
                     if text.text_ref is None:
-                        c += 1
+                        current_text += 1
                     elif text.text_ref < 1 or text.text_ref > len(meme.texts):
                         logger.warning(
                             f"Item '{item_id}'({i + 1}) / Text {j + 1}: invalid text reference {text.text_ref}")
@@ -90,7 +85,7 @@ def load_item(i, item):
                             text.style_ref -= 1
                             text.update(meme.texts[text.style_ref])
                     meme.texts += [text]
-                    meme.texts_len = c - 1
+                    meme.texts_len = current_text - 1
                 except TypeError as e:
                     logger.warning(f"Item '{item_id}'({i + 1}) / Text {j + 1}: {e}")
         for text in meme.texts:
@@ -117,17 +112,9 @@ def load_item(i, item):
         logger.warning(f"Item '{item_id}'({i + 1}): {e}")
 
 
-def load_text(c, raw_text, text=None):
-    """
-    :param (int) c:
-    :param (dict) raw_text:
-    :param (Text|None) text:
-    :raises TypeError:
-    :rtype: Text
-    :return:
-    """
+def load_text(current_text: int, raw_text: dict, text: Optional[Text] = None) -> Text:
     if text is None:
-        text = Text(f"text {c}")
+        text = Text(f"text {current_text}")
     text.font = utils.read_key_safe(raw_text, "font", text.font, types=[str])
     text.x_range = utils.read_key_safe(raw_text, "x_range", types=[float, int], is_list=True, is_list_size=2)
     text.y_range = utils.read_key_safe(raw_text, "y_range", types=[float, int], is_list=True, is_list_size=2)
@@ -150,12 +137,7 @@ def load_text(c, raw_text, text=None):
     return text
 
 
-def get_meme(name):
-    """
-    :param (str) name:
-    :rtype: Meme|None
-    :return:
-    """
+def get_meme(name: str) -> Optional[Meme]:
     name = name.lower().strip().replace(" ", "_")
     if name in ALIASES:
         return DATA[ALIASES[name]].clone()
@@ -163,6 +145,6 @@ def get_meme(name):
         return None
 
 
-def find_nearest(word):
+def find_nearest(word: str) -> str:
     word = word.lower().strip().replace(" ", "_")
-    return utils.find_nearest(word, ALIASES.keys())
+    return utils.find_nearest(word, list(ALIASES))

@@ -59,4 +59,4 @@ def compute(*args, left_wmark_text=None, debug=False):
     if left_wmark_text is not None:
         left_wmark.text = left_wmark_text
         meme.texts += [left_wmark]
-    return imgf.make(meme.template, meme.texts, debug=debug)
+    return imgf.build_image(meme.template, meme.texts, debug=debug)

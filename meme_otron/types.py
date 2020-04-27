@@ -1,3 +1,4 @@
+from typing import Optional
 from enum import IntEnum
 import copy
 
@@ -18,7 +19,7 @@ class Pos(IntEnum):
 
 
 class Meme:
-    def __init__(self, meme_id):
+    def __init__(self, meme_id: str):
         self.id = meme_id
         self.aliases = []
         self.abstract = None
@@ -28,7 +29,7 @@ class Meme:
         self.texts = None
         self.texts_len = 0
 
-    def clone(self):
+    def clone(self) -> 'Meme':
         return copy.deepcopy(self)
 
 
@@ -36,7 +37,7 @@ class Text:
     base_properties = ["font", "font_size", "fill", "stroke_width",
                        "stroke_fill", "align", "position"]
 
-    def __init__(self, text=None):
+    def __init__(self, text: Optional[str] = None):
         self.text = text
         self.text_ref = None
 
@@ -56,10 +57,7 @@ class Text:
         self.align = None
         self.position = None
 
-    def update(self, base):
-        """
-        :param (Text) base:
-        """
+    def update(self, base: 'Text'):
         for prop in Text.base_properties:
             if getattr(self, prop) is None:
                 setattr(self, prop, getattr(base, prop))
