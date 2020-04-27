@@ -4,6 +4,7 @@ import os
 from . import img_factory
 from . import meme_db
 from . import meme_otron
+from . import utils
 from . import VERSION
 
 if __name__ == "__main__":
@@ -12,7 +13,7 @@ if __name__ == "__main__":
 
     # TODO better arguments reading (-h, -o, -v)
 
-    if len(sys.argv) <= 1 or sys.argv[1].lower().strip() == "help" or "-h" in sys.argv:
+    if len(sys.argv) <= 1 or utils.read_argument(sys.argv, "help", "--help", "-h"):
         print(f"Meme-Otron v{VERSION}"
               "python -m meme_otron -h\n"
               "python -m meme_otron (meme_id) \"[text 1]\" \"[text 2]\" ... > file.jpg\n"
@@ -20,13 +21,7 @@ if __name__ == "__main__":
               file=sys.stderr)
         sys.exit(1)
     else:
-        output_file = None
-        if "-o" in sys.argv:
-            i = sys.argv.index("-o")
-            if len(sys.argv) >= i:
-                output_file = sys.argv[i + 1]
-                del sys.argv[i + 1]
-            del sys.argv[i]
+        output_file = utils.read_argument(sys.argv, "-o", "--output", valued=True, delete=True)
         img = meme_otron.compute(*sys.argv[1:])
         if img is None:
             proposal = meme_db.find_nearest(sys.argv[1])

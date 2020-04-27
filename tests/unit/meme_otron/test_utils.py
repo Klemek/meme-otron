@@ -128,3 +128,18 @@ class Test(TestCase):
         self.assertEqual([5, 9, 15], utils.place_line_breaks([5.2, 14.3, 15.2], [3, 5, 9, 15, 18]))
         self.assertEqual([5, 9, 15, 18], utils.place_line_breaks([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18]))
         self.assertEqual([5, 9, 15, 18], utils.place_line_breaks([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18, 20]))
+
+    def test_read_argument(self):
+        self.assertIsNone(utils.read_argument(["test", "-o", "test"], "--output"))
+        self.assertTrue(utils.read_argument(["test", "-O", "test"], "--output", "-o"))
+        self.assertIsNone(utils.read_argument(["test", "-o"], "-o", valued=True))
+        self.assertEqual("test1", utils.read_argument(["test", "-o", "test1", "-o", "test2"], "-o", valued=True))
+        args = ["test", "-o", "test1"]
+        self.assertTrue(utils.read_argument(args, "-o", delete=True))
+        self.assertEqual(["test", "test1"], args)
+        args = ["test", "-o", "test1"]
+        self.assertEqual("test1", utils.read_argument(args, "-o", valued=True, delete=True))
+        self.assertEqual(["test"], args)
+        args = ["test", "-o"]
+        self.assertIsNone(utils.read_argument(args, "-o", valued=True, delete=True))
+        self.assertEqual(["test"], args)

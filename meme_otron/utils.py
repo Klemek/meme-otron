@@ -143,3 +143,21 @@ def safe_index(src: Union[str, list], pattern, start: int = 0):
         return src.index(pattern, start)
     except ValueError:
         return None
+
+
+def read_argument(args: List[str], *names: str, valued: bool = False, delete: bool = False):
+    for i, arg in enumerate(args):
+        if arg.lower() in names:
+            if delete:
+                del args[i]
+                i -= 1
+            if not valued:
+                return True
+            else:
+                v = None
+                if i + 1 < len(args):
+                    v = args[i + 1]
+                    if delete:
+                        del args[i + 1]
+                return v
+    return None
