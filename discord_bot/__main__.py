@@ -33,7 +33,6 @@ client = discord.Client()
 
 SENT = {}
 
-
 def debug(message, txt):
     """
     Print a log with the context of the current event
@@ -126,12 +125,18 @@ async def on_message(message):
             left_wmark_text = None
             if len(args) > 1 and message.author.display_name is not None:
                 left_wmark_text = f"By {message.author.display_name}"
+            logging.info(args[0])
+            meme_id = re.sub(r'[^\w ]', "", args[0])
+            args[0] = meme_id
             img = meme_otron.compute(*args, left_wmark_text=left_wmark_text)
             if img is None:
-                hint = db.find_nearest(args[0])
-                response = f":warning: Template `{args[0]}` not found\n"
-                if hint is not None:
-                    response += f"Did you mean `{hint}`?\n"
+                if len(meme_id) == 0:
+                    response = f":warning: Template not found\n"
+                else:
+                    hint = db.find_nearest(meme_id)
+                    response = f":warning: Template `{meme_id}` not found\n"
+                    if hint is not None:
+                        response += f"Did you mean `{hint}`?\n"
                 response += f"You can find a more detailed help and a list of templates at:\n" \
                             f"<{DOC_URL}>"
                 await message.channel.send(response)
@@ -140,7 +145,7 @@ async def on_message(message):
                     img.save(output, format="JPEG")
                     response = None
                     if len(args) == 1:
-                        meme = db.get_meme(args[0])
+                        meme = db.get_meme(meme_id)
                         response = f"Template `{meme.id}`:"
                         if len(meme.aliases) > 0:
                             response += f"\n- Aliases: `{'`, `'.join(meme.aliases)}`"
