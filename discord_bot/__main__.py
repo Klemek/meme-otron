@@ -126,7 +126,7 @@ async def on_message(message):
             if len(args) > 1 and message.author.display_name is not None:
                 left_wmark_text = f"By {message.author.display_name}"
             logging.info(args[0])
-            meme_id = re.sub(r'[^\w ]', "", args[0])
+            meme_id = re.sub(r'[^A-Za-z0-9 _]', "", args[0]).strip()
             args[0] = meme_id
             img = meme_otron.compute(*args, left_wmark_text=left_wmark_text)
             if img is None:
@@ -139,7 +139,10 @@ async def on_message(message):
                         response += f"Did you mean `{hint}`?\n"
                 response += f"You can find a more detailed help and a list of templates at:\n" \
                             f"<{DOC_URL}>"
-                await message.channel.send(response)
+                if len(response) >= 2000:
+                    await message.channel.send(f"{message.author.mention} ... really?")
+                else:
+                    await message.channel.send(response)
             else:
                 with tempfile.NamedTemporaryFile(delete=False) as output:
                     img.save(output, format="JPEG")
