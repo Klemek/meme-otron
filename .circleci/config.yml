@@ -1,5 +1,15 @@
 version: 2.1
 
+workflows:
+  main:
+    jobs:
+      - unit-tests
+      - build-docs:
+          filters:
+            branches:
+              only:
+                - master
+
 jobs:
   build-docs:
     docker:
@@ -19,8 +29,14 @@ jobs:
             git diff-index --quiet HEAD || git commit -m 'Automated README [ci skip]'
             git push origin master
           name: Building docs
-
-workflows:
-  main:
-    jobs:
-      - build-docs
+  unit-tests:
+    docker:
+      - image: circleci/python:latest
+    steps:
+      - checkout
+      - run:
+          command: |
+            sudo pip install -r requirements.txt
+            sudo pip install pytest
+            python -m pytest ./tests/unit
+          name: Unit tests

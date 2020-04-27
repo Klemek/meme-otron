@@ -8,8 +8,8 @@ import sys
 from datetime import datetime
 from dotenv import load_dotenv
 
-from meme_otron import img_factory as imgf
-from meme_otron import meme_db as db
+from meme_otron import img_factory
+from meme_otron import meme_db
 from meme_otron import utils
 from meme_otron import meme_otron
 from meme_otron import VERSION
@@ -26,19 +26,17 @@ if token is None:
     logging.error("No token was loaded, please verify your .env file")
     sys.exit(1)
 
-imgf.load_fonts()
-db.load_memes()
+img_factory.load_fonts()
+meme_db.load_memes()
 
 client = discord.Client()
 
 SENT = {}
 
-def debug(message, txt):
+
+def debug(message: discord.Message, txt: str):
     """
     Print a log with the context of the current event
-
-    :param (discord.Message) message: message that triggered the event
-    :param (str) txt: text of the log
     """
     logging.info(f"{message.guild} > #{message.channel}: {txt}")
 
@@ -59,13 +57,7 @@ async def on_ready():
         logging.info(f'- {guild.name}(id: {guild.id})')
 
 
-async def delete(message):
-    """
-    Delete a discord message
-
-    :param (discord.Message) message:
-    :rtype: bool
-    """
+async def delete(message: discord.Message) -> bool:
     try:
         await message.delete()
         return True
@@ -77,24 +69,22 @@ async def delete(message):
 
 
 @client.event
-async def on_message(message):
+async def on_message(message: discord.Message):
     """
     Called when a message is sent to any channel on any guild
-
-    :param (discord.Message) message: message sent
     """
     # Ignore self messages
     if message.author == client.user:
         return
 
-    direct = message.channel.type == discord.ChannelType.private
+    is_direct = message.channel.type == discord.ChannelType.private
 
-    if not direct:
-        mid = f'{message.guild.id}/{message.channel.id}/{message.author.id}'
+    if not is_direct:
+        message_id = f'{message.guild.id}/{message.channel.id}/{message.author.id}'
     else:
-        mid = message.author.id
+        message_id = message.author.id
 
-    if direct or client.user in message.mentions:
+    if is_direct or client.user in message.mentions:
         message.content = re.sub(r'<@[^>]+>', '', message.content).strip()
         args = utils.parse_arguments(message.content)
         debug(message, str(args))
@@ -112,11 +102,11 @@ async def on_message(message):
             return
         if len(args) > 0 and args[0].lower().strip() == "list":
             await message.channel.send(f"Here is a list of all known templates:\n"
-                                       f"```{', '.join(db.LIST)}```")
+                                       f"```{', '.join(meme_db.LIST)}```")
             return
         if len(args) > 0 and args[0].lower().strip() == "delete":
-            if mid in SENT and len(SENT[mid]) > 0 and await delete(SENT[mid][-1]):
-                if not direct:
+            if message_id in SENT and len(SENT[message_id]) > 0 and await delete(SENT[message_id][-1]):
+                if not is_direct:
                     await delete(message)
             else:
                 await message.add_reaction("⚠")
@@ -126,26 +116,29 @@ async def on_message(message):
             if len(args) > 1 and message.author.display_name is not None:
                 left_wmark_text = f"By {message.author.display_name}"
             logging.info(args[0])
-            meme_id = re.sub(r'[^\w ]', "", args[0])
+            meme_id = re.sub(r'[^A-Za-z0-9 _]', "", args[0]).strip()
             args[0] = meme_id
             img = meme_otron.compute(*args, left_wmark_text=left_wmark_text)
             if img is None:
                 if len(meme_id) == 0:
                     response = f":warning: Template not found\n"
                 else:
-                    hint = db.find_nearest(meme_id)
+                    hint = meme_db.find_nearest(meme_id)
                     response = f":warning: Template `{meme_id}` not found\n"
                     if hint is not None:
                         response += f"Did you mean `{hint}`?\n"
                 response += f"You can find a more detailed help and a list of templates at:\n" \
                             f"<{DOC_URL}>"
-                await message.channel.send(response)
+                if len(response) >= 2000:
+                    await message.channel.send(f"{message.author.mention} ... really?")
+                else:
+                    await message.channel.send(response)
             else:
                 with tempfile.NamedTemporaryFile(delete=False) as output:
                     img.save(output, format="JPEG")
                     response = None
                     if len(args) == 1:
-                        meme = db.get_meme(meme_id)
+                        meme = meme_db.get_meme(meme_id)
                         response = f"Template `{meme.id}`:"
                         if len(meme.aliases) > 0:
                             response += f"\n- Aliases: `{'`, `'.join(meme.aliases)}`"
@@ -155,18 +148,18 @@ async def on_message(message):
                                     f"\n```{meme.id} \"" + \
                                     "\" \"".join([f"text {i + 1}" for i in range(meme.texts_len)]) + \
                                     "\"```"
-                    elif not direct:
+                    elif not is_direct:
                         response = f"A meme by {message.author.mention}:"
-                    if mid not in SENT:
-                        SENT[mid] = []
+                    if message_id not in SENT:
+                        SENT[message_id] = []
                     response = await message.channel.send(response,
                                                           file=discord.File(filename="meme.jpg", fp=output.name))
-                    SENT[mid] += [response]
+                    SENT[message_id] += [response]
                     try:
                         os.remove(output.name)
                     except PermissionError:
                         pass
-            if not direct:
+            if not is_direct:
                 await delete(message)
 
 
@@ -176,14 +169,14 @@ while True:
         client.run(token)
         break  # clean kill
     except Exception as e:
-        t = datetime.now()
-        logging.error(f"Exception raised at {t:%Y-%m-%d %H:%M} : {repr(e)}")
-        fileName = f"error_{t:%Y-%m-%d_%H-%M-%S}.txt"
+        exception_time = datetime.now()
+        logging.error(f"Exception raised at {exception_time:%Y-%m-%d %H:%M} : {repr(e)}")
+        fileName = f"error_{exception_time:%Y-%m-%d_%H-%M-%S}.txt"
         if os.path.exists(fileName):
             logging.error("Two many errors, killing")
             break
-        with open(fileName, 'w') as f:
-            f.write(f"Discord AI Dungeon 2 v{VERSION} started at {t0:%Y-%m-%d %H:%M}\r\n"
-                    f"Exception raised at {t:%Y-%m-%d %H:%M}\r\n"
-                    f"\r\n"
-                    f"{traceback.format_exc()}")
+        with open(fileName, 'w') as exception_file:
+            exception_file.write(f"Meme-Otron v{VERSION} started at {t0:%Y-%m-%d %H:%M}\r\n"
+                                 f"Exception raised at {exception_time:%Y-%m-%d %H:%M}\r\n"
+                                 f"\r\n"
+                                 f"{traceback.format_exc()}")

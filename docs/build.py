@@ -2,36 +2,36 @@ import os
 import logging
 import PIL
 from os import path
-from meme_otron import img_factory as imgf
+from meme_otron import img_factory
 from meme_otron import meme_db
 from meme_otron import utils
 
 logging.basicConfig(format="[%(asctime)s][%(levelname)s][%(module)s] %(message)s", level=logging.WARNING)
 
-imgf.load_fonts()
+img_factory.load_fonts()
 meme_db.load_memes()
 
-dst_dir = utils.relative_path(__file__, "templates")
-prev_dir = utils.relative_path(__file__, "preview")
+templates_dir = utils.relative_path(__file__, "templates")
+preview_dir = utils.relative_path(__file__, "preview")
 doc_file = utils.relative_path(__file__, "README.md")
 
 COLUMNS = 3
 IMG_HEIGHT = 400
 
 
-def make_empty(target_dir):
+def make_empty(target_dir: str):
     if path.exists(target_dir):
-        for f in os.listdir(target_dir):
-            if path.isfile(path.join(target_dir, f)):
-                os.unlink(path.join(target_dir, f))
+        for file in os.listdir(target_dir):
+            if path.isfile(path.join(target_dir, file)):
+                os.unlink(path.join(target_dir, file))
     else:
         os.mkdir(target_dir)
 
 
-make_empty(dst_dir)
-make_empty(prev_dir)
+make_empty(templates_dir)
+make_empty(preview_dir)
 
-ids = sorted(meme_db.LIST)
+id_list = sorted(meme_db.LIST)
 
 doc_content = "|" * (COLUMNS + 1) \
               + "\n|" + ":---:|" * COLUMNS
@@ -40,14 +40,14 @@ info_line = None
 img_line = None
 
 i = None
-for i, meme_id in enumerate(ids):
+for i, meme_id in enumerate(id_list):
     meme = meme_db.get_meme(meme_id)
-    img = imgf.make(meme.template, meme.texts, debug=True)
+    img = img_factory.build_image(meme.template, meme.texts, debug=True)
     if img is not None:
-        img.save(path.join(dst_dir, meme.template))
+        img.save(path.join(templates_dir, meme.template))
         size = (round(img.size[0] * IMG_HEIGHT / img.size[1]), IMG_HEIGHT)
         img2 = img.resize(size, resample=PIL.Image.LANCZOS)
-        img2.save(path.join(prev_dir, meme.template))
+        img2.save(path.join(preview_dir, meme.template))
         if i % COLUMNS == 0:
             if info_line is not None and img_line is not None:
                 doc_content += info_line + img_line

@@ -1,19 +1,19 @@
-import logging
 import sys
 import os
 
-from . import img_factory as imgf
-from . import meme_db as db
+from . import img_factory
+from . import meme_db
 from . import meme_otron
+from . import utils
 from . import VERSION
 
 if __name__ == "__main__":
-    db.load_memes()
-    imgf.load_fonts()
+    meme_db.load_memes()
+    img_factory.load_fonts()
 
     # TODO better arguments reading (-h, -o, -v)
 
-    if len(sys.argv) <= 1 or sys.argv[1].lower().strip() == "help" or "-h" in sys.argv:
+    if len(sys.argv) <= 1 or utils.read_argument(sys.argv, "help", "--help", "-h"):
         print(f"Meme-Otron v{VERSION}"
               "python -m meme_otron -h\n"
               "python -m meme_otron (meme_id) \"[text 1]\" \"[text 2]\" ... > file.jpg\n"
@@ -21,29 +21,23 @@ if __name__ == "__main__":
               file=sys.stderr)
         sys.exit(1)
     else:
-        output_f = None
-        if "-o" in sys.argv:
-            i = sys.argv.index("-o")
-            if len(sys.argv) >= i:
-                output_f = sys.argv[i + 1]
-                del sys.argv[i + 1]
-            del sys.argv[i]
+        output_file = utils.read_argument(sys.argv, "-o", "--output", valued=True, delete=True)
         img = meme_otron.compute(*sys.argv[1:])
         if img is None:
-            hint = db.find_nearest(sys.argv[1])
-            if hint is not None:
-                print(f"Did you mean '{hint}'?", file=sys.stderr)
+            proposal = meme_db.find_nearest(sys.argv[1])
+            if proposal is not None:
+                print(f"Did you mean '{proposal}'?", file=sys.stderr)
             sys.exit(1)
-        if output_f is None:
+        if output_file is None:
             with os.fdopen(os.dup(sys.stdout.fileno())) as output:
                 img.save(output, format="jpeg")
         else:
             try:
-                img.save(output_f)
-                print(f"Wrote '{output_f}'")
+                img.save(output_file)
+                print(f"Wrote '{output_file}'")
             except OSError as e:
-                print(f"Cannot write '{output_f}': {e}", file=sys.stderr)
+                print(f"Cannot write '{output_file}': {e}", file=sys.stderr)
                 sys.exit(1)
             except ValueError as e:
-                print(f"Cannot write '{output_f}': {e}", file=sys.stderr)
+                print(f"Cannot write '{output_file}': {e}", file=sys.stderr)
                 sys.exit(1)
