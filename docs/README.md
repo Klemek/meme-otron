@@ -25,6 +25,8 @@ Tag the bot and use the above syntax to get started. In addition, you can use th
 
 To get the template info, just send the meme id without texts.
 
+> Tip : You can use `\\n` in your texts to add a line break 
+
 Enjoy the full experience of this bot by using direct messages to keep your server free of spam.
 
 ## CLI features
