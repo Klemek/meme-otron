@@ -80,11 +80,11 @@ class Test(TestCase):
         self.assertEqual(5, utils.read_key_safe(d, "test1"))
         self.assertEqual([1, 3, ""], utils.read_key_safe(d, "test2"))
         self.assertEqual("default", utils.read_key_safe(d, "test3", "default"))
-        self.assertEqual(None, utils.read_key_safe(d, "test3"))
+        self.assertIsNone(utils.read_key_safe(d, "test3"))
 
     def test_find_nearest(self):
         self.assertEqual("test", utils.find_nearest("tost", ["test", "example", "what"]))
-        self.assertEqual(None, utils.find_nearest("unknown", ["test", "example", "what"], threshold=2))
+        self.assertIsNone(utils.find_nearest("unknown", ["test", "example", "what"], threshold=2))
         self.assertEqual("test", utils.find_nearest("unknown", ["test", "example", "what"], threshold=200))
 
     def test_parse_arguments(self):
@@ -93,3 +93,38 @@ class Test(TestCase):
         self.assertEqual(["test1", "test2"], utils.parse_arguments("test1 test2"))
         self.assertEqual(["test1", "test 2", "test 3"], utils.parse_arguments("test1 'test 2' \"test 3\""))
         self.assertEqual(["test1", "", ""], utils.parse_arguments("test1 '' \"\""))
+
+    def test_safe_index(self):
+        self.assertEqual(0, utils.safe_index("a", "a"))
+        self.assertEqual(0, utils.safe_index([0], 0))
+        self.assertEqual(2, utils.safe_index("cbaa", "a"))
+        self.assertEqual(3, utils.safe_index("cbaa", "a", 3))
+        self.assertEqual(1, utils.safe_index(["a", 0, 0], 0))
+        self.assertEqual(2, utils.safe_index(["a", 0, 0], 0, 2))
+        self.assertIsNone(utils.safe_index("a", "b"))
+        self.assertIsNone(utils.safe_index("a", "a", 2))
+        self.assertIsNone(utils.safe_index(["a", 0, 0], 0, 3))
+
+    def test_find_all(self):
+        self.assertEqual([], utils.find_all("abc", "n"))
+        self.assertEqual([0], utils.find_all("abc", "a"))
+        self.assertEqual([0, 2], utils.find_all("aba", "a"))
+
+    def test_replace_at(self):
+        self.assertEqual("abcd", utils.replace_at("abc", "d", [3], 0))
+        self.assertEqual("abd", utils.replace_at("abc", "d", [2], 1))
+        self.assertEqual("ddd", utils.replace_at("abc", "d", [0, 1, 2], 1))
+        self.assertEqual("a nice_plac_", utils.replace_at("a nice place", "_", [6, 11], 1))
+
+    def test_break_text(self):
+        self.assertIsNone(utils.break_text("abcd", 2))
+        self.assertIsNone(utils.break_text("abcd efgh", 3))
+        self.assertEqual("abcd", utils.break_text("abcd", 1))
+        self.assertEqual("abcd\nefgh", utils.break_text("abcd efgh", 2))
+        self.assertEqual("ab cd\nef gh", utils.break_text("ab cd ef gh", 2))
+        self.assertEqual("ab\ncd ef\ngh", utils.break_text("ab cd ef gh", 3))
+
+    def test_best_fit(self):
+        self.assertEqual([5, 9, 15], utils.best_fit([5.2, 14.3, 15.2], [3, 5, 9, 15, 18]))
+        self.assertEqual([5, 9, 15, 18], utils.best_fit([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18]))
+        self.assertEqual([5, 9, 15, 18], utils.best_fit([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18, 20]))

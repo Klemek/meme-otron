@@ -1,4 +1,5 @@
 import re
+import sys
 import os.path as path
 from Levenshtein import distance
 
@@ -147,3 +148,84 @@ def find_nearest(word, wlist, threshold=5):
     if found[0] > threshold:
         return None
     return found[1]
+
+
+def safe_index(src, pattern, start=0):
+    """
+    :param (list|str) src:
+    :param pattern:
+    :param (int) start:
+    """
+    try:
+        return src.index(pattern, start)
+    except ValueError:
+        return None
+
+
+def find_all(src, pattern):
+    """
+    :param (str) src:
+    :param (str) pattern:
+    :rtype: list of int
+    """
+    o = []
+    i = safe_index(src, pattern)
+    while i is not None:
+        o += [i]
+        i = safe_index(src, pattern, i + 1)
+    return o
+
+
+def replace_at(src, pattern, indexes, remove):
+    """
+    :param (str) src:
+    :param (str) pattern:
+    :param (list of int) indexes:
+    :param (int) remove:
+    :rtype: str
+    """
+    o = ""
+    last = 0
+    for i in indexes:
+        o += src[last:i] + pattern
+        last = i + remove
+    o += src[last:]
+    return o
+
+
+def break_text(src, n):
+    """
+    :param (str) src:
+    :param (int) n:
+    :rtype: str
+    """
+    spaces = find_all(src, " ")
+    if n - 1 > len(spaces):
+        return None
+    if n - 1 == len(spaces):
+        return replace_at(src, "\n", spaces, 1)
+    ideal = [k * (len(src) - 1) / n for k in range(1, n)]
+    indexes = best_fit(ideal, spaces)
+    return replace_at(src, "\n", indexes, 1)
+
+
+def best_fit(a, b):
+    """
+    :param (list of float) a:
+    :param (list of int) b:
+    :rtype: list of int
+    """
+    a = a[::]
+    o = []
+    dist = sys.maxsize
+    for i, value in enumerate(b):
+        if not len(a):
+            break
+        if dist < abs(value - a[0]):
+            o += [b[i - 1]]
+            a.pop(0)
+        else:
+            dist = abs(value - a[0])
+    if len(a):
+        o += [b[-1]]
+    return o

@@ -98,21 +98,18 @@ def fit_text(size, text):
     font_size = round(text.font_size * min(size)) + 1
     font = FONTS[text.font]
     t = ""
-    while (text_size is None or text_size[1] >= max_height) and font_size > 1:
+    while (text_size is None or text_size[0] >= max_width or text_size[1] >= max_height) and font_size > 1:
         font_size -= 1
         font = font.font_variant(size=font_size)
-        words = text.text.split(" ")
-        t = ""
-        for word in words:
-            spacer = " "
-            if len(t) == 0:
-                spacer = ""
-            text_size = font.getsize_multiline(t + spacer + word, stroke_width=text.stroke_width * font_size)
-            if text_size[0] >= max_width:
-                t += "\n" + word
-            else:
-                t += spacer + word
-        text_size = font.getsize_multiline(t, stroke_width=text.stroke_width * font_size)
+        k = 0  # number of lines
+        while k == 0 or (t is not None and text_size[0] >= max_width):
+            k += 1
+            t = utils.break_text(text.text, k)
+            if t is not None:
+                text_size = font.getsize_multiline(t, stroke_width=text.stroke_width * font_size)
+        if t is None:
+            # max break attained
+            text_size = None  # restart
     return t, font
 
 
