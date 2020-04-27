@@ -5,3 +5,4 @@ error_*.txt
 tmp
 .key*
 *.pyc
+.pytest_cache

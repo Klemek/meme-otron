@@ -22,8 +22,19 @@ jobs:
             git diff-index --quiet HEAD || git commit -m 'Automated README [ci skip]'
             git push origin master
           name: Building docs
+  unit-tests:
+    docker:
+      - image: circleci/python:latest
+    steps:
+      - checkout
+      - run:
+          command: |
+            sudo pip install pytest
+            python -m pytest ./tests/unit
+          name: Unit tests
 
 workflows:
   main:
     jobs:
+      - unit-tests
       - build-docs
