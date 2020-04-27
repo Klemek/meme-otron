@@ -117,14 +117,14 @@ class Test(TestCase):
         self.assertEqual("a nice_plac_", utils.replace_at("a nice place", "_", [6, 11], 1))
 
     def test_break_text(self):
-        self.assertIsNone(utils.break_text("abcd", 2))
-        self.assertIsNone(utils.break_text("abcd efgh", 3))
-        self.assertEqual("abcd", utils.break_text("abcd", 1))
-        self.assertEqual("abcd\nefgh", utils.break_text("abcd efgh", 2))
-        self.assertEqual("ab cd\nef gh", utils.break_text("ab cd ef gh", 2))
-        self.assertEqual("ab\ncd ef\ngh", utils.break_text("ab cd ef gh", 3))
+        self.assertIsNone(utils.justify_text("abcd", 2))
+        self.assertIsNone(utils.justify_text("abcd efgh", 3))
+        self.assertEqual("abcd", utils.justify_text("abcd", 1))
+        self.assertEqual("abcd\nefgh", utils.justify_text("abcd efgh", 2))
+        self.assertEqual("ab cd\nef gh", utils.justify_text("ab cd ef gh", 2))
+        self.assertEqual("ab\ncd ef\ngh", utils.justify_text("ab cd ef gh", 3))
 
     def test_best_fit(self):
-        self.assertEqual([5, 9, 15], utils.best_fit([5.2, 14.3, 15.2], [3, 5, 9, 15, 18]))
-        self.assertEqual([5, 9, 15, 18], utils.best_fit([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18]))
-        self.assertEqual([5, 9, 15, 18], utils.best_fit([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18, 20]))
+        self.assertEqual([5, 9, 15], utils.place_line_breaks([5.2, 14.3, 15.2], [3, 5, 9, 15, 18]))
+        self.assertEqual([5, 9, 15, 18], utils.place_line_breaks([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18]))
+        self.assertEqual([5, 9, 15, 18], utils.place_line_breaks([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18, 20]))

@@ -1,56 +1,28 @@
 import re
 import sys
 import os.path as path
+from typing import List, Optional, Union
 from Levenshtein import distance
 
 
-def relative_path(file, *args):
-    """
-    Get the full path from a starting file and a relative path
-
-    :param (str) file:
-    :param (str) args:
-    :rtype str
-    :return:
-    """
+def relative_path(file: str, *args: str) -> str:
     return path.realpath(path.join(path.dirname(path.realpath(file)), *args))
 
 
-def read_key_safe(d, k, default=None, *, types=None, is_list=False, is_list_size=None):
-    """
-    Read a value from a dict or return the default value if not found.
-    Can also check the type of the value.
-
-    :param (dict) d: source dict
-    :param (str) k: key to read
-    :param default: default value
-    :param (list of type|None) types: types to check
-    :param (bool) is_list: if the type is a list of types
-    :param (int|None) is_list_size: size of the list to enforce or None
-    :raises TypeError:
-    :return:
-    """
+def read_key_safe(d: dict, k: str, default=None, *,
+                  types: Optional[List[type]] = None,
+                  is_list: bool = False,
+                  is_list_size: Optional[int] = None):
     try:
         return read_key(d, k, default, types=types, is_list=is_list, is_list_size=is_list_size)
     except KeyError:
         return default
 
 
-def read_key(d, k, default=None, *, types=None, is_list=False, is_list_size=None):
-    """
-    Read a value from a dict or return the default value or throw an error if the default is None.
-    Can also check the type of the value.
-
-    :param (dict) d: source dict
-    :param (str) k: key to read
-    :param default: default value
-    :param (list of type|None) types: types to check
-    :param (bool) is_list: if the type is a list of types
-    :param (int|None) is_list_size: size of the list to enforce or None
-    :raises TypeError:
-    :raises KeyError:
-    :return:
-    """
+def read_key(d: dict, k: str, default=None, *,
+             types: Optional[List[type]] = None,
+             is_list: bool = False,
+             is_list_size: Optional[int] = None):
     if k in d:
         v = d[k]
         if types is not None:
@@ -65,18 +37,7 @@ def read_key(d, k, default=None, *, types=None, is_list=False, is_list_size=None
         raise KeyError(k)
 
 
-def check_type(obj, types, is_list=False, is_list_size=None):
-    """
-    Check the type from a list of possibilities.
-    Can check the types of all elements of a list.
-
-    :param obj:
-    :param (list of type|None) types: types to check
-    :param (bool) is_list: if the type is a list of types
-    :param (int|None) is_list_size: size of the list to enforce or None
-    :raises TypeError:
-    :return:
-    """
+def check_type(obj, types: List[type], is_list: bool = False, is_list_size: Optional[int] = None):
     if is_list:
         if not is_list_of(obj, types, is_list_size):
             if is_list_size is not None:
@@ -88,16 +49,7 @@ def check_type(obj, types, is_list=False, is_list_size=None):
             raise TypeError(f"not a {types[0].__name__}")
 
 
-def is_list_of(obj, types, length=None):
-    """
-    Check the types of all elements of a list.
-
-    :param obj:
-    :param (list of type) types:
-    :param (int) length:
-    :rtype: bool
-    :return:
-    """
+def is_list_of(obj, types: List[type], length: Optional[int] = None) -> bool:
     if not (isinstance(obj, list)):
         return False
     for item in obj:
@@ -116,11 +68,11 @@ def is_list_of(obj, types, length=None):
 args_regex = re.compile('"([^"]*)"|\'([^\']*)\'|([^ ]+)')
 
 
-def parse_arguments(s):
+def parse_arguments(src: str) -> List[str]:
     """
     Split a string into separates arguments
 
-    :param (str) s:
+    :param (str) src:
     :rtype: list of str
     :return:
     """
@@ -131,104 +83,64 @@ def parse_arguments(s):
             return f[0]
         return ""
 
-    return [get_found_match(m) for m in args_regex.findall(s)]
+    return [get_found_match(m) for m in args_regex.findall(src)]
 
 
-def find_nearest(word, wlist, threshold=5):
-    """
-    Find the nearest word in a list
-
-    :param (str) word:
-    :param (list of str) wlist:
-    :param (int) threshold:
-    :rtype: str | None
-    :return:
-    """
+def find_nearest(word: str, wlist: List[str], threshold: int = 5) -> Optional[str]:
     found = min([(distance(word, w) - abs(len(w) - len(word)), w) for w in wlist], key=lambda v: v[0])
     if found[0] > threshold:
         return None
     return found[1]
 
 
-def break_text(src, n):
-    """
-    :param (str) src: source string
-    :param (int) n: number of lines
-    :rtype: str
-    """
-    spaces = find_all(src, " ")
-    if n - 1 > len(spaces):
-        return None
-    if n - 1 == len(spaces):
-        return replace_at(src, "\n", spaces, 1)
-    ideal = [k * (len(src) - 1) / n for k in range(1, n)]
-    indexes = best_fit(ideal, spaces)
-    return replace_at(src, "\n", indexes, 1)
+def justify_text(src: str, n_lines: int) -> Optional[str]:
+    spaces_indexes = find_all(src, " ")
+    if n_lines - 1 > len(spaces_indexes):
+        return None  # impossible
+    if n_lines - 1 == len(spaces_indexes):
+        return replace_at(src, "\n", spaces_indexes, 1)
+    breaks_positions = [k * (len(src) - 1) / n_lines for k in range(1, n_lines)]
+    break_indexes = place_line_breaks(breaks_positions, spaces_indexes)
+    return replace_at(src, "\n", break_indexes, 1)
 
 
-def find_all(src, pattern):
-    """
-    :param (str) src: source string
-    :param (str) pattern: pattern to find
-    :rtype: list of int
-    :return: all indexes of the pattern
-    """
-    o = []
+def find_all(src: str, pattern: str) -> List[int]:
+    indexes = []
     i = safe_index(src, pattern)
     while i is not None:
-        o += [i]
+        indexes += [i]
         i = safe_index(src, pattern, i + 1)
-    return o
+    return indexes
 
 
-def replace_at(src, pattern, indexes, remove):
-    """
-    :param (str) src: source string
-    :param (str) pattern: string to inject
-    :param (list of int) indexes: places to inject
-    :param (int) remove: how much to remove at each index
-    :rtype: str
-    :return
-    """
-    o = ""
-    last = 0
+def replace_at(src: str, pattern: str, indexes: List[int], remove: int) -> str:
+    output = ""
+    start_index = 0
     for i in indexes:
-        o += src[last:i] + pattern
-        last = i + remove
-    o += src[last:]
-    return o
+        output += src[start_index:i] + pattern
+        start_index = i + remove
+    output += src[start_index:]
+    return output
 
 
-def best_fit(a, b):
-    """
-    select for each item of a the closest item of b
-
-    :param (list of float) a:
-    :param (list of int) b:
-    :rtype: list of int
-    """
-    a = a[:]
-    o = []
+def place_line_breaks(breaks_positions: List[float], spaces_indexes: List[int]) -> List[int]:
+    breaks_positions = breaks_positions[:]
+    breaks_indexes = []
     dist = sys.maxsize
-    for i, value in enumerate(b):
-        if not len(a):
+    for i, value in enumerate(spaces_indexes):
+        if not len(breaks_positions):
             break
-        if dist < abs(value - a[0]):
-            o += [b[i - 1]]
-            a.pop(0)
+        if dist < abs(value - breaks_positions[0]):
+            breaks_indexes += [spaces_indexes[i - 1]]
+            breaks_positions.pop(0)
         else:
-            dist = abs(value - a[0])
-    if len(a):
-        o += [b[-1]]
-    return o
+            dist = abs(value - breaks_positions[0])
+    if len(breaks_positions):
+        breaks_indexes += [spaces_indexes[-1]]
+    return breaks_indexes
 
 
-def safe_index(src, pattern, start=0):
-    """
-    :param (list|str) src:
-    :param pattern:
-    :param (int) start:
-    """
+def safe_index(src: Union[str, list], pattern, start: int = 0):
     try:
         return src.index(pattern, start)
     except ValueError:

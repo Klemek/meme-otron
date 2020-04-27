@@ -104,7 +104,7 @@ def fit_text(size, text):
         k = 0  # number of lines
         while k == 0 or (t is not None and text_size[0] >= max_width):
             k += 1
-            t = utils.break_text(text.text, k)
+            t = utils.justify_text(text.text, k)
             if t is not None:
                 text_size = font.getsize_multiline(t, stroke_width=text.stroke_width * font_size)
         if t is None:
