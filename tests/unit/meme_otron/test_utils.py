@@ -2,7 +2,7 @@ from unittest import TestCase
 from meme_otron import utils
 
 
-class Test(TestCase):
+class TestUtils(TestCase):
     def test_relative_path(self):
         self.assertEqual(__file__, utils.relative_path(__file__, ".", "test_utils.py"))
 
