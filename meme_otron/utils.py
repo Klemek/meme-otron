@@ -114,6 +114,16 @@ def read_argument(args: List[str], *names: str, valued: bool = False, delete: bo
     return None
 
 
+def split_arguments(args: List[str], separator: str) -> List[List[str]]:
+    output = [[]]
+    for argument in args:
+        if argument == separator:
+            output += [[]]
+        else:
+            output[-1] += [argument]
+    return [block for block in output if len(block) > 0]
+
+
 # endregion
 
 # region lang utils
@@ -134,7 +144,7 @@ def find_nearest(word: str, wlist: List[str], threshold: int = 5) -> Optional[st
 
 # endregion
 
-# region text formatting utils
+# region format utils
 
 def justify_text(src: str, n_lines: int) -> Optional[str]:
     spaces_indexes = find_all(src, " ")
