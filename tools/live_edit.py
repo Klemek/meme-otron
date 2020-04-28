@@ -30,7 +30,7 @@ while True:
     count = 0
     for meme_id in meme_db.LIST:
         meme = meme_db.get_meme(meme_id)
-        img = img_factory.build_image(meme.template, meme.texts, debug=True)
+        img = img_factory.build_from_template(meme.template, meme.texts, debug=True)
         if img is not None:
             img.save(path.join(dst_dir, meme.template))
             count += 1

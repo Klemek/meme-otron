@@ -42,7 +42,7 @@ img_line = None
 i = None
 for i, meme_id in enumerate(id_list):
     meme = meme_db.get_meme(meme_id)
-    img = img_factory.build_image(meme.template, meme.texts, debug=True)
+    img = img_factory.build_from_template(meme.template, meme.texts, debug=True)
     if img is not None:
         img.save(path.join(templates_dir, meme.template))
         size = (round(img.size[0] * IMG_HEIGHT / img.size[1]), IMG_HEIGHT)

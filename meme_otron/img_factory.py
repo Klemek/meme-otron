@@ -3,6 +3,7 @@ from PIL import Image, ImageFont, ImageDraw
 import os
 import os.path as path
 import logging
+import sys
 
 from . import utils
 from .types import Text
@@ -11,6 +12,8 @@ FONT_DIR = utils.relative_path(__file__, "..", "fonts")
 TEMPLATES_DIR = utils.relative_path(__file__, "..", "templates")
 
 FONTS = {}
+
+TEXT_IMAGE_WIDTH = 800
 
 logger = logging.getLogger("img_factory")
 
@@ -27,6 +30,8 @@ def load_fonts():
 
 
 def compose_image(images: List[Image.Image]) -> Image.Image:
+    if len(images) == 1:
+        return images[0]
     width = min([img.size[0] for img in images])
     for i, img in enumerate(images):
         if img.size[0] != width:
@@ -40,7 +45,7 @@ def compose_image(images: List[Image.Image]) -> Image.Image:
     return output_image
 
 
-def build_image(template: str, texts: List[Text], debug: bool = False) -> Optional[Image.Image]:
+def build_from_template(template: str, texts: List[Text], debug: bool = False) -> Optional[Image.Image]:
     try:
         img = Image.open(path.join(TEMPLATES_DIR, template)).convert(mode='RGBA')
     except OSError as e:
@@ -50,8 +55,26 @@ def build_image(template: str, texts: List[Text], debug: bool = False) -> Option
     return img
 
 
+def build_text_only(texts: List[Text], debug: bool = False) -> Image.Image:
+    heights = []
+    for text in texts:
+        text.init()
+        text.text, font = fit_text((TEXT_IMAGE_WIDTH, sys.maxsize), text)
+        text_size = font.getsize_multiline(text.text, stroke_width=text.stroke_width * font.size)
+        heights += [round(text_size[1] / (text.y_range[1] - text.y_range[0]))]
+    max_height = sum(heights)
+    for i, text in enumerate(texts):
+        range_factor = heights[i] / max_height
+        start = sum(heights[:i]) / max_height
+        text.y_range = (start + text.y_range[0] * range_factor, start + text.y_range[1] * range_factor)
+        pass
+    txt_img = Image.new('RGBA', (TEXT_IMAGE_WIDTH, max_height), (255, 255, 255))
+    return apply_texts(txt_img, texts, debug=debug)
+
+
 def apply_texts(img: Image.Image, texts: List[Text], debug: bool = False) -> Image.Image:
-    img = img.convert(mode='RGBA')
+    if img.mode != 'RGBA':
+        img = img.convert(mode='RGBA')
     draw = ImageDraw.Draw(img)
     for text in texts:
         draw_text(draw, img, text, debug=debug)
@@ -95,10 +118,10 @@ def fit_text(size: Tuple[int, int], text: Text) -> Tuple[str, ImageFont.FreeType
     max_width = round(size[0] * (text.x_range[1] - text.x_range[0]))
     max_height = round(size[1] * (text.y_range[1] - text.y_range[0]))
     text_size = None
-    font_size = round(text.font_size * min(size)) + 1
+    font_size = round(text.font_size * size[0]) + 1
     font = FONTS[text.font]
     text_content = ""
-    while (text_size is None or text_size[0] >= max_width or text_size[1] >= max_height) and font_size > 1:
+    while (text_size is None or text_size[0] > max_width or text_size[1] > max_height) and font_size > 1:
         font_size -= 1
         font = font.font_variant(size=font_size)
         n_lines = 0

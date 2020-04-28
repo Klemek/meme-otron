@@ -20,12 +20,21 @@ class TestText(TestCase):
         txt2.fill = [0, 1, 0]
         txt2.stroke_width = 5
         txt1.update(txt2)
-        self.assertEqual("txt1", txt1.text, "text keeped")
-        self.assertIsNone(txt1.angle, "angle keeped")
-        self.assertEqual((0, 1), txt1.x_range, "position keeped")
+        self.assertEqual("txt1", txt1.text, "text kept")
+        self.assertIsNone(txt1.angle, "angle kept")
+        self.assertEqual((0, 1), txt1.x_range, "position kept")
         self.assertEqual(txt2.fill, txt1.fill, "fill changed")
-        self.assertNotEqual(txt2.stroke_width, txt1.stroke_width, "stroke_width keeped")
+        self.assertNotEqual(txt2.stroke_width, txt1.stroke_width, "stroke_width kept")
         self.assertEqual(6, txt1.stroke_width)
+
+    def test_variant(self):
+        txt1 = types.Text("txt1")
+        txt1.stroke_width = 6
+        txt1.x_range = (0.5, 0.8)
+        txt2 = txt1.variant("txt2")
+        self.assertEqual("txt2", txt2.text, "text changed")
+        self.assertIsNone(txt2.angle, "angle kept")
+        self.assertEqual((0.5, 0.8), txt2.x_range, "position kept")
 
     def test_init(self):
         txt1 = types.Text("txt1")
