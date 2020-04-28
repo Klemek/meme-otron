@@ -28,12 +28,13 @@ def load_fonts():
 
 def compose_image(images: List[Image.Image]) -> Image.Image:
     width = min([img.size[0] for img in images])
+    for i, img in enumerate(images):
+        if img.size[0] != width:
+            images[i] = img.resize((width, round(img.size[1] * width / img.size[0])), resample=Image.LANCZOS)
     height = sum([img.size[1] for img in images])
     output_image = Image.new('RGB', (width, height))
     current_height = 0
     for img in images:
-        if img.size[0] != width:
-            img = img.resize((width, round(img.size[1] * width / img.size[0])), resample=Image.LANCZOS)
         output_image.paste(img, (0, current_height))
         current_height += img.size[1]
     return output_image
