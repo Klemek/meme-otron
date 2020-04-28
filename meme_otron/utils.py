@@ -5,8 +5,16 @@ from typing import List, Optional, Union
 from Levenshtein import distance
 
 
+# region path utils
+
+
 def relative_path(file: str, *args: str) -> str:
     return path.realpath(path.join(path.dirname(path.realpath(file)), *args))
+
+
+# endregion
+
+# region dict utils
 
 
 def read_key_safe(d: dict, k: str, default=None, *,
@@ -37,6 +45,11 @@ def read_key(d: dict, k: str, default=None, *,
         raise KeyError(k)
 
 
+# endregion
+
+# region type utils
+
+
 def check_type(obj, types: List[type], is_list: bool = False, is_list_size: Optional[int] = None):
     if is_list:
         if not is_list_of(obj, types, is_list_size):
@@ -65,6 +78,11 @@ def is_list_of(obj, types: List[type], length: Optional[int] = None) -> bool:
     return True
 
 
+# endregion
+
+# region args utils
+
+
 args_regex = re.compile('"([^"]*)"|\'([^\']*)\'|([^ ]+)')
 
 
@@ -76,6 +94,29 @@ def parse_arguments(src: str) -> List[str]:
         return ""
 
     return [get_found_match(m) for m in args_regex.findall(src)]
+
+
+def read_argument(args: List[str], *names: str, valued: bool = False, delete: bool = False):
+    for i, arg in enumerate(args):
+        if arg.lower() in names:
+            if delete:
+                del args[i]
+                i -= 1
+            if not valued:
+                return True
+            else:
+                v = None
+                if i + 1 < len(args):
+                    v = args[i + 1]
+                    if delete:
+                        del args[i + 1]
+                return v
+    return None
+
+
+# endregion
+
+# region lang utils
 
 
 def find_nearest(word: str, wlist: List[str], threshold: int = 5) -> Optional[str]:
@@ -91,6 +132,10 @@ def find_nearest(word: str, wlist: List[str], threshold: int = 5) -> Optional[st
     return found[2]
 
 
+# endregion
+
+# region text formatting utils
+
 def justify_text(src: str, n_lines: int) -> Optional[str]:
     spaces_indexes = find_all(src, " ")
     if n_lines - 1 > len(spaces_indexes):
@@ -100,6 +145,28 @@ def justify_text(src: str, n_lines: int) -> Optional[str]:
     breaks_positions = [k * (len(src) - 1) / n_lines for k in range(1, n_lines)]
     break_indexes = place_line_breaks(breaks_positions, spaces_indexes)
     return replace_at(src, "\n", break_indexes, 1)
+
+
+def place_line_breaks(breaks_positions: List[float], spaces_indexes: List[int]) -> List[int]:
+    breaks_positions = breaks_positions[:]
+    breaks_indexes = []
+    dist = sys.maxsize
+    for i, value in enumerate(spaces_indexes):
+        if not len(breaks_positions):
+            break
+        if dist < abs(value - breaks_positions[0]):
+            breaks_indexes += [spaces_indexes[i - 1]]
+            breaks_positions.pop(0)
+        else:
+            dist = abs(value - breaks_positions[0])
+    if len(breaks_positions):
+        breaks_indexes += [spaces_indexes[-1]]
+    return breaks_indexes
+
+
+# endregion
+
+# region string utils
 
 
 def find_all(src: str, pattern: str) -> List[int]:
@@ -121,43 +188,10 @@ def replace_at(src: str, pattern: str, indexes: List[int], remove: int) -> str:
     return output
 
 
-def place_line_breaks(breaks_positions: List[float], spaces_indexes: List[int]) -> List[int]:
-    breaks_positions = breaks_positions[:]
-    breaks_indexes = []
-    dist = sys.maxsize
-    for i, value in enumerate(spaces_indexes):
-        if not len(breaks_positions):
-            break
-        if dist < abs(value - breaks_positions[0]):
-            breaks_indexes += [spaces_indexes[i - 1]]
-            breaks_positions.pop(0)
-        else:
-            dist = abs(value - breaks_positions[0])
-    if len(breaks_positions):
-        breaks_indexes += [spaces_indexes[-1]]
-    return breaks_indexes
-
-
 def safe_index(src: Union[str, list], pattern, start: int = 0):
     try:
         return src.index(pattern, start)
     except ValueError:
         return None
 
-
-def read_argument(args: List[str], *names: str, valued: bool = False, delete: bool = False):
-    for i, arg in enumerate(args):
-        if arg.lower() in names:
-            if delete:
-                del args[i]
-                i -= 1
-            if not valued:
-                return True
-            else:
-                v = None
-                if i + 1 < len(args):
-                    v = args[i + 1]
-                    if delete:
-                        del args[i + 1]
-                return v
-    return None
+# endregion
