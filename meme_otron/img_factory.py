@@ -26,17 +26,34 @@ def load_fonts():
                 logger.error(f"Could not load font '{split[0]}'")
 
 
+def compose_image(images: List[Image.Image]) -> Image.Image:
+    width = min([img.size[0] for img in images])
+    height = sum([img.size[1] for img in images])
+    output_image = Image.new('RGB', (width, height))
+    current_height = 0
+    for img in images:
+        if img.size[0] != width:
+            img = img.resize((width, round(img.size[1] * width / img.size[0])), resample=Image.LANCZOS)
+        output_image.paste(img, (0, current_height))
+        current_height += img.size[1]
+    return output_image
+
+
 def build_image(template: str, texts: List[Text], debug: bool = False) -> Optional[Image.Image]:
     try:
         img = Image.open(path.join(TEMPLATES_DIR, template)).convert(mode='RGBA')
     except OSError as e:
         logger.error(f"Could not read template file '{template}': {e}")
         return None
-    draw = ImageDraw.Draw(img)
+    img = apply_texts(img, texts, debug=debug)
+    return img
 
+
+def apply_texts(img: Image.Image, texts: List[Text], debug: bool = False) -> Image.Image:
+    img = img.convert(mode='RGBA')
+    draw = ImageDraw.Draw(img)
     for text in texts:
         draw_text(draw, img, text, debug=debug)
-
     return img.convert(mode='RGB')
 
 

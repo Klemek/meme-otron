@@ -1,7 +1,7 @@
 import re
 import sys
 import os.path as path
-from typing import List, Optional, Union
+from typing import List, Optional, Union, Tuple
 from Levenshtein import distance
 
 
@@ -114,14 +114,14 @@ def read_argument(args: List[str], *names: str, valued: bool = False, delete: bo
     return None
 
 
-def split_arguments(args: List[str], separator: str) -> List[List[str]]:
+def split_arguments(args: Union[List[str], Tuple[str]], separator: str) -> List[List[str]]:
     output = [[]]
     for argument in args:
         if argument == separator:
             output += [[]]
         else:
             output[-1] += [argument]
-    return [block for block in output if len(block) > 0]
+    return [part for part in output if len(part) > 0]
 
 
 # endregion

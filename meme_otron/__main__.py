@@ -11,8 +11,6 @@ if __name__ == "__main__":
     meme_db.load_memes()
     img_factory.load_fonts()
 
-    # TODO better arguments reading (-h, -o, -v)
-
     if len(sys.argv) <= 1 or utils.read_argument(sys.argv, "help", "--help", "-h"):
         print(f"Meme-Otron v{VERSION}"
               "python -m meme_otron -h\n"

@@ -1,8 +1,12 @@
 import logging
+from typing import Optional
+
+from PIL import Image
 
 from .types import Text, Pos
-from . import img_factory as imgf
-from . import meme_db as db
+from . import img_factory
+from . import meme_db
+from . import utils
 
 logger = logging.getLogger("meme_otron")
 
@@ -21,26 +25,29 @@ left_wmark.x_range = [0.005, 0.995]
 left_wmark.y_range = [0.005, 0.995]
 
 
-def parse_text(s):
-    """
-    :param (str) s:
-    :rtype: str
-    """
-    return s.replace("\\n", "\n")
-
-
-def compute(*args, left_wmark_text=None, debug=False):
-    """
-    :param (str) left_wmark_text:
-    :param (bool) debug:
-    :param (str) args:
-    :rtype: PIL.Image.Image
-    :return:
-    """
+def compute(*args: str, left_wmark_text: Optional[Text] = None, debug: bool = False) -> Optional[Image.Image]:
     if len(args) < 1:
         return None
+
+    parts = utils.split_arguments(args, "-")
+    images = []
+    for part in parts:
+        images += [compute_part(*part, debug=debug)]
+
+    output_image = img_factory.compose_image(images)
+
+    watermarks = [right_wmark]
+    if left_wmark_text is not None:
+        left_wmark.text = left_wmark_text
+        watermarks += [left_wmark]
+    output_image = img_factory.apply_texts(output_image, watermarks, debug=debug)
+
+    return output_image
+
+
+def compute_part(*args: str, debug: bool = False) -> Optional[Image.Image]:
     meme_id = args[0]
-    meme = db.get_meme(meme_id)
+    meme = meme_db.get_meme(meme_id)
     if meme is None:
         logger.warning(f"Meme template '{meme_id}' not found")
         return None
@@ -49,14 +56,10 @@ def compute(*args, left_wmark_text=None, debug=False):
         for i in range(len(meme.texts)):
             if meme.texts[i].text_ref is None:
                 if c < len(args) - 1:
-                    meme.texts[i].text = parse_text(args[c + 1])
+                    meme.texts[i].text = args[c + 1].replace("\\n", "\n")
                 else:
                     meme.texts[i].text = ""
                 c += 1
             else:
                 meme.texts[i].text = meme.texts[meme.texts[i].text_ref].text
-    meme.texts += [right_wmark]
-    if left_wmark_text is not None:
-        left_wmark.text = left_wmark_text
-        meme.texts += [left_wmark]
-    return imgf.build_image(meme.template, meme.texts, debug=debug)
+    return img_factory.build_image(meme.template, meme.texts, debug=debug)
