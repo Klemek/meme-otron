@@ -29,7 +29,8 @@ simple_text.x_range = [0.01, 0.99]
 simple_text.y_range = [0.2, 0.8]
 
 
-def compute(*args: str, left_wmark_text: Optional[str] = None,
+def compute(*args: str, input_data: Optional[bytes] = None,
+            wmark: bool = True, left_wmark_text: Optional[str] = None,
             debug: bool = False) -> Tuple[Optional[Image.Image], List[str]]:
     if len(args) < 1:
         return None, ['Not enough arguments']
@@ -38,7 +39,7 @@ def compute(*args: str, left_wmark_text: Optional[str] = None,
     images = []
     errors = []
     for part in parts:
-        img, err = compute_part(*part, debug=debug)
+        img, err = compute_part(*part, input_data=input_data, debug=debug)
         if img is not None:
             images += [img]
         else:
@@ -49,24 +50,36 @@ def compute(*args: str, left_wmark_text: Optional[str] = None,
 
     output_image = img_factory.compose_image(images)
 
-    watermarks = [right_wmark]
-    if left_wmark_text is not None:
-        watermarks += [left_wmark.variant(left_wmark_text)]
-    output_image = img_factory.apply_texts(output_image, watermarks, debug=debug)
+    if wmark:
+        watermarks = [right_wmark]
+        if left_wmark_text is not None:
+            watermarks += [left_wmark.variant(left_wmark_text)]
+        output_image = img_factory.apply_texts(output_image, watermarks, debug=debug)
 
     return output_image, errors
 
 
-def compute_part(*args: str, debug: bool = False) -> Tuple[Optional[Image.Image], Optional[str]]:
+def compute_part(*args: str, input_data: Optional[bytes] = None,
+                 debug: bool = False) -> Tuple[Optional[Image.Image], Optional[str]]:
     meme_id = utils.sanitize_input(args[0])
 
     if meme_id == "text":
-        if len(args) < 2:
+        if len(args) <= 1:
             return None, 'Text: not enough arguments'
         texts = [simple_text.variant(arg) for arg in args[1:]]
         return img_factory.build_text_only(texts, debug=debug), None
     elif meme_id == "image":
-        return None, 'Image: not yet implemented'
+        if input_data is None or len(input_data) == 0:
+            if len(args) <= 1:
+                return None, 'Image: received no input data nor URL'
+            else:
+                return None, 'Image: URL mode not yet implemented'
+        else:
+            img = img_factory.build_image_only(input_data)
+            if img is None:
+                return None, 'Image: invalid image format'
+            else:
+                return img, None
     else:
         meme = meme_db.get_meme(meme_id)
         if meme is None:
