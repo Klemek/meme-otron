@@ -1,5 +1,6 @@
 from typing import List, Optional, Tuple
-from PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageFont, ImageDraw, UnidentifiedImageError
+import io
 import os
 import os.path as path
 import logging
@@ -70,6 +71,14 @@ def build_text_only(texts: List[Text], debug: bool = False) -> Image.Image:
         pass
     txt_img = Image.new('RGBA', (TEXT_IMAGE_WIDTH, max_height), (255, 255, 255))
     return apply_texts(txt_img, texts, debug=debug)
+
+
+def build_image_only(image_data: bytes) -> Optional[Image.Image]:
+    try:
+        image = Image.open(io.BytesIO(image_data))
+    except UnidentifiedImageError:
+        return None
+    return image.convert(mode='RGB')
 
 
 def apply_texts(img: Image.Image, texts: List[Text], debug: bool = False) -> Image.Image:
