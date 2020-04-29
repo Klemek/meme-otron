@@ -97,6 +97,7 @@ class TestUtilsLang(TestCase):
         self.assertEqual("", utils.sanitize_input(""))
         self.assertEqual("a b_c", utils.sanitize_input("  A+=¤$ bé_cè:*  "))
 
+
 class TestUtilsArgs(TestCase):
     def test_parse_arguments(self):
         self.assertEqual([], utils.parse_arguments(""))
@@ -106,7 +107,7 @@ class TestUtilsArgs(TestCase):
         self.assertEqual(["test1", "", ""], utils.parse_arguments("test1 '' \"\""))
 
     def test_read_argument(self):
-        self.assertIsNone(utils.read_argument(["test", "-o", "test"], "--output"))
+        self.assertFalse(utils.read_argument(["test", "-o", "test"], "--output"))
         self.assertTrue(utils.read_argument(["test", "-O", "test"], "--output", "-o"))
         self.assertIsNone(utils.read_argument(["test", "-o"], "-o", valued=True))
         self.assertEqual("test1", utils.read_argument(["test", "-o", "test1", "-o", "test2"], "-o", valued=True))

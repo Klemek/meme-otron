@@ -1,7 +1,7 @@
 import re
 import sys
 import os.path as path
-from typing import List, Optional, Union, Tuple
+from typing import List, Optional, Union, Tuple, BinaryIO
 from Levenshtein import distance
 
 
@@ -111,7 +111,10 @@ def read_argument(args: List[str], *names: str, valued: bool = False, delete: bo
                     if delete:
                         del args[i + 1]
                 return v
-    return None
+    if valued:
+        return None
+    else:
+        return False
 
 
 def split_arguments(args: Union[List[str], Tuple[str]], separator: str) -> List[List[str]]:
@@ -207,5 +210,17 @@ def safe_index(src: Union[str, list], pattern, start: int = 0):
         return src.index(pattern, start)
     except ValueError:
         return None
+
+
+# endregion
+
+# region stream utils
+
+
+def read_stream(stream: BinaryIO) -> bytes:
+    output_data = bytearray()
+    for line in stream:
+        output_data += line
+    return output_data
 
 # endregion
