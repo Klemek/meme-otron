@@ -116,18 +116,12 @@ async def on_message(message: discord.Message):
             if len(args) > 1 and message.author.display_name is not None:
                 left_wmark_text = f"By {message.author.display_name}"
             logging.info(args[0])
-            meme_id = re.sub(r'[^A-Za-z0-9 _]', "", args[0]).strip()
-            args[0] = meme_id
-            img = meme_otron.compute(*args, left_wmark_text=left_wmark_text)
-            if img is None:
-                if len(meme_id) == 0:
-                    response = f":warning: Template not found\n"
-                else:
-                    hint = meme_db.find_nearest(meme_id)
-                    response = f":warning: Template `{meme_id}` not found\n"
-                    if hint is not None:
-                        response += f"Did you mean `{hint}`?\n"
-                response += f"You can find a more detailed help and a list of templates at:\n" \
+            img, errors = meme_otron.compute(*args, left_wmark_text=left_wmark_text)
+            if len(errors) > 0:
+                response = ":warning:"
+                for err in errors:
+                    response += "\n" + err.replace("'", "`").replace("`` ", "")
+                response += f"\nYou can find a more detailed help and a list of templates at:\n" \
                             f"<{DOC_URL}>"
                 if len(response) >= 2000:
                     await message.channel.send(f"{message.author.mention} ... really?")
@@ -138,7 +132,7 @@ async def on_message(message: discord.Message):
                     img.save(output, format="JPEG")
                     response = None
                     if len(args) == 1:
-                        meme = meme_db.get_meme(meme_id)
+                        meme = meme_db.get_meme(utils.sanitize_input(args[0]))
                         response = f"Template `{meme.id}`:"
                         if len(meme.aliases) > 0:
                             response += f"\n- Aliases: `{'`, `'.join(meme.aliases)}`"

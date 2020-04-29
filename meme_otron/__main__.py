@@ -20,11 +20,10 @@ if __name__ == "__main__":
         sys.exit(1)
     else:
         output_file = utils.read_argument(sys.argv, "-o", "--output", valued=True, delete=True)
-        img = meme_otron.compute(*sys.argv[1:])
+        img, errors = meme_otron.compute(*sys.argv[1:])
+        for err in errors:
+            print(err, file=sys.stderr)
         if img is None:
-            proposal = meme_db.find_nearest(sys.argv[1])
-            if proposal is not None:
-                print(f"Did you mean '{proposal}'?", file=sys.stderr)
             sys.exit(1)
         if output_file is None:
             with os.fdopen(os.dup(sys.stdout.fileno())) as output:

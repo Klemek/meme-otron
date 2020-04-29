@@ -142,6 +142,10 @@ def find_nearest(word: str, wlist: List[str], threshold: int = 5) -> Optional[st
     return found[2]
 
 
+def sanitize_input(src: str) -> str:
+    return re.sub(r'[^A-Za-z0-9 _]', "", src.lower().strip())
+
+
 # endregion
 
 # region format utils

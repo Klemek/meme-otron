@@ -93,6 +93,9 @@ class TestUtilsLang(TestCase):
         self.assertIsNone(utils.find_nearest("unknown", ["test", "example", "what"], threshold=2))
         self.assertEqual("test", utils.find_nearest("unknown", ["test", "example", "what"], threshold=200))
 
+    def test_sanitize_input(self):
+        self.assertEqual("", utils.sanitize_input(""))
+        self.assertEqual("a b_c", utils.sanitize_input("  A+=¤$ bé_cè:*  "))
 
 class TestUtilsArgs(TestCase):
     def test_parse_arguments(self):
