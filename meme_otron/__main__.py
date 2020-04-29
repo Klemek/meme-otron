@@ -41,7 +41,7 @@ if __name__ == "__main__":
             except IOError as e:
                 print(f"Cannot read '{input_file}': {e}", file=sys.stderr)
                 sys.exit(1)
-        elif not sys.stdin.isatty():
+        elif utils.is_stdin_ready():
             input_data = utils.read_stream(sys.stdin.buffer)
 
         img, errors = meme_otron.compute(*sys.argv[1:], input_data=input_data, wmark=wmark, debug=debug)

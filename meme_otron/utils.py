@@ -1,4 +1,5 @@
 import re
+import select
 import sys
 from urllib.request import urlopen
 from urllib.error import URLError
@@ -218,6 +219,13 @@ def safe_index(src: Union[str, list], pattern, start: int = 0):
 # endregion
 
 # region bytes utils
+
+
+def is_stdin_ready() -> bool:
+    """
+    https://stackoverflow.com/questions/3762881/how-do-i-check-if-stdin-has-some-data
+    """
+    return sys.stdin.isatty() and select.select([sys.stdin, ], [], [], 0.0)[0]
 
 
 def read_stream(stream: BinaryIO) -> bytes:
