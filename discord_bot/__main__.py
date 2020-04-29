@@ -135,26 +135,29 @@ async def on_message(message: discord.Message):
             else:
                 with tempfile.NamedTemporaryFile(delete=False) as output:
                     img.save(output, format="JPEG")
-                    response = None
-                    meme_id = utils.sanitize_input(args[0])
-                    if len(args) == 1 and meme_id not in ["image", "text"]:
-                        meme = meme_db.get_meme(meme_id)
-                        response = f"Template `{meme.id}`:"
-                        if len(meme.aliases) > 0:
-                            response += f"\n- Aliases: `{'`, `'.join(meme.aliases)}`"
-                        if meme.info is not None:
-                            response += f"\n- More info: <{meme.info}>"
-                        response += f"\n- Use:" \
-                                    f"\n```{meme.id} \"" + \
-                                    "\" \"".join([f"text {i + 1}" for i in range(meme.texts_len)]) + \
-                                    "\"```"
-                    elif not is_direct:
-                        response = f"A meme by {message.author.mention}:"
-                    if message_id not in SENT:
-                        SENT[message_id] = []
-                    response = await message.channel.send(response,
-                                                          file=discord.File(filename="meme.jpg", fp=output.name))
-                    SENT[message_id] += [response]
+                    if os.stat(output.name).st_size > 8 * 1024 * 1024:  # 8MB
+                        await message.channel.send(":warning:\nOutput image is too big to be sent by discord")
+                    else:
+                        response = None
+                        meme_id = utils.sanitize_input(args[0])
+                        if len(args) == 1 and meme_id not in ["image", "text"]:
+                            meme = meme_db.get_meme(meme_id)
+                            response = f"Template `{meme.id}`:"
+                            if len(meme.aliases) > 0:
+                                response += f"\n- Aliases: `{'`, `'.join(meme.aliases)}`"
+                            if meme.info is not None:
+                                response += f"\n- More info: <{meme.info}>"
+                            response += f"\n- Use:" \
+                                        f"\n```{meme.id} \"" + \
+                                        "\" \"".join([f"text {i + 1}" for i in range(meme.texts_len)]) + \
+                                        "\"```"
+                        elif not is_direct:
+                            response = f"A meme by {message.author.mention}:"
+                        if message_id not in SENT:
+                            SENT[message_id] = []
+                        response = await message.channel.send(response,
+                                                              file=discord.File(filename="meme.jpg", fp=output.name))
+                        SENT[message_id] += [response]
                     try:
                         os.remove(output.name)
                     except PermissionError:
