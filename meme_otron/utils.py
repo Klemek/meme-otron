@@ -1,5 +1,8 @@
 import re
 import sys
+from urllib.request import urlopen
+from urllib.error import URLError
+from urllib.parse import urlparse
 import os.path as path
 from typing import List, Optional, Union, Tuple, BinaryIO
 from Levenshtein import distance
@@ -214,7 +217,7 @@ def safe_index(src: Union[str, list], pattern, start: int = 0):
 
 # endregion
 
-# region stream utils
+# region bytes utils
 
 
 def read_stream(stream: BinaryIO) -> bytes:
@@ -222,5 +225,24 @@ def read_stream(stream: BinaryIO) -> bytes:
     for line in stream:
         output_data += line
     return output_data
+
+
+def read_web(url: str, timeout: int = 5) -> Optional[bytes]:
+    try:
+        with urlopen(url, None, timeout) as web_file:
+            return web_file.read()
+    except URLError:
+        return None
+
+
+# endregion
+
+
+# region URL utils
+
+
+def validate_url(url: str) -> bool:
+    parsed = urlparse(url)
+    return parsed.scheme != "" and parsed.netloc != ""
 
 # endregion

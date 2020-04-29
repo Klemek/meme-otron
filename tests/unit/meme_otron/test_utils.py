@@ -165,3 +165,19 @@ class TestUtilsFormat(TestCase):
         self.assertEqual([5, 9, 15], utils.place_line_breaks([5.2, 14.3, 15.2], [3, 5, 9, 15, 18]))
         self.assertEqual([5, 9, 15, 18], utils.place_line_breaks([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18]))
         self.assertEqual([5, 9, 15, 18], utils.place_line_breaks([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18, 20]))
+
+
+class TestUtilsStream(TestCase):
+    def test_read_stream(self):
+        pass  # TODO
+
+    def test_read_web(self):
+        pass  # TODO
+
+
+class TestUtilsUrl(TestCase):
+    def test_validate_url(self):
+        self.assertTrue(utils.validate_url("https://google.com/page#anchor?key=value&query"))
+        self.assertFalse(utils.validate_url("https:google.com/page#anchor?key=value&query"))
+        self.assertFalse(utils.validate_url(""))
+        self.assertFalse(utils.validate_url("google.com"))
