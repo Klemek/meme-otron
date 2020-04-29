@@ -116,7 +116,12 @@ async def on_message(message: discord.Message):
             if len(args) > 1 and message.author.display_name is not None:
                 left_wmark_text = f"By {message.author.display_name}"
             logging.info(args[0])
-            img, errors = meme_otron.compute(*args, left_wmark_text=left_wmark_text)
+
+            input_data = None
+            if len(message.attachments) > 0:
+                input_data = await message.attachments[0].read()
+
+            img, errors = meme_otron.compute(*args, left_wmark_text=left_wmark_text, input_data=input_data)
             if len(errors) > 0:
                 response = ":warning:"
                 for err in errors:
@@ -131,8 +136,9 @@ async def on_message(message: discord.Message):
                 with tempfile.NamedTemporaryFile(delete=False) as output:
                     img.save(output, format="JPEG")
                     response = None
-                    if len(args) == 1:
-                        meme = meme_db.get_meme(utils.sanitize_input(args[0]))
+                    meme_id = utils.sanitize_input(args[0])
+                    if len(args) == 1 and meme_id not in ["image", "text"]:
+                        meme = meme_db.get_meme(meme_id)
                         response = f"Template `{meme.id}`:"
                         if len(meme.aliases) > 0:
                             response += f"\n- Aliases: `{'`, `'.join(meme.aliases)}`"
