@@ -3,7 +3,7 @@ import traceback
 import logging
 import discord
 import re
-import tempfile
+from io import BytesIO
 import sys
 from datetime import datetime
 from dotenv import load_dotenv
@@ -134,8 +134,11 @@ async def on_message(message: discord.Message):
                 else:
                     await message.channel.send(response)
             else:
-                with tempfile.NamedTemporaryFile(delete=False) as output:
-                    img.save(output, format="JPEG")
+                with BytesIO() as output_file:
+                    img.save(output_file, format="JPEG")
+                    output_file.flush()
+                    output_file.seek(0)
+
                     response = None
                     meme_id = utils.sanitize_input(args[0])
                     if len(args) == 1 and meme_id not in ["image", "text"]:
@@ -153,13 +156,8 @@ async def on_message(message: discord.Message):
                         response = f"A meme by {message.author.mention}:"
                     if message_id not in SENT:
                         SENT[message_id] = []
-                    response = await message.channel.send(response,
-                                                          file=discord.File(filename="meme.jpg", fp=output.name))
+                    response = await message.channel.send(response, file=discord.File(output_file, "meme.jpg"))
                     SENT[message_id] += [response]
-                    try:
-                        os.remove(output.name)
-                    except PermissionError:
-                        pass
             if not is_direct:
                 await delete(message)
 

@@ -59,10 +59,10 @@ def compute(*args: str, input_data: Optional[bytes] = None,
         output_image = img_factory.apply_texts(output_image, watermarks, debug=debug)
 
     if max_file_size is not None:
-        img_file = BytesIO()
-        output_image.save(img_file, 'jpg')
-        if img_file.tell() > max_file_size:
-            return None, ['Output image too big']
+        with BytesIO() as img_file:
+            output_image.save(img_file, 'JPEG')
+            if img_file.tell() > max_file_size:
+                return None, ['Output image too big']
 
     return output_image, errors
 
