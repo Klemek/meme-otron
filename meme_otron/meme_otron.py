@@ -1,6 +1,7 @@
 from typing import Optional, Tuple, List
 import re
 from PIL import Image
+from io import BytesIO
 
 from .types import Text, Pos
 from . import img_factory
@@ -31,6 +32,7 @@ simple_text.y_range = [0.2, 0.8]
 
 def compute(*args: str, input_data: Optional[bytes] = None,
             wmark: bool = True, left_wmark_text: Optional[str] = None,
+            max_file_size: Optional[int] = None,
             debug: bool = False) -> Tuple[Optional[Image.Image], List[str]]:
     if len(args) < 1:
         return None, ['Not enough arguments']
@@ -39,7 +41,7 @@ def compute(*args: str, input_data: Optional[bytes] = None,
     images = []
     errors = []
     for part in parts:
-        img, err = compute_part(*part, input_data=input_data, debug=debug)
+        img, err = compute_part(*part, input_data=input_data, max_file_size=max_file_size, debug=debug)
         if img is not None:
             images += [img]
         else:
@@ -56,10 +58,17 @@ def compute(*args: str, input_data: Optional[bytes] = None,
             watermarks += [left_wmark.variant(left_wmark_text)]
         output_image = img_factory.apply_texts(output_image, watermarks, debug=debug)
 
+    if max_file_size is not None:
+        img_file = BytesIO()
+        output_image.save(img_file, 'jpg')
+        if img_file.tell() > max_file_size:
+            return None, ['Output image too big']
+
     return output_image, errors
 
 
 def compute_part(*args: str, input_data: Optional[bytes] = None,
+                 max_file_size: Optional[int] = None,
                  debug: bool = False) -> Tuple[Optional[Image.Image], Optional[str]]:
     meme_id = utils.sanitize_input(args[0])
 
@@ -73,7 +82,7 @@ def compute_part(*args: str, input_data: Optional[bytes] = None,
             if len(args) <= 1:
                 return None, 'Image: received no input data nor URL'
             else:
-                input_data, err = utils.read_web(args[1])
+                input_data, err = utils.read_web(args[1], max_file_size=max_file_size)
                 if input_data is None:
                     return None, 'Image: ' + err
         img = img_factory.build_image_only(input_data)
