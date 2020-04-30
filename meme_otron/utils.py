@@ -235,12 +235,19 @@ def read_stream(stream: BinaryIO) -> bytes:
     return output_data
 
 
-def read_web(url: str, timeout: int = 5) -> Optional[bytes]:
+def read_web(url: str, *, timeout: int = 5,
+             max_file_size: Optional[int] = None) -> Tuple[Optional[bytes], Optional[str]]:
+    if not validate_url(url):
+        return None, 'Invalid URL'
     try:
         with urlopen(url, None, timeout) as web_file:
-            return web_file.read()
+            if web_file.getcode() != 200:
+                return None, 'Invalid return code'
+            if max_file_size is not None and int(web_file.info()['Content-Length']) > max_file_size:
+                return None, 'File too big'
+            return web_file.read(), None
     except URLError:
-        return None
+        return None, 'Could not connect'
 
 
 # endregion

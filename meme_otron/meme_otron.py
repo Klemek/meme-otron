@@ -72,12 +72,10 @@ def compute_part(*args: str, input_data: Optional[bytes] = None,
         if input_data is None or len(input_data) == 0:
             if len(args) <= 1:
                 return None, 'Image: received no input data nor URL'
-            elif not utils.validate_url(args[1]):
-                return None, 'Image: invalid URL format'
             else:
-                input_data = utils.read_web(args[1])
+                input_data, err = utils.read_web(args[1])
                 if input_data is None:
-                    return None, 'Image: could not reach URL'
+                    return None, 'Image: ' + err
         img = img_factory.build_image_only(input_data)
         if img is None:
             return None, 'Image: invalid image format'
