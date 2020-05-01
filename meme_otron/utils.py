@@ -6,7 +6,11 @@ from urllib.error import URLError, HTTPError
 from urllib.parse import urlparse
 import os.path as path
 from typing import List, Optional, Union, Tuple, BinaryIO
-from Levenshtein import distance
+
+try:
+    from Levenshtein import distance
+except ModuleNotFoundError:
+    distance = None
 
 
 # region path utils
@@ -137,6 +141,8 @@ def split_arguments(args: Union[List[str], Tuple[str]], separator: str) -> List[
 
 
 def find_nearest(word: str, wlist: List[str], threshold: int = 5) -> Optional[str]:
+    if distance is None:
+        return None
     distances = [
         (distance(word, w),  # distance
          abs(len(w) - len(word)),  # length diff
