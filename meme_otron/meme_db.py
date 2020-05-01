@@ -17,8 +17,8 @@ logger = logging.getLogger("meme_db")
 def load_memes(purge: bool = False):
     global DATA, ALIASES
     if purge:
-        DATA = {}
-        ALIASES = {}
+        DATA.clear()
+        ALIASES.clear()
     try:
         with open(DATA_FILE) as input_file:
             content = "".join(input_file.readlines())
