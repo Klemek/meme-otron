@@ -45,6 +45,14 @@ You can invite the bot on your server with [this link](https://discordapp.com/ap
 
 ## History
 
+* 1.3
+  * **Complex memes syntax**
+  * Examples in docs
+  * "Reaction" templates
+  * Reworked CLI arguments
+  * More unit testing
+  * More docs
+  * Bug fix
 * 1.2
   * Reworked text fitting
   * Unit testing
