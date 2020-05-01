@@ -48,7 +48,7 @@ def main():
                               "See that guy over there?",
                               "He uses an image editor to make memes",
                               "",
-                              "meme-otron dev")
+                              "meme-otron's dev")
 
     content = produce_example(content, "EXAMPLE3", "example3.jpg",
                               "Note how texts make paragraphs",
@@ -56,7 +56,7 @@ def main():
                               "*Meme has a 'made with meme-otron' watermark*",
                               "reddit: ...",
                               "9gag: ...",
-                              "meme-otron dev:",
+                              "meme-otron's dev:",
                               "-",
                               "culture",
                               "meme otron")
@@ -67,7 +67,7 @@ def main():
                               "https://i.imgur.com/DNLFUuK.png",
                               "-",
                               "text",
-                              "meme-otron dev close to finishing the idea",
+                              "meme-otron's dev close to finishing the idea",
                               "-",
                               "holup")
 

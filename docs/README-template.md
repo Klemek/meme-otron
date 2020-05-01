@@ -46,7 +46,7 @@ Since version 1.3, Meme-Otron allows you to "pipe" parts in order to compose mor
 [part1] - [part2] - ...
 ```
 
-Each part can be one of the following:
+Each `part` can be one of the following:
 
 * A template: as described in [Simple use](#simple-use)
 * Texts: ```text "text 1" "text 2" ...```
