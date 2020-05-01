@@ -15,10 +15,11 @@ logger = logging.getLogger("meme_db")
 
 
 def load_memes(purge: bool = False):
-    global DATA, ALIASES
+    global DATA, ALIASES, LIST
     if purge:
         DATA.clear()
         ALIASES.clear()
+        LIST = []
     try:
         with open(DATA_FILE) as input_file:
             content = "".join(input_file.readlines())
