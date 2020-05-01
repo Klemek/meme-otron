@@ -129,7 +129,7 @@ def load_text(current_text: int, raw_text: dict, text: Optional[Text] = None) ->
     if "position" in raw_text:
         if raw_text["position"] not in [p.name for p in Pos]:
             raise TypeError(f"'position' is not a valid position (ex: NW, E, SE, ...)")
-        text.position = [p for p in Pos if p.name == raw_text["position"]][0]
+        text.position = getattr(Pos, raw_text["position"])
     if "align" in raw_text:
         if raw_text["align"] not in ["left", "center", "right"]:
             raise TypeError(f"'align' is not 'left', 'center' or 'right'")
