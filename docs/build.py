@@ -88,7 +88,11 @@ def produce_template_list(content: str, tag: str, id_list: List[str]):
         meme = meme_db.get_meme(meme_id)
         img = img_factory.build_from_template(meme.template, meme.texts, debug=True)
         if img is not None:
-            img.save(path.join(templates_dir, meme.template))
+            base = True
+            if len(meme.texts) > 0:
+                base = False
+                image_path = path.join(templates_dir, meme.template)
+                img.save(image_path)
             size = (round(img.size[0] * IMG_HEIGHT / img.size[1]), IMG_HEIGHT)
             img2 = img.resize(size, resample=PIL.Image.LANCZOS)
             img2.save(path.join(preview_dir, meme.template))
@@ -103,12 +107,16 @@ def produce_template_list(content: str, tag: str, id_list: List[str]):
             if meme.info is not None:
                 info_line += f"<br><a href='{meme.info}' target='_blank'>more info</a>"
             info_line += "|"
-            img_line += f"" \
-                        f"<a href='./templates/{meme.template}' target='_blank'>" \
-                        f"<img alt='enlarge' src='./preview/{meme.template}'/>" \
+            if base:
+                img_line += f"<a href='../templates/{meme.template}' target='_blank'>"
+            else:
+                img_line += f"<a href='./templates/{meme.template}' target='_blank'>"
+            img_line += f"<img alt='enlarge' src='./preview/{meme.template}'/>" \
                         f"</a>|"
             print(i, meme_id)
-    doc_content += "|" * (COLUMNS - (i % COLUMNS))
+    info_line += "|" * (COLUMNS - (i % COLUMNS))
+    img_line += "|" * (COLUMNS - (i % COLUMNS))
+    doc_content += info_line + img_line
     return inject_content(doc_content, content, tag)
 
 
