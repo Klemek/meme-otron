@@ -43,6 +43,8 @@ def load_item(i: int, item: dict):
         if not (isinstance(item, dict)):
             raise TypeError(f"root is not a dict")
         item_id = utils.read_key(item, "id", types=[str])
+        if len(item_id.strip()) == 0:
+            return
         if item_id in DATA:
             raise NameError(f"id '{item_id}' already existing")
         based_on = utils.read_key_safe(item, "based_on", types=[str])
@@ -90,8 +92,6 @@ def load_item(i: int, item: dict):
                     logger.warning(f"Item '{item_id}'({i + 1}) / Text {j + 1}: {e}")
         for text in meme.texts:
             text.update(meme.text_base)
-        if not meme.abstract and len(meme.texts) == 0:
-            logger.warning(f"Item '{item_id}'({i + 1}): no texts loaded")
         else:
             DATA[item_id] = meme
             if not meme.abstract:
