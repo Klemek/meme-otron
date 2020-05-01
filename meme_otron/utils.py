@@ -2,7 +2,7 @@ import re
 import select
 import sys
 from urllib.request import urlopen
-from urllib.error import URLError
+from urllib.error import URLError, HTTPError
 from urllib.parse import urlparse
 import os.path as path
 from typing import List, Optional, Union, Tuple, BinaryIO
@@ -218,7 +218,7 @@ def safe_index(src: Union[str, list], pattern, start: int = 0):
 
 # endregion
 
-# region bytes utils
+# region stream utils
 
 
 def is_stdin_ready() -> bool:
@@ -235,25 +235,25 @@ def read_stream(stream: BinaryIO) -> bytes:
     return output_data
 
 
-def read_web(url: str, *, timeout: int = 5,
-             max_file_size: Optional[int] = None) -> Tuple[Optional[bytes], Optional[str]]:
+# endregion
+
+
+# region web utils
+
+
+def read_web_file(url: str, *, timeout: float = 5,
+                  max_file_size: Optional[int] = None) -> Tuple[Optional[bytes], Optional[str]]:
     if not validate_url(url):
         return None, 'Invalid URL'
     try:
         with urlopen(url, None, timeout) as web_file:
-            if web_file.getcode() != 200:
-                return None, 'Invalid return code'
             if max_file_size is not None and int(web_file.info()['Content-Length']) > max_file_size:
                 return None, 'File too big'
             return web_file.read(), None
+    except HTTPError as e:
+        return None, f'Could not connect: {e}'
     except URLError:
-        return None, 'Could not connect'
-
-
-# endregion
-
-
-# region URL utils
+        return None, f'Could not connect to server'
 
 
 def validate_url(url: str) -> bool:

@@ -82,7 +82,7 @@ def compute_part(*args: str, input_data: Optional[bytes] = None,
             if len(args) <= 1:
                 return None, 'Image: received no input data nor URL'
             else:
-                input_data, err = utils.read_web(args[1], max_file_size=max_file_size)
+                input_data, err = utils.read_web_file(args[1], max_file_size=max_file_size)
                 if input_data is None:
                     return None, 'Image: ' + err
         img = img_factory.build_image_only(input_data)

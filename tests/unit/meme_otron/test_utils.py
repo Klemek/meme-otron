@@ -167,17 +167,29 @@ class TestUtilsFormat(TestCase):
         self.assertEqual([5, 9, 15, 18], utils.place_line_breaks([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18, 20]))
 
 
-class TestUtilsStream(TestCase):
-    def test_read_stream(self):
-        pass  # TODO
-
-    def test_read_web(self):
-        pass  # TODO
-
-
-class TestUtilsUrl(TestCase):
+class TestUtilsWeb(TestCase):
     def test_validate_url(self):
         self.assertTrue(utils.validate_url("https://google.com/page#anchor?key=value&query"))
         self.assertFalse(utils.validate_url("https:google.com/page#anchor?key=value&query"))
         self.assertFalse(utils.validate_url(""))
         self.assertFalse(utils.validate_url("google.com"))
+
+    def test_read_web_file(self):
+        out, err = utils.read_web_file("http:invalid.url")
+        self.assertIsNone(out)
+        self.assertEqual('Invalid URL', err)
+        out, err = utils.read_web_file("http://unknown.domain/")
+        self.assertIsNone(out)
+        self.assertEqual('Could not connect to server', err)
+        out, err = utils.read_web_file("http://httpbin.org/status/418")
+        self.assertIsNone(out)
+        self.assertEqual('Could not connect: HTTP Error 418: I\'M A TEAPOT', err)
+        out, err = utils.read_web_file("http://httpbin.org/bytes/1024", max_file_size=1000)
+        self.assertIsNone(out)
+        self.assertEqual('File too big', err)
+        out, err = utils.read_web_file("http://httpbin.org/delay/1", timeout=0.1)
+        self.assertIsNone(out)
+        self.assertEqual('Could not connect to server', err)
+        out, err = utils.read_web_file("http://httpbin.org/base64/dGVzdA==")
+        self.assertIsNone(err)
+        self.assertEqual('test', out.decode("utf-8"))
