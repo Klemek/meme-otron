@@ -15,10 +15,11 @@ logger = logging.getLogger("meme_db")
 
 
 def load_memes(purge: bool = False):
-    global DATA, ALIASES
+    global DATA, ALIASES, LIST
     if purge:
-        DATA = {}
-        ALIASES = {}
+        DATA.clear()
+        ALIASES.clear()
+        LIST = []
     try:
         with open(DATA_FILE) as input_file:
             content = "".join(input_file.readlines())
@@ -43,6 +44,8 @@ def load_item(i: int, item: dict):
         if not (isinstance(item, dict)):
             raise TypeError(f"root is not a dict")
         item_id = utils.read_key(item, "id", types=[str])
+        if len(item_id.strip()) == 0:
+            return
         if item_id in DATA:
             raise NameError(f"id '{item_id}' already existing")
         based_on = utils.read_key_safe(item, "based_on", types=[str])
@@ -90,8 +93,6 @@ def load_item(i: int, item: dict):
                     logger.warning(f"Item '{item_id}'({i + 1}) / Text {j + 1}: {e}")
         for text in meme.texts:
             text.update(meme.text_base)
-        if not meme.abstract and len(meme.texts) == 0:
-            logger.warning(f"Item '{item_id}'({i + 1}): no texts loaded")
         else:
             DATA[item_id] = meme
             if not meme.abstract:
@@ -129,7 +130,7 @@ def load_text(current_text: int, raw_text: dict, text: Optional[Text] = None) ->
     if "position" in raw_text:
         if raw_text["position"] not in [p.name for p in Pos]:
             raise TypeError(f"'position' is not a valid position (ex: NW, E, SE, ...)")
-        text.position = [p for p in Pos if p.name == raw_text["position"]][0]
+        text.position = getattr(Pos, raw_text["position"])
     if "align" in raw_text:
         if raw_text["align"] not in ["left", "center", "right"]:
             raise TypeError(f"'align' is not 'left', 'center' or 'right'")

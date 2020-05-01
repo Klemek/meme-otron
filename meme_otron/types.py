@@ -57,6 +57,11 @@ class Text:
         self.align = None
         self.position = None
 
+    def variant(self, text: str) -> 'Text':
+        new_text = copy.deepcopy(self)
+        new_text.text = text
+        return new_text
+
     def update(self, base: 'Text'):
         for prop in Text.base_properties:
             if getattr(self, prop) is None:

@@ -1,4 +1,24 @@
+# Meme-Otron guide
+
+* [Commands](#commands)
+  * [Simple use](#simple-use)
+  * [Advanced use](#advanced-use)
+  * [Discord features](#discord-features)
+  * [CLI features](#cli-features)
+* [List of templates](#list-of-templates)
+  * [Standard Templates](#standard-templates)
+  * [Reactions (no text)](#reactions-no-text)
+* [Examples](#examples)
+  * [Example 1: Simple template](#example-1-simple-template)
+  * [Example 2: Use of empty texts](#example-2-use-of-empty-texts)
+  * [Example 3: Text + Template](#example-3-text--template)
+  * [Example 4: Complex composition](#example-4-complex-composition)
+
+
 ## Commands
+
+### Simple use
+<sub><sup>[↑ back to top](#meme-otron-guide)</sup></sub>
 
 You can generate memes by using the following arguments:
 
@@ -15,7 +35,36 @@ Depending of the number of `"text"` arguments, several behavior occurs:
 > * You don't have to use all texts shown on the templates
 > * You can use an empty text argument ( `""` ) to skip a text and keep it blank
 
-## Discord features
+See [Examples](#examples) to get an idea of how to use it.
+
+### Advanced use
+<sub><sup>[↑ back to top](#meme-otron-guide)</sup></sub>
+
+Since version 1.3, Meme-Otron allows you to "pipe" parts in order to compose more advanced memes. The syntax is as follows:
+
+```
+[part1] - [part2] - ...
+```
+
+Each part can be one of the following:
+
+* A template: as described in [Simple use](#simple-use)
+* Texts: ```text "text 1" "text 2" ...```
+  * Black Arial texts on white background
+  * Each text is it's own paragraph
+* Images: ```image <URL>```
+  * Takes an image from input or an URL (optional)
+  * Input depends on the system:
+    * the Discord bot takes the attachment
+    * the CLI takes stdin or `--input` argument.
+
+> Notes
+> * Input of `image` is always the same, don't expect multiple instances of `image` to get different results if you don't indicate an URL
+
+See [Examples](#examples) to get an idea of how to use it.
+
+### Discord features
+<sub><sup>[↑ back to top](#meme-otron-guide)</sup></sub>
 
 Tag the bot and use the above syntax to get started. In addition, you can use the following commands:
 
@@ -29,7 +78,8 @@ To get the template info, just send the meme id without texts.
 
 Enjoy the full experience of this bot by using direct messages to keep your server free of spam.
 
-## CLI features
+### CLI features
+<sub><sup>[↑ back to top](#meme-otron-guide)</sup></sub>
 
 In this project directory, you can simply call:
 ```
@@ -40,16 +90,37 @@ Without pipe redirection with `-o [output]`:
 python -m meme_otron -o output.png [meme id] "text1" "text2" ...
 ```
 
-> Note: with `-o`, you are free to choose the output format
+You can even pipe input images like this:
+```
+python -m meme_otron [arguments] < input.jpg > output.jpg
+```
+
+Available arguments:
+* `--help` / `-h`
+  * Show a simple guide
+* `--output [file]` / `-o [file]`
+  * Output file, you are free to choose the format
+* `--input [file]` / `-i [file]`
+  * Input file used for `image`
+* `-nw` / `--no-watermark`
+  * Removes the watermark
+* `-d` / `--debug`
+  * Add more info to output like a box show the texts boundaries
+* `-v` / `--verbose`
+  * Add more logging
+
 
 ## List of templates
+<sub><sup>[↑ back to top](#meme-otron-guide)</sup></sub>
 
 You can find here the full list of templates.
 Each one has extra info and an image showing how texts are placed.
 Click on an image to enlarge it.
 
+### Standard Templates
+<sub><sup>[↑ back to top](#meme-otron-guide)</sup></sub>
 
-<!--START-->
+<!--LIST1-START-->
 ||||
 |:---:|:---:|:---:|
 |**aliens**<br><a href='https://knowyourmeme.com/memes/ancient-aliens' target='_blank'>more info</a>|**alive**<br>alt: no_brain<br><a href='https://knowyourmeme.com/memes/oh-fuck-i-forgot-to-give-you-a-brain' target='_blank'>more info</a>|**argument**<br>alt: wrestlers<br><a href='https://knowyourmeme.com/memes/american-chopper-argument' target='_blank'>more info</a>|
@@ -88,8 +159,79 @@ Click on an image to enlarge it.
 |<a href='./templates/sleeping.jpg' target='_blank'><img alt='enlarge' src='./preview/sleeping.jpg'/></a>|<a href='./templates/spiderman.jpg' target='_blank'><img alt='enlarge' src='./preview/spiderman.jpg'/></a>|<a href='./templates/struggle.jpg' target='_blank'><img alt='enlarge' src='./preview/struggle.jpg'/></a>|
 |**t_pose**<br>alt: dominance, monika<br><a href='https://knowyourmeme.com/memes/monika-t-posing-over-sans' target='_blank'>more info</a>|**tom_cousins**<br>alt: cousins, backup, goons<br><a href='https://knowyourmeme.com/memes/tom-and-jerry-hired-goons' target='_blank'>more info</a>|**tough2**<br>alt: tough, fight<br><a href='https://knowyourmeme.com/memes/increasingly-buff-spongebob' target='_blank'>more info</a>|
 |<a href='./templates/t_pose.jpg' target='_blank'><img alt='enlarge' src='./preview/t_pose.jpg'/></a>|<a href='./templates/tom_cousins.jpg' target='_blank'><img alt='enlarge' src='./preview/tom_cousins.jpg'/></a>|<a href='./templates/tough2.jpg' target='_blank'><img alt='enlarge' src='./preview/tough2.jpg'/></a>|
-|**tough2bis**|**tough3**|**trump**<br>alt: law<br><a href='https://knowyourmeme.com/memes/trumps-first-order-of-business' target='_blank'>more info</a>|
+|**tough2bis**<br>alt: soft|**tough3**|**trump**<br>alt: law<br><a href='https://knowyourmeme.com/memes/trumps-first-order-of-business' target='_blank'>more info</a>|
 |<a href='./templates/tough2bis.jpg' target='_blank'><img alt='enlarge' src='./preview/tough2bis.jpg'/></a>|<a href='./templates/tough3.jpg' target='_blank'><img alt='enlarge' src='./preview/tough3.jpg'/></a>|<a href='./templates/trump.jpg' target='_blank'><img alt='enlarge' src='./preview/trump.jpg'/></a>|
 |**trust_nobody**<br>alt: yourself, gun<br><a href='https://knowyourmeme.com/memes/trust-nobody-not-even-yourself' target='_blank'>more info</a>|**truth**<br>alt: scroll<br><a href='https://knowyourmeme.com/memes/the-scroll-of-truth' target='_blank'>more info</a>|**winnie2**<br>alt: winnie<br><a href='https://knowyourmeme.com/memes/tuxedo-winnie-the-pooh' target='_blank'>more info</a>|
 |<a href='./templates/trust_nobody.jpg' target='_blank'><img alt='enlarge' src='./preview/trust_nobody.jpg'/></a>|<a href='./templates/truth.jpg' target='_blank'><img alt='enlarge' src='./preview/truth.jpg'/></a>|<a href='./templates/winnie2.jpg' target='_blank'><img alt='enlarge' src='./preview/winnie2.jpg'/></a>|||
-<!--END-->
+<!--LIST1-END-->
+
+### Reactions (no text)
+<sub><sup>[↑ back to top](#meme-otron-guide)</sup></sub>
+
+<!--LIST2-START-->
+
+<!--LIST2-END-->
+
+
+## Examples
+
+### Example 1: Simple template
+<sub><sup>[↑ back to top](#meme-otron-guide)</sup></sub>
+
+<!--EXAMPLE1-START-->
+> 
+
+```
+brain3 
+"Making memes using an image editor" 
+"Making memes using a Python script" 
+"Making memes using a Discord bot"
+```
+
+![](example1.jpg)
+<!--EXAMPLE1-END-->
+
+### Example 2: Use of empty texts
+<sub><sup>[↑ back to top](#meme-otron-guide)</sup></sub>
+
+<!--EXAMPLE2-START-->
+> The 5th text is not set and the 3rd is explicitly set to empty
+
+```
+see_that_guy 
+"See that guy over there?" 
+"He uses an image editor to make memes" 
+"" 
+"meme-otron dev"
+```
+
+![](example2.jpg)
+<!--EXAMPLE2-END-->
+
+### Example 3: Text + template
+<sub><sup>[↑ back to top](#meme-otron-guide)</sup></sub>
+
+<!--EXAMPLE3-START-->
+> Note how texts make paragraphs
+
+```
+text 
+"*Meme has a 'made with meme-otron' watermark*" 
+"reddit: ..." 
+"9gag: ..." 
+"meme-otron dev:" 
+- 
+culture 
+"meme otron"
+```
+
+![](example3.jpg)
+<!--EXAMPLE3-END-->
+
+
+### Example 4: Complex composition
+<sub><sup>[↑ back to top](#meme-otron-guide)</sup></sub>
+
+<!--EXAMPLE4-START-->
+
+<!--EXAMPLE4-END-->

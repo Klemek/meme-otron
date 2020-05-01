@@ -2,10 +2,12 @@ from unittest import TestCase
 from meme_otron import utils
 
 
-class Test(TestCase):
+class TestUtilsPath(TestCase):
     def test_relative_path(self):
         self.assertEqual(__file__, utils.relative_path(__file__, ".", "test_utils.py"))
 
+
+class TestUtilsType(TestCase):
     def test_is_list_of(self):
         self.assertFalse(utils.is_list_of(None, [str]))
         self.assertFalse(utils.is_list_of("", [int]))
@@ -48,6 +50,8 @@ class Test(TestCase):
         except TypeError as e:
             self.assertEqual("not a list of 3 float", str(e))
 
+
+class TestUtilsDict(TestCase):
     def test_read_key(self):
         d = {
             "test1": 5,
@@ -82,11 +86,19 @@ class Test(TestCase):
         self.assertEqual("default", utils.read_key_safe(d, "test3", "default"))
         self.assertIsNone(utils.read_key_safe(d, "test3"))
 
+
+class TestUtilsLang(TestCase):
     def test_find_nearest(self):
         self.assertEqual("test", utils.find_nearest("tost", ["test", "example", "what"]))
         self.assertIsNone(utils.find_nearest("unknown", ["test", "example", "what"], threshold=2))
         self.assertEqual("test", utils.find_nearest("unknown", ["test", "example", "what"], threshold=200))
 
+    def test_sanitize_input(self):
+        self.assertEqual("", utils.sanitize_input(""))
+        self.assertEqual("a b_c", utils.sanitize_input("  A+=¤$ bé_cè:*  "))
+
+
+class TestUtilsArgs(TestCase):
     def test_parse_arguments(self):
         self.assertEqual([], utils.parse_arguments(""))
         self.assertEqual(["test"], utils.parse_arguments("test"))
@@ -94,6 +106,29 @@ class Test(TestCase):
         self.assertEqual(["test1", "test 2", "test 3"], utils.parse_arguments("test1 'test 2' \"test 3\""))
         self.assertEqual(["test1", "", ""], utils.parse_arguments("test1 '' \"\""))
 
+    def test_read_argument(self):
+        self.assertFalse(utils.read_argument(["test", "-o", "test"], "--output"))
+        self.assertTrue(utils.read_argument(["test", "-O", "test"], "--output", "-o"))
+        self.assertIsNone(utils.read_argument(["test", "-o"], "-o", valued=True))
+        self.assertEqual("test1", utils.read_argument(["test", "-o", "test1", "-o", "test2"], "-o", valued=True))
+        args = ["test", "-o", "test1"]
+        self.assertTrue(utils.read_argument(args, "-o", delete=True))
+        self.assertEqual(["test", "test1"], args)
+        args = ["test", "-o", "test1"]
+        self.assertEqual("test1", utils.read_argument(args, "-o", valued=True, delete=True))
+        self.assertEqual(["test"], args)
+        args = ["test", "-o"]
+        self.assertIsNone(utils.read_argument(args, "-o", valued=True, delete=True))
+        self.assertEqual(["test"], args)
+
+    def test_split_arguments(self):
+        self.assertEqual([["test", "-o", "test"]], utils.split_arguments(["test", "-o", "test"], "-"))
+        self.assertEqual([["test1"], ["test2"]], utils.split_arguments(["test1", "-", "test2"], "-"))
+        self.assertEqual([["test1"], ["test2"]], utils.split_arguments(["-", "test1", "-", "-", "test2", "-"], "-"))
+        self.assertEqual([], utils.split_arguments([], "-"))
+
+
+class TestUtilsString(TestCase):
     def test_safe_index(self):
         self.assertEqual(0, utils.safe_index("a", "a"))
         self.assertEqual(0, utils.safe_index([0], 0))
@@ -116,6 +151,8 @@ class Test(TestCase):
         self.assertEqual("ddd", utils.replace_at("abc", "d", [0, 1, 2], 1))
         self.assertEqual("a nice_plac_", utils.replace_at("a nice place", "_", [6, 11], 1))
 
+
+class TestUtilsFormat(TestCase):
     def test_break_text(self):
         self.assertIsNone(utils.justify_text("abcd", 2))
         self.assertIsNone(utils.justify_text("abcd efgh", 3))
@@ -124,22 +161,35 @@ class Test(TestCase):
         self.assertEqual("ab cd\nef gh", utils.justify_text("ab cd ef gh", 2))
         self.assertEqual("ab\ncd ef\ngh", utils.justify_text("ab cd ef gh", 3))
 
-    def test_best_fit(self):
+    def test_place_line_breaks(self):
         self.assertEqual([5, 9, 15], utils.place_line_breaks([5.2, 14.3, 15.2], [3, 5, 9, 15, 18]))
         self.assertEqual([5, 9, 15, 18], utils.place_line_breaks([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18]))
         self.assertEqual([5, 9, 15, 18], utils.place_line_breaks([5.2, 14.3, 14.5, 15.2], [3, 5, 9, 15, 18, 20]))
 
-    def test_read_argument(self):
-        self.assertIsNone(utils.read_argument(["test", "-o", "test"], "--output"))
-        self.assertTrue(utils.read_argument(["test", "-O", "test"], "--output", "-o"))
-        self.assertIsNone(utils.read_argument(["test", "-o"], "-o", valued=True))
-        self.assertEqual("test1", utils.read_argument(["test", "-o", "test1", "-o", "test2"], "-o", valued=True))
-        args = ["test", "-o", "test1"]
-        self.assertTrue(utils.read_argument(args, "-o", delete=True))
-        self.assertEqual(["test", "test1"], args)
-        args = ["test", "-o", "test1"]
-        self.assertEqual("test1", utils.read_argument(args, "-o", valued=True, delete=True))
-        self.assertEqual(["test"], args)
-        args = ["test", "-o"]
-        self.assertIsNone(utils.read_argument(args, "-o", valued=True, delete=True))
-        self.assertEqual(["test"], args)
+
+class TestUtilsWeb(TestCase):
+    def test_validate_url(self):
+        self.assertTrue(utils.validate_url("https://google.com/page#anchor?key=value&query"))
+        self.assertFalse(utils.validate_url("https:google.com/page#anchor?key=value&query"))
+        self.assertFalse(utils.validate_url(""))
+        self.assertFalse(utils.validate_url("google.com"))
+
+    def test_read_web_file(self):
+        out, err = utils.read_web_file("http:invalid.url")
+        self.assertIsNone(out)
+        self.assertEqual('Invalid URL', err)
+        out, err = utils.read_web_file("http://unknown.domain/")
+        self.assertIsNone(out)
+        self.assertEqual('Could not connect to server', err)
+        out, err = utils.read_web_file("http://httpbin.org/status/418")
+        self.assertIsNone(out)
+        self.assertEqual('Could not connect: HTTP Error 418: I\'M A TEAPOT', err)
+        out, err = utils.read_web_file("http://httpbin.org/bytes/1024", max_file_size=1000)
+        self.assertIsNone(out)
+        self.assertEqual('File too big', err)
+        # out, err = utils.read_web_file("http://httpbin.org/delay/1", timeout=0.1)
+        # self.assertIsNone(out)
+        # self.assertEqual('Could not connect to server', err)
+        out, err = utils.read_web_file("http://httpbin.org/base64/dGVzdA==")
+        self.assertIsNone(err)
+        self.assertEqual('test', out.decode("utf-8"))

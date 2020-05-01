@@ -3,7 +3,7 @@ import traceback
 import logging
 import discord
 import re
-import tempfile
+from io import BytesIO
 import sys
 from datetime import datetime
 from dotenv import load_dotenv
@@ -116,28 +116,32 @@ async def on_message(message: discord.Message):
             if len(args) > 1 and message.author.display_name is not None:
                 left_wmark_text = f"By {message.author.display_name}"
             logging.info(args[0])
-            meme_id = re.sub(r'[^A-Za-z0-9 _]', "", args[0]).strip()
-            args[0] = meme_id
-            img = meme_otron.compute(*args, left_wmark_text=left_wmark_text)
-            if img is None:
-                if len(meme_id) == 0:
-                    response = f":warning: Template not found\n"
-                else:
-                    hint = meme_db.find_nearest(meme_id)
-                    response = f":warning: Template `{meme_id}` not found\n"
-                    if hint is not None:
-                        response += f"Did you mean `{hint}`?\n"
-                response += f"You can find a more detailed help and a list of templates at:\n" \
+
+            input_data = None
+            if len(message.attachments) > 0:
+                input_data = await message.attachments[0].read()
+
+            img, errors = meme_otron.compute(*args, left_wmark_text=left_wmark_text,
+                                             input_data=input_data, max_file_size=8 * 1024 * 1024)
+            if len(errors) > 0:
+                response = ":warning:"
+                for err in errors:
+                    response += "\n" + err.replace("'", "`").replace("`` ", "")
+                response += f"\nYou can find a more detailed help and a list of templates at:\n" \
                             f"<{DOC_URL}>"
                 if len(response) >= 2000:
                     await message.channel.send(f"{message.author.mention} ... really?")
                 else:
                     await message.channel.send(response)
             else:
-                with tempfile.NamedTemporaryFile(delete=False) as output:
-                    img.save(output, format="JPEG")
+                with BytesIO() as output_file:
+                    img.save(output_file, format="JPEG")
+                    output_file.flush()
+                    output_file.seek(0)
+
                     response = None
-                    if len(args) == 1:
+                    meme_id = utils.sanitize_input(args[0])
+                    if len(args) == 1 and meme_id not in ["image", "text"]:
                         meme = meme_db.get_meme(meme_id)
                         response = f"Template `{meme.id}`:"
                         if len(meme.aliases) > 0:
@@ -152,13 +156,8 @@ async def on_message(message: discord.Message):
                         response = f"A meme by {message.author.mention}:"
                     if message_id not in SENT:
                         SENT[message_id] = []
-                    response = await message.channel.send(response,
-                                                          file=discord.File(filename="meme.jpg", fp=output.name))
+                    response = await message.channel.send(response, file=discord.File(output_file, "meme.jpg"))
                     SENT[message_id] += [response]
-                    try:
-                        os.remove(output.name)
-                    except PermissionError:
-                        pass
             if not is_direct:
                 await delete(message)
 
