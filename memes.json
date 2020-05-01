@@ -131,34 +131,19 @@
       "y_range": [0.80, 1.00]
     }]
 },{
-  "id": "2_texts",
-  "abstract": true,
-  "based_on": "white_text",
-  "font_size": 0.08,
-  "texts": [
-    {
-      "x_range": [
-        0.02,
-        0.98
-      ],
-      "y_range": [
-        0.02,
-        0.50
-      ],
+    "id": "2_texts",
+    "abstract": true,
+    "based_on": "white_text",
+    "font_size": 0.08,
+    "texts": [{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.02, 0.50],
       "position": "N"
-    },
-    {
-      "x_range": [
-        0.02,
-        0.98
-      ],
-      "y_range": [
-        0.50,
-        0.98
-      ],
+    },{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.50, 0.98],
       "position": "S"
-    }
-  ]
+    }]
 },{
     "id": "drake",
     "template": "drake.jpg",
@@ -255,28 +240,19 @@
       "y_range": [0.72, 0.90],
       "text_ref": 2
     }]
-},
-  {
+},{
     "id": "aliens",
     "template": "aliens.jpg",
     "based_on": "white_text",
     "aliases": [],
     "info": "https://knowyourmeme.com/memes/ancient-aliens",
     "font_size": 0.16,
-    "texts": [
-      {
-        "x_range": [
-          0.02,
-          0.98
-        ],
-        "y_range": [
-          0.8,
-          0.98
-        ],
-        "position": "S"
-      }
-    ]
-  },{
+    "texts": [{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.8, 0.98],
+      "position": "S"
+    }]
+},{
     "id": "grandma",
     "template": "grandma.jpg",
     "based_on": "2_texts",
@@ -362,75 +338,38 @@
       "text_ref": 6,
       "style_ref": 6
     }]
-},
-  {
+},{
     "id": "buff",
     "template": "buff.jpg",
-    "aliases": [
-      "tom",
-      "jerry"
-    ],
+    "aliases": ["tom", "jerry"],
     "info": "https://knowyourmeme.com/memes/buff-tom",
     "based_on": "white_text",
     "font_size": 0.06,
-    "texts": [
-      {
-        "x_range": [
-          0.07,
-          0.36
-        ],
-        "y_range": [
-          0.69,
-          0.98
-        ],
-        "font_size": 0.04
-      },
-      {
-        "x_range": [
-          0.44,
-          0.84
-        ],
-        "y_range": [
-          0.27,
-          0.59
-        ]
-      }
-    ]
-  },
-  {
+    "texts": [{
+      "x_range": [0.07, 0.36],
+      "y_range": [0.69, 0.98],
+      "font_size": 0.04
+    },{
+      "x_range": [0.44, 0.84],
+      "y_range": [0.27, 0.59]
+    }]
+},{
     "id": "button",
     "template": "button.jpg",
     "based_on": "white_text",
-    "aliases": [
-      "nut"
-    ],
+    "aliases": ["nut"],
     "info": "https://knowyourmeme.com/memes/nut-button",
     "font_size": 0.07,
-    "texts": [
-      {
-        "x_range": [
-          0.10,
-          0.46
-        ],
-        "y_range": [
-          0.46,
-          0.80
-        ],
-        "angle": 2
-      },
-      {
-        "x_range": [
-          0.48,
-          0.88
-        ],
-        "y_range": [
-          0.28,
-          0.68
-        ],
-        "angle": -45
-      }
-    ]
-  },{
+    "texts": [{
+      "x_range": [0.10, 0.46],
+      "y_range": [0.46, 0.80],
+      "angle": 2
+    },{
+      "x_range": [0.48, 0.88],
+      "y_range": [0.28, 0.68],
+      "angle": -45
+    }]
+},{
     "id": "bye_mom",
     "template": "bye_mom.jpg",
     "aliases": ["google"],
@@ -462,77 +401,35 @@
       "x_range": [0.40, 0.86],
       "y_range": [0.61, 0.77]
     }]
-},
-  {
+},{
     "id": "culture",
     "template": "culture.jpg",
-    "aliases": [
-      "anime"
-    ],
+    "aliases": ["anime"],
     "info": "https://knowyourmeme.com/memes/ah-i-see-youre-a-man-of-culture-as-well",
-    "stroke_fill": [
-      0,
-      0,
-      0
-    ],
+    "stroke_fill": [0, 0, 0],
     "stroke_width": 0.05,
     "font_size": 0.03,
-    "texts": [
-      {
-        "x_range": [
-          0.57,
-          0.68
-        ],
-        "y_range": [
-          0.87,
-          0.945
-        ]
-      }
-    ]
-  },
-  {
+    "texts": [{
+      "x_range": [0.57, 0.68],
+      "y_range": [0.87, 0.945]
+    }]
+},{
     "id": "distracted",
     "template": "distracted.jpg",
-    "aliases": [
-      "boyfried",
-      "cheating",
-      "girlfriend"
-    ],
+    "aliases": ["boyfried", "cheating", "girlfriend"],
     "info": "https://knowyourmeme.com/memes/distracted-boyfriend",
     "based_on": "white_text",
     "font_size": 0.04,
-    "texts": [
-      {
-        "x_range": [
-          0.49,
-          0.75
-        ],
-        "y_range": [
-          0.40,
-          0.62
-        ]
-      },
-      {
-        "x_range": [
-          0.10,
-          0.47
-        ],
-        "y_range": [
-          0.56,
-          0.95
-        ]
-      },
-      {
-        "x_range": [
-          0.72,
-          0.97
-        ],
-        "y_range": [
-          0.58,
-          0.80
-        ]
-      }
-    ]
+    "texts": [{
+      "x_range": [0.49, 0.75],
+      "y_range": [0.40, 0.62]
+    },{
+      "x_range": [0.10, 0.47],
+      "y_range": [0.56, 0.95]
+    },{
+      "x_range": [0.72, 0.97],
+      "y_range": [0.58, 0.80]
+    }]
 },{
     "id": "dont_look",
     "template": "dont_look.jpg",
@@ -550,45 +447,23 @@
       "x_range": [0.70, 0.94],
       "y_range": [0.82, 0.91]
     }]
-},
-  {
+},{
     "id": "drift",
     "template": "drift.jpg",
-    "aliases": [
-      "exit"
-    ],
+    "aliases": ["exit"],
     "info": "https://knowyourmeme.com/memes/left-exit-12-off-ramp",
     "font": "impact",
-    "fill": [
-      255,
-      255,
-      255
-    ],
+    "fill": [255, 255, 255],
     "font_size": 0.05,
     "position": "N",
-    "texts": [
-      {
-        "x_range": [
-          0.21,
-          0.37
-        ],
-        "y_range": [
-          0.11,
-          0.36
-        ]
-      },
-      {
-        "x_range": [
-          0.50,
-          0.73
-        ],
-        "y_range": [
-          0.11,
-          0.36
-        ]
-      }
-    ]
-  },{
+    "texts": [{
+      "x_range": [0.21, 0.37],
+      "y_range": [0.11, 0.36]
+    },{
+      "x_range": [0.50, 0.73],
+      "y_range": [0.11, 0.36]
+    }]
+},{
     "id": "everywhere2",
     "template": "everywhere2.jpg",
     "aliases": ["angry", "diapers"],
@@ -660,66 +535,41 @@
       "y_range": [0.45, 0.81],
       "font_size": 0.06
     }]
-},
-  {
+},{
     "id": "fine",
     "template": "fine.jpg",
-    "aliases": [
-      "fire",
-      "dog"
-    ],
+    "aliases": ["fire", "dog"],
     "info": "https://knowyourmeme.com/memes/this-is-fine",
     "based_on": "white_text",
     "font_size": 0.04,
-    "texts": [
-      {
-        "x_range": [
-          0.14,
-          0.34
-        ],
-        "y_range": [
-          0.55,
-          0.79
-        ]
-      },
-      {
-        "x_range": [
-          0.53,
-          0.80
-        ],
-        "y_range": [
-          0.68,
-          0.97
-        ],
-        "text_ref": 1
-      },
-      {
-        "x_range": [
-          0.62,
-          0.95
-        ],
-        "y_range": [
-          0.03,
-          0.26
-        ],
+    "texts": [{
+      "x_range": [0.14, 0.34],
+      "y_range": [0.55, 0.79]
+    },{
+      "x_range": [0.53, 0.80],
+      "y_range": [0.68, 0.97],
+      "text_ref": 1
+    },{
+      "x_range": [0.62, 0.95],
+      "y_range": [0.03, 0.26],
       "font": "grafo",
       "fill": [0, 0, 0],
       "stroke_width": 0,
-        "font_size": 0.08
+      "font_size": 0.08
     },{
       "x_range": [0.03, 0.16],
       "y_range": [0.65, 0.98],
-      "font_size": 0.04,
+      "font_size": 0.03,
       "position": "W"
     },{
       "x_range": [0.33, 0.48],
       "y_range": [0.78, 0.97],
-      "font_size": 0.04,
+      "font_size": 0.03,
       "position": "SE"
     },{
       "x_range": [0.34, 0.48],
       "y_range": [0.35, 0.61],
-      "font_size": 0.04,
+      "font_size": 0.03,
       "position": "E"
     }]
 },{
@@ -738,8 +588,7 @@
       "x_range": [0.50, 0.84],
       "y_range": [0.58, 0.82]
     }]
-},
-  {
+},{
     "id": "girl_cat",
     "template": "girl_cat.jpg",
     "based_on": "white_text",
@@ -747,65 +596,29 @@
     "info": "https://knowyourmeme.com/memes/woman-yelling-at-a-cat",
     "position": "S",
     "font_size": 0.08,
-    "texts": [
-      {
-        "x_range": [
-          0.01,
-          0.49
-        ],
-        "y_range": [
-          0.50,
-          0.99
-        ]
-      },
-      {
-        "x_range": [
-          0.51,
-          0.99
-        ],
-        "y_range": [
-          0.50,
-          0.99
-        ]
-      }
-    ]
-  },
-  {
+    "texts": [{
+      "x_range": [0.01, 0.49],
+      "y_range": [0.50, 0.99]
+    },{
+      "x_range": [0.51, 0.99],
+      "y_range": [0.50, 0.99]
+    }]
+},{
     "id": "gru",
     "template": "gru.jpg",
-    "aliases": [
-      "plan"
-    ],
+    "aliases": ["plan"],
     "info": "https://knowyourmeme.com/memes/grus-plan",
     "font_size": 0.04,
-    "texts": [
-      {
-        "x_range": [
-          0.28,
-          0.48
-        ],
-        "y_range": [
-          0.08,
-          0.50
-        ],
-        "angle": -1
-      },
-      {
-        "x_range": [
-          0.78,
-          0.98
-        ],
-        "y_range": [
-          0.10,
-          0.50
-        ],
-        "angle": -1
-      },
-      {
-        "x_range": [
-          0.28,
-          0.48
-        ],
+    "texts": [{
+      "x_range": [0.28, 0.48],
+      "y_range": [0.08, 0.50],
+      "angle": -1
+    },{
+      "x_range": [0.78, 0.98],
+      "y_range": [0.10, 0.50],
+      "angle": -1
+    },{
+      "x_range": [0.28, 0.48],
       "y_range": [0.60, 1.00],
       "angle": -1
     },{
@@ -813,38 +626,23 @@
       "y_range": [0.60, 1.00],
       "angle": -1
     }]
-},
-  {
+},{
     "id": "handshake",
     "template": "handshake.jpg",
     "based_on": "white_text",
     "aliases": [],
     "info": "https://knowyourmeme.com/memes/epic-handshake",
     "font_size": 0.09,
-    "texts": [
-      {
-        "x_range": [
-          -0.05,
-          0.45
-        ],
-        "y_range": [
-          0.48,
-          0.78
-        ],
-        "position": "W",
-        "angle": -50
-      },
-      {
-        "x_range": [
-          0.43,
-          0.99
-        ],
-        "y_range": [
-          0.40,
-          0.70
-        ],
-        "position": "E",
-        "angle": 25
+    "texts": [{
+      "x_range": [-0.05, 0.45],
+      "y_range": [0.48, 0.78],
+      "position": "W",
+      "angle": -50
+    },{
+      "x_range": [0.43, 0.99],
+      "y_range": [0.40, 0.70],
+      "position": "E",
+      "angle": 25
     },{
       "x_range": [0.25, 0.55],
       "y_range": [0.01, 0.50],
@@ -902,45 +700,23 @@
       "style_ref": 4,
       "text_ref": 4
     }]
-},
-  {
+},{
     "id": "pigeon",
     "template": "pigeon.jpg",
     "based_on": "white_text",
-    "aliases": [
-      "butterfly"
-    ],
+    "aliases": ["butterfly"],
     "info": "https://knowyourmeme.com/memes/is-this-a-pigeon",
     "font_size": 0.07,
-    "texts": [
-      {
-        "x_range": [
-          0.02,
-          0.98
-        ],
-        "y_range": [
-          0.86,
-          0.99
-        ],
-        "fill": [
-          255,
-          255,
-          0
-        ],
-        "font": "arial",
-        "position": "S"
-      },
-      {
-        "x_range": [
-          0.04,
-          0.49
-        ],
-        "y_range": [
-          0.20,
-          0.72
-        ]
-      },
-      {
+    "texts": [{
+      "x_range": [0.02, 0.98],
+      "y_range": [0.86, 0.99],
+      "fill": [255, 255, 0],
+      "font": "arial",
+      "position": "S"
+    },{
+      "x_range": [0.04, 0.49],
+      "y_range": [0.20, 0.72]
+    },{
       "x_range": [0.69, 1.00],
       "y_range": [0.03, 0.39]
     }]
@@ -980,39 +756,23 @@
       "font_size": 0.07,
       "text_ref": 5
     }]
-},
-  {
+},{
     "id": "born_cool",
     "template": "born_cool.jpg",
     "info": "https://knowyourmeme.com/memes/nobody-is-born-cool",
     "based_on": "white_text",
     "aliases": [],
     "font_size": 0.05,
-    "texts": [
-      {
-        "x_range": [
-          0.07,
-          0.39
-        ],
-        "y_range": [
-          0.62,
-          0.85
-        ],
-        "stroke_width": 0,
-        "font_size": 0.04,
-        "angle": -15
-      },
-      {
-        "x_range": [
-          0.18,
-          0.46
-        ],
-        "y_range": [
-          0.21,
-          0.40
-        ]
-      },
-      {
+    "texts": [{
+      "x_range": [0.07, 0.39],
+      "y_range": [0.62, 0.85],
+      "stroke_width": 0,
+      "font_size": 0.04,
+      "angle": -15
+    },{
+      "x_range": [0.18, 0.46],
+      "y_range": [0.21, 0.40]
+    },{
       "x_range": [0.68, 0.96],
       "y_range": [0.21, 0.40],
       "text_ref": 2
@@ -1021,40 +781,22 @@
       "y_range": [0.82, 1.00],
       "text_ref": 2
     }]
-},
-  {
+},{
     "id": "mini",
     "template": "mini.jpg",
     "based_on": "white_text",
-    "aliases": [
-      "joker"
-    ],
+    "aliases": ["joker"],
     "info": "https://knowyourmeme.com/memes/mini-joker",
     "font_size": 0.06,
-    "texts": [
-      {
-        "x_range": [
-          0.42,
-          0.77
-        ],
-        "y_range": [
-          0.19,
-          0.55
-        ]
-      },
-      {
-        "x_range": [
-          0.12,
-          0.42
-        ],
-        "y_range": [
-          0.36,
-          0.66
-        ],
-        "font_size": 0.04
-      }
-    ]
-  },{
+    "texts": [{
+      "x_range": [0.42, 0.77],
+      "y_range": [0.19, 0.55]
+    },{
+      "x_range": [0.12, 0.42],
+      "y_range": [0.36, 0.66],
+      "font_size": 0.04
+    }]
+},{
     "id": "nobody_cares",
     "template": "nobody_cares.jpg",
     "based_on": "white_text",
@@ -1069,42 +811,23 @@
       "x_range": [0.02, 0.98],
       "y_range": [0.75, 0.99]
     }]
-},
-  {
+},{
     "id": "overconfident",
     "template": "overconfident.jpg",
-    "aliases": [
-      "alcohol",
-      "depressed"
-    ],
+    "aliases": ["alcohol","depressed"],
     "info": "https://knowyourmeme.com/memes/overconfident-alcoholic",
     "based_on": "white_text",
     "font_size": 0.04,
-    "texts": [
-      {
-        "x_range": [
-          0.04,
-          0.30
-        ],
-        "y_range": [
-          0.03,
-          0.19
-        ],
-        "align": "right",
-        "position": "SE",
-        "font": "grafo",
-        "fill": [
-          0,
-          0,
-          0
-        ],
-        "stroke_width": 0
-      },
-      {
-        "x_range": [
-          0.07,
-          0.29
-        ],
+    "texts": [{
+      "x_range": [0.04, 0.30],
+      "y_range": [0.03, 0.19],
+      "align": "right",
+      "position": "SE",
+      "font": "grafo",
+      "fill": [0, 0, 0],
+      "stroke_width": 0
+    },{
+      "x_range": [0.07, 0.29],
       "y_range": [0.26, 0.47],
       "align": "left",
       "position": "NW",
@@ -1186,41 +909,24 @@
       "y_range": [0.32, 0.47]
     },{
       "x_range": [0.70, 0.95],
-      "y_range": [0.80, 0.95]
+      "y_range": [0.80, 0.95],
+      "text_ref": 2
     }]
-},
-  {
+},{
     "id": "spiderman",
     "template": "spiderman.jpg",
     "based_on": "white_text",
-    "aliases": [
-      "same"
-    ],
+    "aliases": ["same"],
     "info": "https://knowyourmeme.com/memes/spider-man-pointing-at-spider-man",
     "font_size": 0.05,
-    "texts": [
-      {
-        "x_range": [
-          0.15,
-          0.39
-        ],
-        "y_range": [
-          0.26,
-          0.52
-        ]
-      },
-      {
-        "x_range": [
-          0.64,
-          0.89
-        ],
-        "y_range": [
-          0.32,
-          0.58
-        ]
-      }
-    ]
-  },{
+    "texts": [{
+      "x_range": [0.15, 0.39],
+      "y_range": [0.26, 0.52]
+    },{
+      "x_range": [0.64, 0.89],
+      "y_range": [0.32, 0.58]
+    }]
+},{
     "id": "struggle",
     "template": "struggle.jpg",
     "based_on": "white_text",
@@ -1243,84 +949,44 @@
       "x_range": [0.33, 0.75],
       "y_range": [0.56, 0.83]
     }]
-},
-  {
+},{
     "id": "trump",
     "template": "trump.jpg",
-    "aliases": [
-      "law"
-    ],
+    "aliases": ["law"],
     "info": "https://knowyourmeme.com/memes/trumps-first-order-of-business",
     "based_on": "white_text",
     "font_size": 0.04,
-    "texts": [
-      {
-        "x_range": [
-          0.68,
-          0.92
-        ],
-        "y_range": [
-          0.37,
-          0.66
-        ],
-        "angle": 1,
-        "fill": [
-          0,
-          0,
-          0
-        ],
-        "stroke_width": 0,
-        "font": "arial",
-        "position": "NW",
-        "align": "left"
-      },
-      {
+    "texts": [{
+      "x_range": [0.68, 0.92],
+      "y_range": [0.37, 0.66],
+      "angle": 1,
+      "fill": [0, 0, 0],
+      "stroke_width": 0,
+      "font": "arial",
+      "position": "NW",
+      "align": "left"
+    },{
       "x_range": [0.05, 0.38],
       "y_range": [0.42, 0.81],
-        "font_size": 0.06
+      "font_size": 0.06
     }]
-},
-  {
+},{
     "id": "trust_nobody",
     "template": "trust_nobody.jpg",
     "based_on": "white_text",
-    "aliases": [
-      "yourself",
-      "gun"
-    ],
+    "aliases": ["yourself","gun"],
     "info": "https://knowyourmeme.com/memes/trust-nobody-not-even-yourself",
     "font_size": 0.05,
-    "texts": [
-      {
-        "x_range": [
-          0.16,
-          0.50
-        ],
-        "y_range": [
-          0.32,
-          0.85
-        ]
-      },
-      {
-        "x_range": [
-          0.79,
-          0.99
-        ],
-        "y_range": [
-          0.29,
-          0.89
-        ],
-        "position": "E"
-      },
-      {
-        "x_range": [
-          0.51,
-          0.79
-        ],
-        "y_range": [
-          0.58,
-          0.93
-        ]
+    "texts": [{
+      "x_range": [0.16, 0.50],
+      "y_range": [0.32, 0.85]
+    },{
+      "x_range": [0.79, 0.99],
+      "y_range": [0.29, 0.89],
+      "position": "E"
+    },{
+      "x_range": [0.51, 0.79],
+      "y_range": [0.58, 0.93]
     }]
 },{
     "id": "t_pose",
@@ -1355,50 +1021,23 @@
       "y_range": [0.86, 0.99],
       "position": "S"
     }]
-},
-  {
+},{
     "id": "tom_cousins",
     "template": "tom_cousins.jpg",
     "based_on": "white_text",
-    "aliases": [
-      "cousins",
-      "backup",
-      "goons"
-    ],
+    "aliases": ["cousins","backup", "goons"],
     "info": "https://knowyourmeme.com/memes/tom-and-jerry-hired-goons",
     "font_size": 0.06,
-    "texts": [
-      {
-        "x_range": [
-          0.14,
-          0.39
-        ],
-        "y_range": [
-          0.21,
-          0.69
-        ]
-      },
-      {
-        "x_range": [
-          0.39,
-          0.67
-        ],
-        "y_range": [
-          0.38,
-          0.77
-        ]
-      },
-      {
-        "x_range": [
-          0.68,
-          0.98
-        ],
-        "y_range": [
-          0.38,
-          0.77
-        ]
-      }
-    ]
+    "texts": [{
+      "x_range": [0.14, 0.39],
+      "y_range": [0.21, 0.69]
+    },{
+      "x_range": [0.39, 0.67],
+      "y_range": [0.38, 0.77]
+    },{
+      "x_range": [0.68, 0.98],
+      "y_range": [0.38, 0.77]
+    }]
 },{
     "id": "pills",
     "template": "pills.jpg",
@@ -1470,51 +1109,29 @@
       "y_range": [0.00, 0.13],
       "font_size": 0.04
     }]
-},
-  {
+},{
     "id": "seagull4",
     "template": "seagull4.jpg",
     "based_on": "white_text",
     "font_size": 0.04,
     "position": "S",
-    "texts": [
-      {
-        "x_range": [
-          0.01,
-          0.49
-        ],
-        "y_range": [
-          0.30,
-          0.49
-        ]
-      },
-      {
-        "x_range": [
-          0.51,
-          0.99
-        ],
-        "y_range": [
-          0.30,
-          0.49
-        ]
-      },
-      {
-        "x_range": [
-          0.01,
-          0.49
-        ],
-        "y_range": [
-          0.80,
-          0.99
-        ]
+    "texts": [{
+      "x_range": [0.01, 0.49],
+      "y_range": [0.30, 0.49]
+    },{
+      "x_range": [0.51, 0.99],
+      "y_range": [0.30, 0.49]
+    },{
+      "x_range": [0.01, 0.49],
+      "y_range": [0.80, 0.99]
     },{
       "x_range": [0.51, 0.99],
       "y_range": [0.80, 0.99],
-        "font_size": 0.05
+      "font_size": 0.05
     },{
       "x_range": [0.16, 0.38],
       "y_range": [0.03, 0.17],
-        "font_size": 0.03
+      "font_size": 0.03
     },{
       "x_range": [0.72, 0.94],
       "y_range": [0.00, 0.13],
