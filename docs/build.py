@@ -61,7 +61,15 @@ def main():
                               "culture",
                               "meme otron")
 
-    # TODO example 4 : complex composition
+    content = produce_example(content, "EXAMPLE4", "example4.jpg",
+                              "",
+                              "image",
+                              "https://i.imgur.com/DNLFUuK.png",
+                              "-",
+                              "text",
+                              "meme-otron dev close to finishing the idea",
+                              "-",
+                              "holup")
 
     with open(doc_file, mode='w') as f:
         f.write(content)

@@ -148,7 +148,7 @@ Click on an image to enlarge it.
 
 <!--EXAMPLE2-END-->
 
-### Example 3: Text + template
+### Example 3: Text + Template
 <sub><sup>[↑ back to top](#meme-otron-guide)</sup></sub>
 
 <!--EXAMPLE3-START-->
