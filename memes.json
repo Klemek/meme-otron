@@ -1365,4 +1365,62 @@
       "text_ref": 13,
       "angle": 38
     }]
+},{
+    "id": "favorite",
+    "template": "favorite.jpg",
+    "aliases": [],
+    "info": "https://knowyourmeme.com/memes/this-is-my-favorite-subreddit",
+    "font_size": 0.06,
+	"font": "grafo",
+    "texts": [{
+      "x_range": [0.28, 0.55],
+      "y_range": [0.10, 0.15],
+	  "font_size": 0.10,
+	  "fill": [8, 9, 129],
+	  "stroke_width": 0.02,
+	  "stroke_fill": [8, 9, 129],
+	  "position": "N"
+    },{
+      "x_range": [0.61, 0.96],
+      "y_range": [0.06, 0.14],
+	  "font_size": 0.08,
+	  "fill": [249, 26, 10],
+	  "stroke_width": 0.02,
+	  "stroke_fill": [249, 26, 10]
+    },{
+      "x_range": [0.65, 0.97],
+      "y_range": [0.60, 0.75],
+	  "fill": [135, 55, 48]
+    }]
+},{
+    "id": "quality",
+    "template": "quality.jpg",
+    "aliases": ["competition"],
+	"based_on": "white_text",
+    "info": "https://knowyourmeme.com/memes/king-neptune-vs-spongebob-squarepants",
+    "font_size": 0.05,
+    "texts": [{
+      "x_range": [0.11, 0.54],
+      "y_range": [0.18, 0.41],
+	  "font_size": 0.04
+    },{
+      "x_range": [0.13, 0.40],
+      "y_range": [0.84, 0.96],
+	  "font_size": 0.06
+    },{
+      "x_range": [0.56, 0.80],
+      "y_range": [0.30, 0.40]
+    },{
+      "x_range": [0.40, 0.82],
+      "y_range": [0.74, 0.89],
+	  "font_size": 0.07
+    }]
+},{
+    "id": "",
+    "template": "",
+    "aliases": [],
+	"based_on": "white_text",
+    "info": "",
+    "font_size": 0.05,
+    "texts": []
 }]
