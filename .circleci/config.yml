@@ -37,7 +37,7 @@ jobs:
       - run:
           command: |
             sudo pip install -r requirements.txt
-            sudo pip install pytest pytest-cov python-coveralls
+            sudo pip install pytest pytest-cov coveralls
             pytest ./tests --cov=.coverage
             coveralls
           name: Tests
