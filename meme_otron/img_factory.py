@@ -68,7 +68,6 @@ def build_text_only(texts: List[Text], debug: bool = False) -> Image.Image:
         range_factor = heights[i] / max_height
         start = sum(heights[:i]) / max_height
         text.y_range = (start + text.y_range[0] * range_factor, start + text.y_range[1] * range_factor)
-        pass
     txt_img = Image.new('RGBA', (TEXT_IMAGE_WIDTH, max_height), (255, 255, 255))
     return apply_texts(txt_img, texts, debug=debug)
 

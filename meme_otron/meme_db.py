@@ -91,8 +91,8 @@ def load_item(i: int, item: dict):
                     meme.texts_len = current_text - 1
                 except TypeError as e:
                     logger.warning(f"Item '{item_id}'({i + 1}) / Text {j + 1}: {e}")
-        for text in meme.texts:
-            text.update(meme.text_base)
+            for text in meme.texts:
+                text.update(meme.text_base)
         else:
             DATA[item_id] = meme
             if not meme.abstract:

@@ -1,5 +1,4 @@
 from typing import Optional, Tuple, List
-import re
 from PIL import Image
 from io import BytesIO
 
