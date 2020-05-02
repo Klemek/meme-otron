@@ -1,3 +1,7 @@
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/Klemek/meme-otron.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Klemek/meme-otron/alerts/)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Klemek/meme-otron.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Klemek/meme-otron/context:python)
+[![Coverage Status](https://coveralls.io/repos/github/Klemek/meme-otron/badge.svg?branch=master)](https://coveralls.io/github/Klemek/meme-otron?branch=master)
+
 # Meme-Otron
 
 *When making a meme need to be instantaneous*

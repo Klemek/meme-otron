@@ -6,3 +6,4 @@ tmp
 .key*
 *.pyc
 .pytest_cache
+.coverage

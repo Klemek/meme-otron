@@ -37,6 +37,7 @@ jobs:
       - run:
           command: |
             sudo pip install -r requirements.txt
-            sudo pip install pytest
-            python -m pytest ./tests/unit
-          name: Unit tests
+            sudo pip install pytest pytest-cov python-coveralls
+            pytest ./tests --cov=.coverage
+            coveralls
+          name: Tests
